@@ -34,9 +34,9 @@ function NavBar(){
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <Link to="/" className="dropdown-item">
                       Logout
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>

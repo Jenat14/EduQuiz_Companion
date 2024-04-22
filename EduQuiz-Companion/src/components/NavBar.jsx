@@ -34,7 +34,7 @@ function NavBar(){
                     </a>
                   </li>
                   <li>
-                    <Link to="/HomePage" className="dropdown-item">
+                    <Link to="/" className="dropdown-item">
                       Logout
                     </Link>
                   </li>

@@ -7,7 +7,8 @@ function App() {
       <NavBar /> {/* Render NavBar component */}
       <div style={{ marginTop: "70px", padding: "20px" }}>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<NavBar />} />
+        <Route path="/HomePage" element={<HomePage />} />
       </Routes>
       </div>
     </Router>

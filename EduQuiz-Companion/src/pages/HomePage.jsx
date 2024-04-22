@@ -79,7 +79,7 @@ function HomePage() {
             <img src={Home2} height="200" width="300" className="img-fluid" alt=""/>
           </div>
           <div className="col-md-7 pt-5" data-aos="fade-left">
-            <h2 style={{fontStyle:"Bold",color:"#76ABAE"}}>MSSION</h2>
+            <h2 style={{fontStyle:"Bold",color:"#76ABAE"}}>MISSION</h2>
             <div className="textbox">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque ullamcorper nisl at placerat. 
               Nam diam purus, ultrices eu ligula ut, lacinia ornare lorem. Nunc sodales mauris eget turpis ullamcorper, 

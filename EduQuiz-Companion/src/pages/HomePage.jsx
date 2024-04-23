@@ -39,7 +39,7 @@ function HomePage() {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                  <Link to="/#" className="dropdown-item">
+                  <Link to="/LoginStudent" className="dropdown-item">
             Student Login
           </Link>
                   </li>

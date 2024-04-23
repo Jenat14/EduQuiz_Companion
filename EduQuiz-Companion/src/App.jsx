@@ -5,7 +5,8 @@ import Subject from "./pages/Subject";
 import LevelPage from "./pages/LevelPage";
 import Leaderboard from "./pages/Leaderboard";
 import LoginStudent from "./pages/loginS";
-import StudentSub from "./pages/StudentSub"
+import StudentSub from "./pages/StudentSub";
+import CardPage from "./pages/Sdashboard";
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
         <Route path="/levelPage" element={<LevelPage />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/StudentSub" element={<StudentSub />} />
+        <Route path="/CardPage" element={<CardPage />} />
       </Routes>
       </div>
     </Router>

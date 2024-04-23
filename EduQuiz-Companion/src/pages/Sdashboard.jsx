@@ -1,12 +1,12 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import { Card, Button } from 'react-bootstrap'; // Import Bootstrap components
-import '../component/cardpage.css'
-import img2 from '../assets/os.jpg';
-import img3 from '../assets/ds.jpg';
-import img4 from '../assets/dbms.jpg';
-import img5 from '../assets/coa.jpg';
-import img6 from '../assets/flat.jpg';
+//import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+//import { Card, Button } from 'react-bootstrap'; // Import Bootstrap components
+import './Sdashboard.css'
+import img2 from '../assets/os.jpeg';
+import img3 from '../assets/dsa.jpg';
+import img4 from '../assets/dbms.png';
+import img5 from '../assets/coa.webp';
+import img6 from '../assets/flat1.jpg';
 const CardPage = () => {
   return (
     <div className="container">

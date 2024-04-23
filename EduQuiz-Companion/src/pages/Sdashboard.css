@@ -1,0 +1,46 @@
+.card-container {
+    margin-top: 20px;
+    padding: 20px; 
+  }
+  
+  .card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #76ABAE;
+    border-radius: 0%;
+    
+  }
+  
+  .card-img-top {
+    max-height: 280px;
+  }
+  
+  .card-body {
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: #76ABAE;
+   
+    
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    background-color: #76ABAE;
+    height: 100px;
+    
+  }
+
+  
+  .custom-button {
+    background-color: #76ABAE !important; /* Set background color */
+    border-color: #76ABAE !important; /* Set border color */
+    height: 60px;
+  }
+  .custom-button:hover {
+    background-color: #5C898C !important; /* Set background color on hover */
+    border-color: #5C898C !important; /* Set border color on hover */
+    
+  }
+  .card-body {
+    height: 100px; /* Set a fixed height for all card bodies */
+  }

@@ -113,6 +113,37 @@
     text-align: center;
     font-size: small;
   }
+  .instructions-container{
+    margin: 30px 70px 30px 70px;
+    padding: 20px;
+    background-color: #EEEEEE;
+    border: 3px solid #76ABAE;
+  }
+  #level-btn {
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-right: 70px;
   
+  }
+  #level-btn .btn{
+    width: 30%;
+    background-color: #76ABAE;
+    border: none;
+    border-radius:0;
+  }
+  #level-btn .btn:hover{
+    background-color: #222831;
+  }
+  #level-btn .btn-lg {
+    color: #fff;
+    padding: 25px;
+  }
+  .level-content{
+    margin-top: 20px;
+    margin-left: 70px;
+    margin-right: 70px;
+  }
   
   

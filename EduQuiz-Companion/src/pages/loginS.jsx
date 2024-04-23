@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./logins.css";
+import "../logins.css";
 import img1 from '../assets/student_login.jpg';
 
 const LoginStudent = () => {

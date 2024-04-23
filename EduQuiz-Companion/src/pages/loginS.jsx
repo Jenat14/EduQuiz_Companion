@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './index.css'; // Importing the CSS file for styling
-import img1 from '../assets/ppng.jpg';
+import "./logins.css";
+import img1 from '../assets/student_login.jpg';
 
-const login = () => {
+const LoginStudent = () => {
   const handleLogin = () => {
     // Handle login logic here
     console.log('Logging in...'); 
@@ -42,5 +42,5 @@ const login = () => {
   );
 };
 
-export default login;
+export default LoginStudent;
 

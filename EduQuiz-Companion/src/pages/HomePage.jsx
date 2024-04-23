@@ -89,26 +89,35 @@ function HomePage() {
           </div></div>
         </div>
         <div id="contact" className="section half-screen">
-          <div className="row">
-            <h3>CONTACT US</h3>
-            <p>Write to us about your queries!</p>
-          </div>
+  <div className="row">
+    <div className="col">
+      <h3>CONTACT US</h3>
+      <p>Write to us about your queries!</p>
+    </div>
+  </div>
 
-          <div className="input-group mb-3 ">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter your Queries"
-            />
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              id="button-addon2"
-            >
-              Send
-            </button>
-          </div>
+  <div className="row">
+    <div className="col">
+      <div className="input-group">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Enter your Queries"
+        />
+        <div className="input-group-append">
+          <button
+            className="btn btn-outline-secondary"
+            type="button"
+            id="button-addon2"
+          >
+            Send
+          </button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
         <div className="footer">
           <div className="container footer-bottom clearfix">
             <div className="copyright">

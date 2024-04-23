@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Subject from "./pages/Subject";
 import LevelPage from "./pages/LevelPage";
 import Leaderboard from "./pages/Leaderboard";
+import LoginStudent from "./pages/loginS";
 function App() {
   return (
     <Router>
@@ -11,6 +12,7 @@ function App() {
       <div style={{ marginTop: "70px", padding: "20px" }}>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/LoginStudent" element={<LoginStudent />} />
         <Route path="/Subject" element={<Subject />} />
         <Route path="/levelPage" element={<LevelPage />} />
         <Route path="/leaderboard" element={<Leaderboard />} />

@@ -145,5 +145,26 @@
     margin-left: 70px;
     margin-right: 70px;
   }
+  .chart-container {
+    max-height: fit-content;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: #ffffff;
+  }
   
+  svg {
+    display: block;
+    margin: 0;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px; 
+  }
+  
+  .btn {
+    width: 150px; 
+  }
   

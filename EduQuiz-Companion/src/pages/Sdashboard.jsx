@@ -1,7 +1,7 @@
 import React from 'react';
 //import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 //import { Card, Button } from 'react-bootstrap'; // Import Bootstrap components
-import './Sdashboard.css'
+//import './Sdashboard.css'
 import img2 from '../assets/os.jpeg';
 import img3 from '../assets/dsa.jpg';
 import img4 from '../assets/dbms.png';

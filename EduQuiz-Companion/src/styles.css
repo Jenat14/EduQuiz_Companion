@@ -158,15 +158,13 @@
     display: block;
     margin: 0;
   }
-  /* result.css */
-  
   .button-container {
     display: flex;
     justify-content: space-between;
-    padding: 0 50px; /* Horizontal padding of 50px */
+    padding: 0 50px; 
   }
   
   .btn {
-    width: 150px; /* Set a fixed width for buttons */
+    width: 150px; 
   }
   

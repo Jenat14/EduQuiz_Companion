@@ -101,17 +101,19 @@
   .footer .container {
     border-top: 1px solid  rgba(0, 0, 0, 0.816);
     position:relative;
+    justify-content: flex-end;
   }
   
   .footer .container .copyright {
-    text-align: center;
+    
+    text-align: left;
     float: left;
     font-size: small;
   }
   
   .footer .container .credits {
     float: right;
-    text-align: center;
+    text-align: right;
     font-size: small;
   }
   .instructions-container{

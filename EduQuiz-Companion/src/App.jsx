@@ -5,8 +5,10 @@ import Subject from "./pages/Subject";
 import LevelPage from "./pages/LevelPage";
 import Leaderboard from "./pages/Leaderboard";
 import LoginStudent from "./pages/loginS";
+import Facultylogin from "./pages/Facultylogin";
 import StudentSub from "./pages/StudentSub";
 import CardPage from "./pages/Sdashboard";
+import Facultydash from "./pages/facultydash";
 import Result from "./pages/Result";
 import Question from "./pages/Question";
 import PageLayout from "./pages/PageLayout";
@@ -25,6 +27,8 @@ function App() {
         <Route path="/CardPage" element={<CardPage />} />
         <Route path="/Result" element={<Result />} />
         <Route path="/Question" element={<Question/>}/>
+        <Route path="/Facultylogin" element={<Facultylogin/>}/>
+        <Route path="/Facultydash" element={<Facultydash/>}/>
         <Route path="/PageLayout" element={<PageLayout/>}/>
       </Routes>
       </div>

@@ -1,97 +1,98 @@
-.container {
+.container-f{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-left: 10%;
+  padding-right:0%;
+}
+
+.top-right-button {
+  position: relative;
+  top: 20px;
+  right: 10px;
+  width: 290px;
+  height: 56px;
+  background-color: #76ABAE; /* Set the background color */
+  color: white; /* Set the text color */
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  width: auto; 
+  margin-left: auto; /* Set the width to auto to fit content */
+}
+.top-right-button:hover {
+  background-color: grey;
+}
+.card-f {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 30px;
+    margin-top: 10%;
+    width: calc(22% - 10px);
+  
+  }
+  
+  
+  .faculty-header {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
-    padding-left: 17%;
-    padding-right: 17%;
+    align-items: center;
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  .card-container-f {
+   
+    display: flex;
+    flex-direction: column;
+    padding-left: 200px;
+  }
+  .card-row-f {
+    display: flex;
+    justify-content: space;
+    margin-bottom: 20px; /* Adjust as needed */
+  }
+  .card-image-f {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
   
-  .top-right-button {
-    position: relative;
-    top: 20px;
-    right: 10px;
-   
-    width: 290px;
-    height: 56px;
-    background-color: #76ABAE; /* Set the background color */
-    color: white; /* Set the text color */
+  .card-content-f {
+    padding: 20px;
+    background-color: #76ABAE;
+    height: 50px;
+  }
+  
+  .card-title-f {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+.mmn{
+  background-color: blueviolet;
+}
+  
+  .card-text-f {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .card-button-f {
+    padding: 10px 20px;
+    background-color: #76ABAE;
+    color:  #FFFFFF;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
     cursor: pointer;
-    width: auto; /* Set the width to auto to fit content */
+    outline-color: black;
+    font-size: 1rem;
   }
-  .top-right-button:hover {
+  
+  .card-button-f:hover {
     background-color: grey;
   }
-  .card {
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin: 30px;
-      width: calc(22% - 10px);
-    
-    }
-    
-    
-    .faculty-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px; /* Adjust as needed */
-    }
-    .card-container {
-     
-      display: flex;
-      flex-direction: column;
-      padding-left: 200px;
-    }
-    .card-row {
-      display: flex;
-      justify-content: space;
-      margin-bottom: 20px; /* Adjust as needed */
-    }
-    .card-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
-    }
-    
-    .card-content {
-      padding: 20px;
-      background-color: #76ABAE;
-      height: 50px;
-    }
-    
-    .card-title {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
   
-  .mmn{
-    background-color: blueviolet;
-  }
-    
-    .card-text {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-    
-    .card-button {
-      padding: 10px 20px;
-      background-color: #76ABAE;
-      color:  #FFFFFF;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      outline-color: black;
-      font-size: 1rem;
-    }
-    
-    .card-button:hover {
-      background-color: grey;
-    }
-    

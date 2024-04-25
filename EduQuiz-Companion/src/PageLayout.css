@@ -1,0 +1,58 @@
+.main-content {
+    padding: 20px; /* Padding for the main quiz content */
+  }
+  
+  .quiz-box {
+    border: 1px solid #ccc; /* Gray border for each quiz box */
+    border-radius: 5px; /* Rounded corners */
+    padding: 20px; /* Padding inside each quiz box */
+    margin-bottom: 20px; /* Margin between quiz boxes */
+  }
+  
+  .option {
+    margin-bottom: 10px; /* Margin between each quiz option */
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .top-bar h4 {
+      font-size: 16px; /* Smaller font size for headings on smaller screens */
+    }
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Light gray background */
+  }
+  
+  /* Page container */
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full height of viewport */
+  }
+  
+  /* Header styles */
+  
+  
+  
+  .header .container-fluid {
+    max-width: 1200px; /* Max width of the header content */
+    margin: 0 auto; /* Center the header content */
+  }
+  
+  .header .btn {
+    margin-right: 10px;
+     /* Margin between buttons in header */
+  }
+.Time{
+
+margin-bottom: 50px; /* margin between quiz content */
+padding-left: 20px;
+margin-top: 50px;
+
+
+}
+
+  

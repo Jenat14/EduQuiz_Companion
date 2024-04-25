@@ -8,6 +8,8 @@ import LoginStudent from "./pages/loginS";
 import StudentSub from "./pages/StudentSub";
 import CardPage from "./pages/Sdashboard";
 import Result from "./pages/Result";
+import Question from "./pages/Question";
+import PageLayout from "./pages/PageLayout";
 function App() {
   return (
     <Router>

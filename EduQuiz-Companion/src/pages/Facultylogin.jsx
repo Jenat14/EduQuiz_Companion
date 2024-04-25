@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 
-import "./Facultylogin.css";
-import img1 from './assets/fac.jpg';
+import "../Facultylogin.css";
+import img1 from '../assets/facultylogin.png';
 
 const Facultylogin = () => {
   
@@ -36,7 +36,7 @@ const Facultylogin = () => {
             <label htmlFor="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" />
           </div>
-          <button type="button" onClick={handleLogin}>Login</button>
+          <button type="button" onClick={handleLogin} style={{marginTop:"30px"}}>Login</button>
         </form>
         <div className="forgot-password-link" onClick={handleForgotPassword}>
           <a href="#">Forgot password?</a>

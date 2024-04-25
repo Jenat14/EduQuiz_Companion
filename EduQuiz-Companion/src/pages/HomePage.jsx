@@ -44,7 +44,7 @@ function HomePage() {
           </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="#">
+                    <Link className="dropdown-item" to="/Facultylogin">
                       Faculty Login
                     </Link>
                   </li>
@@ -120,7 +120,7 @@ function HomePage() {
 
         <div className="footer">
           <div className="container footer-bottom clearfix">
-            <div className="copyright">
+            <div className="copyright" style={{paddingRight:"670px"}}>
               &copy; 2024{" "}
               <strong>
                 <span>EduQuiz Companion</span>

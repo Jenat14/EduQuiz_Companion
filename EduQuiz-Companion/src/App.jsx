@@ -24,6 +24,8 @@ function App() {
         <Route path="/StudentSub" element={<StudentSub />} />
         <Route path="/CardPage" element={<CardPage />} />
         <Route path="/Result" element={<Result />} />
+        <Route path="/Question" element={<Question/>}/>
+        <Route path="/PageLayout" element={<PageLayout/>}/>
       </Routes>
       </div>
     </Router>

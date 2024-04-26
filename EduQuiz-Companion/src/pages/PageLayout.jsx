@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-
+import { Link } from 'react-router-dom';
 const PageLayout = () => {
   const [fileDownloadUrl, setFileDownloadUrl] = useState('');
   const [isUploadComplete, setIsUploadComplete] = useState(false);
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
 
   const handleDownloadTemplate = () => {
     const templateUrl = "../assets/template.xlsx"; 
@@ -16,12 +17,22 @@ const PageLayout = () => {
       // Handle the selected file here
       console.log("Selected file:", selectedFile);
       setIsUploadComplete(true);
-    }, 1000); // Simulating delay for upload completion
+    }, 2000); // Simulating 2 seconds delay for upload completion
+  };
+
+  const handleSwitchChange = () => {
+    setIsSwitchOn(!isSwitchOn);
+  };
+
+  const handleSave = () => {
+    // Handle save functionality here
+    console.log("Save button clicked");
   };
 
   const rightAlign = {
     textAlign: 'right',
   };
+
   const labelStyle = {
     display: 'flex',
   };
@@ -79,7 +90,7 @@ const PageLayout = () => {
           <div className="container">
             {/* Map through questionsData array to render questions and options */}
             { questionsData.map((questionObj, index) => (
-              <div key={ index } className="quiz-box">
+              <div key={ index } className="quiz-box" style={{backgroundColor:"#F7FCFC",borderColor:"#76ABAE"}}>
                 <div className="row">
                   <div className="col-8">
                     <h5>{ questionObj.question }</h5>
@@ -106,8 +117,25 @@ const PageLayout = () => {
               </div>
             )) }
           </div>
+          <div style={{ display: "flex", justifyContent: "space-between", margin: "20px"}}>
+          <div style={{ position: "relative", top:"20px",bottom: "20px", left: "20px", display: "flex", alignItems: "center" }}>
+  <label style={{ marginRight: "10px", display: "flex", alignItems: "center", whiteSpace: "nowrap"}}>
+    <input
+      type="checkbox"
+      checked={isSwitchOn}
+      onChange={handleSwitchChange}
+    />
+    <span style={{ marginLeft: "5px" }}>Enable Reattempt</span>
+  </label>
+</div>
+<Link to="/LevelPage"><div style={{ position: "relative",top:"20px",bottom: "20px", right: "20px" }}>
+        <button className="btn btn-primary" onClick={handleSave} style={{backgroundColor:"#76ABAE",border:"none"}}>Save</button>
+      </div></Link>
+      </div>
+          
         </div>
       )}
+   
     </div>
   );
 };

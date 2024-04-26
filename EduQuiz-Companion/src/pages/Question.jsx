@@ -1,8 +1,8 @@
+// Question.js
 import React, { useState, useEffect } from "react";
 import "../Question.css"; // Import CSS file for custom styling
 
 const Question = () => {
-
   const timeStyle = {
     display: 'flex',
     justifyContent: 'space-between',
@@ -44,14 +44,17 @@ const Question = () => {
     {
       question: "Question 1",
       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+      marks: 10,
     },
     {
       question: "Question 2",
       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+      marks: 2,
     },
     {
       question: "Question 3",
       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+      marks: 5,
     },
     // Add more questions here as needed
   ];
@@ -67,15 +70,15 @@ const Question = () => {
    );
    
   return (
-    <div className="quiz-container">
-      {/* Top Bar with Subject Name, Remaining Time, and Submit Button */}
-      <div className="top-bar bg-teal text-white py-2" style={{width:"80rem"}}>
+    <>
+      <div className="page">
+      <div className="top-bar bg-teal text-white py-2" >
         <div className="container-fluid">
           <div className="row align-items-center">
             <div className="col-12 col-md-4">
               <h2>OPERATING SYSTEMS</h2>
             </div>
-            <div className=" finish-btn col-12 col-md-4 text-right">
+            <div className=" finish-btn  text-right">
               <button className="btn btn-light"style={{position:"absolute",right:"155px",top:"180px"}}>Finish</button>
             </div>
             <div className="level-info">
@@ -86,11 +89,11 @@ const Question = () => {
           </div>
         </div>
       </div>
-      <div style={timeStyle}>
-      <div>Time Limit: 15min</div>
+      <div >
+      <div style={{paddingTop:"30px"}}>Time Limit: 15min</div>
       <div style={rightAlign}>
-      <div >Total Questions: 10</div>
-      <div >Maximum Mark: 100</div>
+      <div style={{paddingRight:"30px"}}>Total Questions: 10</div>
+      <div style={{paddingRight:"30px"}}>Maximum Mark: 100</div>
       </div>
     </div>
 
@@ -100,7 +103,14 @@ const Question = () => {
           {/* Map through questionsData array to render questions and options */}
           {questionsData.map((questionObj, index) => (
             <div key={index} className="quiz-box">
-              <h5>{questionObj.question}</h5>
+              <div className="row">
+                <div className="col-8">
+                  <h5>{questionObj.question}</h5>
+                </div>
+                <div className="col-4" style={{textAlign:"end"}}>
+                  <p>Marks: {questionObj.marks}</p>
+                </div>
+              </div>
               <div className="row">
                 {questionObj.options.map((option, optionIndex) => (
                   <div key={optionIndex} className="col-6 option">
@@ -115,7 +125,8 @@ const Question = () => {
           ))}
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

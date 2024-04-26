@@ -33,7 +33,7 @@ const Question = () => {
   };
 
   // State for timer
-  const [timer, setTimer] = useState(localStorage.getItem("timer") || 10); // 15 minutes in seconds
+  const [timer, setTimer] = useState(localStorage.getItem("timer") || 900); // 15 minutes in seconds
   const [isTimerRunning, setIsTimerRunning] = useState(true);
 
   // Convert time remaining to HH:MM:SS format

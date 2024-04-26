@@ -1,5 +1,6 @@
 // Question.js
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../Question.css"; // Import CSS file for custom styling
 
 const Question = () => {
@@ -79,7 +80,7 @@ const Question = () => {
               <h2>OPERATING SYSTEMS</h2>
             </div>
             <div className=" finish-btn  text-right">
-              <button className="btn btn-light"style={{position:"absolute",right:"155px",top:"180px"}}>Finish</button>
+              <Link to="/Result"><button className="btn btn-light"style={{position:"absolute",right:"155px",top:"180px"}}>Finish</button></Link>
             </div>
             <div className="level-info">
                 <h3>Level: 1</h3>

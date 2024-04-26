@@ -31,8 +31,10 @@ const LoginStudent = () => {
 
     } catch (error) {
       setErrorMessage(error.message);
-      alert('Invalid credentials'); // Show an alert for invalid credentials
-      window.location.reload();
+      // Clear error message after 3 seconds
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 3000);
     }
   };
 
@@ -57,6 +59,7 @@ const LoginStudent = () => {
           <div className="form-group" style={{marginBottom:"30px"}}>
             <input type="password" id="password" name="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)}  />
           </div>
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
           <button type="submit" style={{marginTop:"30px"}} onClick={handleLogin}>Login</button>
         </form>
         <div className="forgot-password-link" onClick={handleForgotPassword}>

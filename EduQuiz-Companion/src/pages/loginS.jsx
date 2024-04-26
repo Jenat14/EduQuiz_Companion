@@ -6,6 +6,7 @@ const LoginStudent = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -25,10 +26,13 @@ const LoginStudent = () => {
       // Login successful, handle the response data
       const userData = await response.json();
       console.log('Login successful:', userData);
-      navigate("/Sdashboard");
+      // Redirect to the dashboard or whatever page you want
+      window.location.href = "/cardpage";
 
     } catch (error) {
       setErrorMessage(error.message);
+      alert('Invalid credentials'); // Show an alert for invalid credentials
+      window.location.reload();
     }
   };
 
@@ -46,7 +50,7 @@ const LoginStudent = () => {
         <b>
         <h2 className="xyz">Login to Your Student Account</h2>
         </b>
-        <form onClick={handleLogin}>
+        <form>
           <div className="form-group" style={{marginBottom:"30px"}}>
             <input type="text" id="username" name="username" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)}  />
           </div>
@@ -64,4 +68,3 @@ const LoginStudent = () => {
 };
 
 export default LoginStudent;
-

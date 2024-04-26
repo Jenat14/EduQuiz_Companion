@@ -2,10 +2,24 @@ import React from "react";
 import "../Question.css"; // Import CSS file for custom styling
 
 const Question = () => {
+
+  const timeStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    borderRadius: '5px',
+    padding: '20px',
+    paddingLeft:'0px',
+    width: '80rem', // Adjust width as needed
+    margin: '0 auto', // Center the container
+  };
+
+  const rightAlign = {
+    textAlign: 'right',
+  };
   return (
     <div className="quiz-container">
       {/* Top Bar with Subject Name, Remaining Time, and Submit Button */}
-      <div className="top-bar bg-teal text-white py-2">
+      <div className="top-bar bg-teal text-white py-2" style={{width:"80rem"}}>
         <div className="container-fluid">
           <div className="row align-items-center">
             <div className="col-12 col-md-4">
@@ -22,15 +36,16 @@ const Question = () => {
           </div>
         </div>
       </div>
-      <div className="Time">
-        <>Time Limit: 15min</>
-        <>Maximum Mark:100</>
-        <>Total Questions:10</>
-
+      <div style={timeStyle}>
+      <div>Time Limit: 15min</div>
+      <div style={rightAlign}>
+      <div >Total Questions: 10</div>
+      <div >Maximum Mark: 100</div>
       </div>
+    </div>
 
       {/* Main Quiz Section */}
-      <div className="main-content py-4">
+      <div className="main-content py-4" >
         <div className="container">
           {/* Quiz Question 1 */}
           <div className="quiz-box">

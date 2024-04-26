@@ -29,8 +29,8 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 30px;
-    margin-top: 10%;
+    margin-right: 100px;
+    margin-top: 50px;
     width: calc(22% - 10px);
   
   }
@@ -72,10 +72,6 @@
     margin-bottom: 10px;
   }
 
-.mmn{
-  background-color: blueviolet;
-}
-  
   .card-text-f {
     font-size: 2rem;
     margin-bottom: 10px;

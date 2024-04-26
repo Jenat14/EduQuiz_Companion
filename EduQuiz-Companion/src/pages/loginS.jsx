@@ -25,6 +25,8 @@ const LoginStudent = () => {
       // Login successful, handle the response data
       const userData = await response.json();
       console.log('Login successful:', userData);
+      navigate("/Sdashboard");
+
     } catch (error) {
       setErrorMessage(error.message);
     }

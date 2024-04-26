@@ -1,5 +1,5 @@
 import React from 'react';
-import '../pages/Facultydash.css'; // Import your CSS file here
+import "../Facultydash.css"; // Import your CSS file here
 import img2 from '../assets/os.jpeg'; // Import your image here
 import img3 from '../assets/dsa.jpg';
 import img4 from '../assets/dbms.png';

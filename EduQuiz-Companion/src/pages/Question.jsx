@@ -16,6 +16,19 @@ const Question = () => {
   const rightAlign = {
     textAlign: 'right',
   };
+  const labelStyle = {
+    display: 'flex',
+  };
+  
+  const inputStyle = {
+    width:'15px',
+    margin: '5px', // Adjust as needed
+  };
+  
+  const paragraphStyle = {
+    margin: '5px', // Remove default margins
+  };
+  
   return (
     <div className="quiz-container">
       {/* Top Bar with Subject Name, Remaining Time, and Submit Button */}
@@ -52,20 +65,28 @@ const Question = () => {
             <h5>Question 1</h5>
             <div className="row">
               <div className="col-6 option">
-                <input type="radio" id="q1_option1" name="q1" value="option1" />
-                <label htmlFor="q1_option1">Option 1</label>
+              <label htmlFor="q1_option1" style={labelStyle}>
+                <input type="radio" id="q1_option1" name="q1" value="option1" style={inputStyle} />
+                <p style={paragraphStyle}>Option 1</p>
+              </label>
               </div>
               <div className="col-6 option">
-                <input type="radio" id="q1_option2" name="q1" value="option2" />
-                <label htmlFor="q1_option2">Option 2</label>
+                <label htmlFor="q1_option1" style={labelStyle}>
+                <input type="radio" id="q1_option1" name="q1" value="option1" style={inputStyle} />
+                <p style={paragraphStyle}>Option 1</p>
+              </label>
               </div>
               <div className="col-6 option">
-                <input type="radio" id="q1_option3" name="q1" value="option3" />
-                <label htmlFor="q1_option3">Option 3</label>
+              <label htmlFor="q1_option1" style={labelStyle}>
+                <input type="radio" id="q1_option1" name="q1" value="option1" style={inputStyle} />
+                <p style={paragraphStyle}>Option 1</p>
+              </label>
               </div>
               <div className="col-6 option">
-                <input type="radio" id="q1_option4" name="q1" value="option4" />
-                <label htmlFor="q1_option4">Option 4</label>
+              <label htmlFor="q1_option1" style={labelStyle}>
+                <input type="radio" id="q1_option1" name="q1" value="option1" style={inputStyle} />
+                <p style={paragraphStyle}>Option 1</p>
+              </label>
               </div>
             </div>
           </div>

@@ -176,7 +176,7 @@ function StudentSub() {
                           }}
                         >
                           <Link
-                            to="#"
+                            to="/Question"
                             type="button"
                             className="btn btn-primary btn-sm"
                             style={{

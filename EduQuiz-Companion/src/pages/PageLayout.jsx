@@ -5,7 +5,9 @@ import "../PageLayout.css"; // Import CSS file for custom styling
 const PageLayout = () => {
   return (
      <div className="page-container">
-      {/* Header Section */}
+      <div>
+        <h1>Add New Quiz</h1>
+      </div>
       
       <div className="header bg-teal text-white py-2">
         <div className="container-fluid">

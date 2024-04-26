@@ -31,7 +31,21 @@ const Question = () => {
   const paragraphStyle = {
     margin: '5px', // Remove default margins
   };
+  useEffect(() => {
+    const preventBack = () => {
+      window.history.forward();
+    };
 
+    setTimeout(preventBack, 0);
+
+    window.onunload = () => {
+      null;
+    };
+
+    return () => {
+      window.onunload = null;
+    };
+  }, []);
   // State for timer
   const [timer, setTimer] = useState(localStorage.getItem("timer") || 900); // 15 minutes in seconds
   const [isTimerRunning, setIsTimerRunning] = useState(true);

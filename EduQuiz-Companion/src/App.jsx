@@ -7,7 +7,7 @@ import Leaderboard from "./pages/Leaderboard";
 import LoginStudent from "./pages/loginS";
 import Facultylogin from "./pages/Facultylogin";
 import StudentSub from "./pages/StudentSub";
-import CardPage from "./pages/Sdashboard";
+import CardPage from "./pages/cardpage";
 import Facultydash from "./pages/facultydash";
 import Result from "./pages/Result";
 import Question from "./pages/Question";

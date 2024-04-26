@@ -20,14 +20,14 @@ const Facultydash = () => {
         <div className="card-f">
           <img src={img2} alt="Card" className="card-image-f" />
           <div className="card-content">
-            <button className="card-button"><b>Operating Systems</b></button>
+            <button className="card-button"><b>Operating <br/>Systems</b></button>
           </div>
         </div>
 
         <div className="card-f">
           <img src={img3} alt="Card" className="card-image-f" />
           <div className="card-content">
-            <button className="card-button"><b>Data Structures</b></button>
+            <button className="card-button"><b>Data <br/>Structures</b></button>
           </div>
         </div>
 

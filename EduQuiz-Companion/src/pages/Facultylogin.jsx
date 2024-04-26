@@ -10,7 +10,7 @@ const Facultylogin = () => {
   const [errorMessage, setErrorMessage] = useState('');
   
   const navigate = useNavigate();
-  const handleLogin = async (e) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     try {
       const response = await fetch('http://localhost:3000/facultylogin', {
@@ -30,7 +30,7 @@ const Facultylogin = () => {
       const userData = await response.json();
       console.log('Login successful:', userData);
       // Redirect to the dashboard or whatever page you want
-      window.location.href = "/cardpage";
+      window.location.href = "/Facultydash";
 
     } catch (error) {
       setErrorMessage(error.message);
@@ -55,7 +55,7 @@ const Facultylogin = () => {
         <b>
         <h1 className="xyz">Login to Your Faculty Account</h1>
         </b>
-        <form onClick={handleLogin}>
+        <form >
           <div className="form-group">
             <label htmlFor="username">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)}  />
@@ -65,7 +65,7 @@ const Facultylogin = () => {
             <input type="password" id="password" name="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)}  />
           </div>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          <button type="button" onClick={handleLogin} style={{marginTop:"30px"}}>Login</button>
+          <button type="submit" onClick={handleLogin} style={{marginTop:"30px"}}>Login</button>
         </form>
         <div className="forgot-password-link" onClick={handleForgotPassword}>
           <a href="#">Forgot password?</a>

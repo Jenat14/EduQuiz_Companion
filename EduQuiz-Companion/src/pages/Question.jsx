@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../Question.css"; // Import CSS file for custom styling
 
 const Question = () => {
@@ -28,7 +28,44 @@ const Question = () => {
   const paragraphStyle = {
     margin: '5px', // Remove default margins
   };
-  
+   // State for timer
+   const [timer, setTimer] = useState(900); // 15 minutes in seconds
+
+   // Convert time remaining to HH:MM:SS format
+   const formatTime = (time) => {
+     const hours = Math.floor(time / 3600);
+     const minutes = Math.floor((time % 3600) / 60);
+     const seconds = time % 60;
+     return `${hours.toString().padStart(2, "0")}:${minutes
+       .toString()
+       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+   };
+   const questionsData = [
+    {
+      question: "Question 1",
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+    },
+    {
+      question: "Question 2",
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+    },
+    {
+      question: "Question 3",
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+    },
+    // Add more questions here as needed
+  ];
+   // Update time every second
+   useEffect(() => {
+     const intervalId = setInterval(() => {
+       setTimer((prevTimer) => prevTimer - 1);
+     }, 1000);
+ 
+     // Clear interval on component unmount
+     return () => clearInterval(intervalId);
+   }, []
+   );
+   
   return (
     <div className="quiz-container">
       {/* Top Bar with Subject Name, Remaining Time, and Submit Button */}
@@ -43,7 +80,7 @@ const Question = () => {
             </div>
             <div className="level-info">
                 <h3>Level: 1</h3>
-                <>Time left: 12:12:12</>
+                <h3>Time left: {formatTime(timer)}</h3> {/* Display time left */}
               </div>
             
           </div>
@@ -58,61 +95,24 @@ const Question = () => {
     </div>
 
       {/* Main Quiz Section */}
-      <div className="main-content py-4" >
+      <div className="main-content py-4">
         <div className="container">
-          {/* Quiz Question 1 */}
-          <div className="quiz-box">
-            <h5>Question 1</h5>
-            <div className="row">
-              <div className="col-6 option">
-              <label htmlFor="q1_option1" style={labelStyle}>
-                <input type="radio" id="q1_option1" name="q1" value="option1" style={inputStyle} />
-                <p style={paragraphStyle}>Option 1</p>
-              </label>
-              </div>
-              <div className="col-6 option">
-                <label htmlFor="q1_option1" style={labelStyle}>
-                <input type="radio" id="q1_option1" name="q1" value="option1" style={inputStyle} />
-                <p style={paragraphStyle}>Option 1</p>
-              </label>
-              </div>
-              <div className="col-6 option">
-              <label htmlFor="q1_option1" style={labelStyle}>
-                <input type="radio" id="q1_option1" name="q1" value="option1" style={inputStyle} />
-                <p style={paragraphStyle}>Option 1</p>
-              </label>
-              </div>
-              <div className="col-6 option">
-              <label htmlFor="q1_option1" style={labelStyle}>
-                <input type="radio" id="q1_option1" name="q1" value="option1" style={inputStyle} />
-                <p style={paragraphStyle}>Option 1</p>
-              </label>
+          {/* Map through questionsData array to render questions and options */}
+          {questionsData.map((questionObj, index) => (
+            <div key={index} className="quiz-box">
+              <h5>{questionObj.question}</h5>
+              <div className="row">
+                {questionObj.options.map((option, optionIndex) => (
+                  <div key={optionIndex} className="col-6 option">
+                    <label htmlFor={`q${index + 1}_option${optionIndex + 1}`} style={labelStyle}>
+                      <input type="radio" id={`q${index + 1}_option${optionIndex + 1}`} name={`q${index + 1}`} value={`option${optionIndex + 1}`} style={inputStyle} />
+                      <p style={paragraphStyle}>{option}</p>
+                    </label>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-
-          {/* Quiz Question 2 */}
-          <div className="quiz-box">
-            <h5>Question 2</h5>
-            <div className="row">
-              <div className="col-6 option">
-                <input type="radio" id="q2_option1" name="q2" value="option1" />
-                <label htmlFor="q2_option1">Option 1</label>
-              </div>
-              <div className="col-6 option">
-                <input type="radio" id="q2_option2" name="q2" value="option2" />
-                <label htmlFor="q2_option2">Option 2</label>
-              </div>
-              <div className="col-6 option">
-                <input type="radio" id="q2_option3" name="q2" value="option3" />
-                <label htmlFor="q2_option3">Option 3</label>
-              </div>
-              <div className="col-6 option">
-                <input type="radio" id="q2_option4" name="q2" value="option4" />
-                <label htmlFor="q2_option4">Option 4</label>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

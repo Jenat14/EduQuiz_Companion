@@ -19,21 +19,21 @@ const Facultydash = () => {
       <div className="card-row-f">
         <div className="card-f">
           <img src={img2} alt="Card" className="card-image-f" />
-          <div className="card-content">
-            <button className="card-button"><b>Operating <br/>Systems</b></button>
+          <div className="card-content-f">
+            <button className="card-button"><b>Operating Systems</b></button>
           </div>
         </div>
 
         <div className="card-f">
           <img src={img3} alt="Card" className="card-image-f" />
-          <div className="card-content">
-            <button className="card-button"><b>Data <br/>Structures</b></button>
+          <div className="card-content-f">
+            <button className="card-button" ><b>Data Structures</b></button>
           </div>
         </div>
 
         <div className="card-f">
           <img src={img4} alt="Card" className="card-image-f" />
-          <div className="card-content">
+          <div className="card-content-f">
             <button className="card-button"><b>Database Management System</b></button>
           </div>
         </div>
@@ -42,14 +42,14 @@ const Facultydash = () => {
       <div className="card-row-f">
         <div className="card-f">
           <img src={img5} alt="Card" className="card-image-f" />
-          <div className="card-content">
+          <div className="card-content-f">
             <button className="card-button"><b>Computer Organization And Architecture</b></button>
           </div>
         </div>
 
         <div className="card-f">
           <img src={img6} alt="Card" className="card-image-f" />
-          <div className="card-content">
+          <div className="card-content-f">
             <button className="card-button"><b>Formal Languages And Automata Theory</b></button>
           </div>
         </div>

@@ -10,15 +10,15 @@
   position: relative;
   top: 20px;
   right: 10px;
-  width: 290px;
+  width: 200px;
   height: 56px;
   background-color: #76ABAE; /* Set the background color */
   color: white; /* Set the text color */
   border: none;
-  border-radius: 5px;
+  border-radius: 25px;
   padding: 5px 10px;
   cursor: pointer;
-  width: auto; 
+  
   margin-left: auto; /* Set the width to auto to fit content */
 }
 .top-right-button:hover {
@@ -32,6 +32,7 @@
     margin-right: 100px;
     margin-top: 50px;
     width: calc(22% - 10px);
+    height: 270px;
   
   }
   
@@ -62,9 +63,11 @@
   }
   
   .card-content-f {
-    padding: 20px;
+    display: flex;
+    align-items: center;
     background-color: #76ABAE;
-    height: 50px;
+    height: 70px;
+    
   }
   
   .card-title-f {
@@ -86,6 +89,7 @@
     cursor: pointer;
     outline-color: black;
     font-size: 1rem;
+    
   }
   
   .card-button-f:hover {

@@ -9,7 +9,22 @@ function NavBar(){
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isPasswordMatch, setIsPasswordMatch] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const getHomeRoute = () => {
+    // Get the current location pathname
+    const path = window.location.pathname;
+    
+    // Define the home routes for different interfaces
+    const studentHomeRoute = "/CardPage";
+    const facultyHomeRoute = "/Facultydash";
+  
+    // Check if the current location matches any of the specified pages
+    if (path === "/StudentSub" || path === "/Result") {
+      return studentHomeRoute; // If student interface, return student home route
+    } else if (path === "/Facultydash" || path === "/Subject" || path === "/LevelPage" || path === "/LeadView" || path === "/Leaderboard" || path === "/PageLayout") {
+      return facultyHomeRoute; // If faculty interface, return faculty home route
+    } 
+  };
+  
   const handleCurrentPasswordChange = (e) => {
     setCurrentPassword(e.target.value);
   };
@@ -44,16 +59,16 @@ function NavBar(){
   };
     return(
       <>
-        <nav className="navbar navbar-expand-lg  bg-light  fixed-top">
+        <nav className="navbar navbar-expand-lg  bg-light  fixed-top" style={{marginBottom:"70px"}}>
           <div className="container-fluid">
             <a className="navbar-brand" style={{fontWeight:"700",color:"#555555"}}>
               <img src="#"></img> EduQuiz.
             </a>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-                <Link className="nav-link"  to="#" style={{color:"#555555",fontWeight:600}}>
-                  Home
-                </Link>
+            <Link className="nav-link" to={getHomeRoute()} style={{ color: "#555555", fontWeight: 600 }}>
+                Home
+              </Link>
               </li>
               <li id="dropdowns" className="nav-items">
                 <a

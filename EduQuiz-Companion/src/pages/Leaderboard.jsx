@@ -1,7 +1,8 @@
 
 const styles = {
     container: {
-      margin:"4%"
+      margin:"4%",
+      marginTop:"70px"
     },
     column: {
       float: 'left',

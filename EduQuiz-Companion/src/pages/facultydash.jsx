@@ -9,9 +9,9 @@ import img6 from '../assets/flat.jpg';
 
 const Facultydash = () => {
   return (
-<div>
+<div style={{marginTop:"100px"}}>
 <div class="container-f">
-<h1><b>FACULTY DASHBOARD</b></h1>
+<h2><b>FACULTY DASHBOARD</b></h2>
 <button className='top-right-button'> Add New Subject </button>
 </div>
        

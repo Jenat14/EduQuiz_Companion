@@ -81,7 +81,23 @@ const Question = () => {
       return () => clearInterval(intervalId);
     }
   }, [isTimerRunning, timer, navigate]);
+  const [selectedOptions, setSelectedOptions] = useState(JSON.parse(localStorage.getItem("selectedOptions")) || {});
+  const handleOptionChange = (questionIndex, optionIndex) => {
+    // Update selectedOptions state
+    setSelectedOptions(prevState => ({
+      ...prevState,
+      [questionIndex]: optionIndex
+    }));
+  };
 
+  // Save selected options to local storage whenever selectedOptions state changes
+  useEffect(() => {
+    localStorage.setItem("selectedOptions", JSON.stringify(selectedOptions));
+  
+    return () => {
+      localStorage.removeItem("selectedOptions"); // Clear selectedOptions when component unmounts
+    };
+  }, [selectedOptions]);
   const handleFinish = () => {
     setIsTimerRunning(false); // Stop the timer when Finish button is clicked
     localStorage.removeItem("timer"); // Clear the timer value from localStorage
@@ -116,7 +132,7 @@ const Question = () => {
                 <h2>OPERATING SYSTEMS</h2>
               </div>
               <div className=" finish-btn  text-right">
-                <Link to="/Result"><button className="btn btn-light" style={{ position:"absolute", right:"155px", top:"180px" }} onClick={handleFinish}>Finish</button></Link>
+                <Link to="/Result"><button className="btn btn-light" style={{ position:"absolute", right:"155px"}} onClick={handleFinish}>Finish</button></Link>
               </div>
               <div className="level-info">
                 <h3>Level: 1</h3>
@@ -151,7 +167,16 @@ const Question = () => {
                   {questionObj.options.map((option, optionIndex) => (
                     <div key={optionIndex} className="col-6 option">
                       <label htmlFor={`q${index + 1}_option${optionIndex + 1}`} style={labelStyle}>
-                        <input type="radio" id={`q${index + 1}_option${optionIndex + 1}`} name={`q${index + 1}`} value={`option${optionIndex + 1}`} style={inputStyle} disabled={!isTimerRunning} />
+                        <input 
+                          type="radio" 
+                          id={`q${index + 1}_option${optionIndex + 1}`} 
+                          name={`q${index + 1}`} 
+                          value={`option${optionIndex + 1}`} 
+                          style={inputStyle} 
+                          disabled={!isTimerRunning} 
+                          checked={selectedOptions[index] === optionIndex} // Set checked state based on selectedOptions
+                          onChange={() => handleOptionChange(index, optionIndex)} // Call handleOptionChange when option is selected
+                        />
                         <p style={paragraphStyle}>{option}</p>
                       </label>
                     </div>

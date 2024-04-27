@@ -8,9 +8,9 @@ import img6 from '../assets/flat.jpg';
 import { Link } from "react-router-dom";
 const cardpage = () => {
   return (
-<div>
+<div style={{marginTop:"100px"}}>
 <div class="container-f">
-<h1><b>STUDENT DASHBOARD</b></h1>
+<h2><b>STUDENT DASHBOARD</b></h2>
 </div>
         
     <div className="card-container-f">

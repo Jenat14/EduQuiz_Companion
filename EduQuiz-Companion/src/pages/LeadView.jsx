@@ -54,7 +54,7 @@ const LeadView = () => {
    
   return (
     <>
-      <div className="page">
+      <div className="page" style={{marginTop:"70px"}}>
       <div className="top-bar bg-teal text-white py-2" style={{height:"150px"}} >
         <div className="container-fluid">
           <div className="row align-items-center" style={{paddingTop:"30px"}}>

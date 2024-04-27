@@ -69,7 +69,7 @@ const PageLayout = () => {
   ];
 
   return (
-    <div>
+    <div style={{marginTop:"70px"}}>
       <h1 style={{ textAlign: "center" }}>Add New Quiz</h1>
       <div style={{ display: "flex", justifyContent: "space-between", margin: "20px"}}>
         <a href={fileDownloadUrl} download="template.xlsx">

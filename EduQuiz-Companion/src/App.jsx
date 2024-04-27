@@ -1,44 +1,42 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+
 import NavBar from "./components/NavBar";
+import HomePage from "./pages/HomePage";
+
+import LoginStudent from "./pages/loginS";
+import CardPage from "./pages/cardpage";
+import StudentSub from "./pages/StudentSub";
+import Question from "./pages/Question";
+import Result from "./pages/Result";
+
+import Facultylogin from "./pages/Facultylogin";
+import Facultydash from "./pages/facultydash";
 import Subject from "./pages/Subject";
 import LevelPage from "./pages/LevelPage";
-import Leaderboard from "./pages/Leaderboard";
-import LoginStudent from "./pages/loginS";
-import Facultylogin from "./pages/Facultylogin";
-import StudentSub from "./pages/StudentSub";
-import CardPage from "./pages/cardpage";
-import Facultydash from "./pages/facultydash";
-import Result from "./pages/Result";
-import Question from "./pages/Question";
-import PageLayout from "./pages/PageLayout";
 import LeadView from "./pages/LeadView";
-
-
+import Leaderboard from "./pages/Leaderboard";
+import PageLayout from "./pages/PageLayout";
 function App() {
   return (
     <Router>
-      <NavBar /> {/* Render NavBar component */}
-      <div style={{ marginTop: "70px", padding: "20px" }}>
+
       <Routes>
         <Route path="/" element={<HomePage />} />
+        {/*Student Interface*/}
         <Route path="/LoginStudent" element={<LoginStudent />} />
-        <Route path="/Subject" element={<Subject />} />
-        <Route path="/levelPage" element={<LevelPage />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/StudentSub" element={<StudentSub />} />
-        <Route path="/CardPage" element={<CardPage />} />
-        <Route path="/Result" element={<Result />} />
+        <Route path="/CardPage" element={<><NavBar/><CardPage /></>} />
+        <Route path="/StudentSub" element={<><NavBar/><StudentSub /></>} />
         <Route path="/Question" element={<Question/>}/>
+        <Route path="/Result" element={<><NavBar/><Result /></>} />
+        {/*Faculty Interface*/}
         <Route path="/Facultylogin" element={<Facultylogin/>}/>
-        <Route path="/Facultydash" element={<Facultydash/>}/>
-        <Route path="/PageLayout" element={<PageLayout/>}/>
-        <Route path="/LeadView" element={<LeadView/>}/>
-
-        
-
+        <Route path="/Facultydash" element={<><NavBar/><Facultydash /></>}/>
+        <Route path="/Subject" element={<><NavBar/><Subject /></>} />
+        <Route path="/levelPage" element={<><NavBar/><LevelPage /></>} />
+        <Route path="/LeadView" element={<><NavBar/><LeadView /></>}/>
+        <Route path="/leaderboard" element={<><NavBar/><Leaderboard /></>} />
+        <Route path="/PageLayout" element={<><NavBar/><PageLayout /></>}/>
       </Routes>
-      </div>
     </Router>
  )
 }

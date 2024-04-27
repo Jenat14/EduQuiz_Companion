@@ -61,10 +61,10 @@ const LeadView = () => {
             <div className="col-12 col-md-4">
               <h2>OPERATING SYSTEMS</h2>
             </div>
-            <Link to="/Leaderboard">
-            <div className=" finish-btn  text-right">
-              <button className="btn btn-light"style={{position:"absolute",right:"155px",top:"180px",padding:"10px"}}>View Leaderboard</button>
+            <Link to="/Leaderboard"><div className=" finish-btn  text-right">
+              <button className="btn btn-light"style={{position:"absolute",right:"60px",top:"180px",padding:"10px",borderRadius:"20px",width:"200px"}}>View Leaderboard</button>
             </div></Link>
+
             <div className="level-info" >
               <br></br>
                 <h3>Level: 1</h3>

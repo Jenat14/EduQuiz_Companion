@@ -80,7 +80,7 @@ app.post('/facultylogin', async (req, res) => {
 
 app.post('/quiz', async (req, res) => {
   try {
-    const db = admin.firestore();
+    
     const { level, time, numberOfQuestions, facultyId, subjectId, totalMarks } = req.body;
     
     // Create new quiz document
@@ -100,7 +100,6 @@ app.post('/quiz', async (req, res) => {
 
 app.post('/question', async (req, res) => {
   try {
-    const db = admin.firestore();
     const { quizId, questionNumber, question, option1, option2, option3, option4, correctAnswer, mark } = req.body;
     
     // Create new question document
@@ -126,7 +125,6 @@ app.post('/result', async (req, res) => {
   try {
     const { studentId, quizId, score, timestamp, timeTaken } = req.body;
     
-    // Create new result document
     await db.collection('results').add({
       studentId,
       quizId,

@@ -38,7 +38,7 @@ const Result = ({ data }) => {
   }, [chartData]);
 
   return (
-    <div className="container">
+    <div className="container" style={{marginTop:"70px"}}>
       <div className="row justify-content-center">
         <div className="col-md-8">
           <div className="text-center">

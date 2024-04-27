@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 function Subject() {
     const subject="SUBJECT";
     return (
-      <div className='Scontainer' style={{padding:"5%"}}>
+      <div className='Scontainer' style={{marginTop:"70px",padding:"5%"}}>
         <h2 style={{color:'#222831'}}>{subject}</h2>
         
       <div className="row row-cols-1 row-cols-md-3 g-4" style={{paddingTop:"5%"}}>

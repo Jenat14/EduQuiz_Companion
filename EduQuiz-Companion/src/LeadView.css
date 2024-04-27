@@ -15,7 +15,7 @@
   .top-bar {
     background-color: #76abae;
     color: #ffffff; /* White text color */
-   
+   height: 150px;
     display: flex; /* Use flexbox for alignment */
    
   }

@@ -1,5 +1,4 @@
-// Question.js
-import React, { useState, useEffect } from "react";
+
 import "../LeadView.css"; // Import CSS file for custom styling
 
 const LeadView = () => {
@@ -28,18 +27,7 @@ const LeadView = () => {
   const paragraphStyle = {
     margin: '5px', // Remove default margins
   };
-   // State for timer
-   const [timer, setTimer] = useState(900); // 15 minutes in seconds
-
-   // Convert time remaining to HH:MM:SS format
-   const formatTime = (time) => {
-     const hours = Math.floor(time / 3600);
-     const minutes = Math.floor((time % 3600) / 60);
-     const seconds = time % 60;
-     return `${hours.toString().padStart(2, "0")}:${minutes
-       .toString()
-       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-   };
+   
    const questionsData = [
     {
       question: "Question 1",
@@ -58,21 +46,12 @@ const LeadView = () => {
     },
     // Add more questions here as needed
   ];
-   // Update time every second
-   useEffect(() => {
-     const intervalId = setInterval(() => {
-       setTimer((prevTimer) => prevTimer - 1);
-     }, 1000);
- 
-     // Clear interval on component unmount
-     return () => clearInterval(intervalId);
-   }, []
-   );
+   
    
   return (
     <>
       <div className="page">
-      <div className="top-bar bg-teal text-white py-2" >
+      <div className="top-bar bg-teal text-white py-2" style={{height:"150px"}} >
         <div className="container-fluid">
           <div className="row align-items-center">
             <div className="col-12 col-md-4">
@@ -81,9 +60,9 @@ const LeadView = () => {
             <div className=" finish-btn  text-right">
               <button className="btn btn-light"style={{position:"absolute",right:"155px",top:"180px",padding:"10px"}}>View Leaderboard</button>
             </div>
-            <div className="level-info">
+            <div className="level-info" >
+              <br></br>
                 <h3>Level: 1</h3>
-                <h3>Time left: {formatTime(timer)}</h3> {/* Display time left */}
               </div>
             
           </div>

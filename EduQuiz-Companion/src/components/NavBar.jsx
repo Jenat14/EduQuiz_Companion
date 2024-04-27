@@ -44,7 +44,7 @@ function NavBar(){
   };
     return(
       <>
-        <nav className="navbar navbar-expand-lg  bg-light  fixed-top">
+        <nav className="navbar navbar-expand-lg  bg-light  fixed-top" style={{marginBottom:"70px"}}>
           <div className="container-fluid">
             <a className="navbar-brand" style={{fontWeight:"700",color:"#555555"}}>
               <img src="#"></img> EduQuiz.

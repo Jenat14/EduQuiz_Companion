@@ -18,27 +18,25 @@ import LeadView from "./pages/LeadView";
 function App() {
   return (
     <Router>
-      <NavBar /> {/* Render NavBar component */}
-      <div style={{ marginTop: "70px", padding: "20px" }}>
+
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/LoginStudent" element={<LoginStudent />} />
         <Route path="/Subject" element={<Subject />} />
-        <Route path="/levelPage" element={<LevelPage />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/StudentSub" element={<StudentSub />} />
-        <Route path="/CardPage" element={<CardPage />} />
-        <Route path="/Result" element={<Result />} />
+        <Route path="/levelPage" element={<><NavBar/><LevelPage /></>} />
+        <Route path="/leaderboard" element={<><NavBar/><Leaderboard /></>} />
+        <Route path="/StudentSub" element={<><NavBar/><StudentSub /></>} />
+        <Route path="/CardPage" element={<><NavBar/><CardPage /></>} />
+        <Route path="/Result" element={<><NavBar/><Result /></>} />
         <Route path="/Question" element={<Question/>}/>
         <Route path="/Facultylogin" element={<Facultylogin/>}/>
-        <Route path="/Facultydash" element={<Facultydash/>}/>
-        <Route path="/PageLayout" element={<PageLayout/>}/>
-        <Route path="/LeadView" element={<LeadView/>}/>
+        <Route path="/Facultydash" element={<><NavBar/><Facultydash /></>}/>
+        <Route path="/PageLayout" element={<><NavBar/><PageLayout /></>}/>
+        <Route path="/LeadView" element={<><NavBar/><LeadView /></>}/>
 
         
 
       </Routes>
-      </div>
     </Router>
  )
 }

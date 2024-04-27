@@ -132,7 +132,7 @@ const Question = () => {
                 <h2>OPERATING SYSTEMS</h2>
               </div>
               <div className=" finish-btn  text-right">
-                <Link to="/Result"><button className="btn btn-light" style={{ position:"absolute", right:"155px", top:"180px" }} onClick={handleFinish}>Finish</button></Link>
+                <Link to="/Result"><button className="btn btn-light" style={{ position:"absolute", right:"155px"}} onClick={handleFinish}>Finish</button></Link>
               </div>
               <div className="level-info">
                 <h3>Level: 1</h3>

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../Question.css"; // Import CSS file for custom styling
 
 const Question = () => {
+  const navigate = useNavigate();
+
   const timeStyle = {
     display: 'flex',
     justifyContent: 'space-between',
@@ -28,10 +31,24 @@ const Question = () => {
   const paragraphStyle = {
     margin: '5px', // Remove default margins
   };
+  useEffect(() => {
+    const preventBack = () => {
+      window.history.forward();
+    };
 
+    setTimeout(preventBack, 0);
+
+    window.onunload = () => {
+      null;
+    };
+
+    return () => {
+      window.onunload = null;
+    };
+  }, []);
   // State for timer
   const [timer, setTimer] = useState(localStorage.getItem("timer") || 900); // 15 minutes in seconds
-  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [isTimerRunning, setIsTimerRunning] = useState(true);
 
   // Convert time remaining to HH:MM:SS format
   const formatTime = (time) => {
@@ -43,7 +60,7 @@ const Question = () => {
 
   useEffect(() => {
     // Start the timer when the component mounts
-    if (!isTimerRunning) {
+    if (isTimerRunning) {
       const intervalId = setInterval(() => {
         setTimer((prevTimer) => {
           const newTimer = prevTimer - 1;
@@ -51,16 +68,25 @@ const Question = () => {
           return newTimer;
         });
       }, 1000);
+
+      // Redirect to /Result page when timer reaches 0
+      if (timer === 0) {
+        navigate("/Result");
+        setIsTimerRunning(false); // Stop the timer
+        localStorage.removeItem("timer"); // Clear the timer value from localStorage
+        clearInterval(intervalId); // Clear the interval
+      }
   
       // Clear interval when component unmounts
       return () => clearInterval(intervalId);
     }
-  }, [isTimerRunning]);
+  }, [isTimerRunning, timer, navigate]);
 
   const handleFinish = () => {
     setIsTimerRunning(false); // Stop the timer when Finish button is clicked
     localStorage.removeItem("timer"); // Clear the timer value from localStorage
   };
+  
   const questionsData = [
     {
       question: "Question 1",
@@ -79,6 +105,7 @@ const Question = () => {
     },
     // Add more questions here as needed
   ];
+
   return (
     <>
       <div className="page">
@@ -111,7 +138,7 @@ const Question = () => {
           <div className="container">
             {/* Map through questionsData array to render questions and options */}
             {questionsData.map((questionObj, index) => (
-              <div key={index} className="quiz-box">
+              <div key={index} className="quiz-box" style={{backgroundColor:"#F7FCFC",borderColor:"#76ABAE"}}>
                 <div className="row">
                   <div className="col-8">
                     <h5>{questionObj.question}</h5>

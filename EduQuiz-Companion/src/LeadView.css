@@ -1,0 +1,46 @@
+/* Quiz.css */
+.page {
+    padding: 20px;
+    position: static;
+  }
+  
+  /* General Styles */
+  .quiz-container {
+    background-color: #ffffff; /* White background for the entire quiz container */
+    padding: 20px; /* Padding for the quiz container */
+    width: 1300px; /* Set the width */
+    margin: 0 auto; /* Center the quiz container */
+  }
+  
+  .top-bar {
+    background-color: #76abae;
+    color: #ffffff; /* White text color */
+   
+    display: flex; /* Use flexbox for alignment */
+   
+  }
+  
+  .top-bar h2 {
+    margin: 0; /* Remove default margin */
+  }
+  
+  /* Quiz Box Styles */
+  .quiz-box {
+    border: 1px solid #ccc; /* Gray border for each quiz box */
+    border-radius: 5px; /* Rounded corners */
+    padding: 20px; /* Padding inside each quiz box */
+    margin-bottom: 20px; /* Margin between quiz boxes */
+    width: 100%; /* Set the width to match the container */
+  }
+  
+  .option {
+    margin-bottom: 10px; /* Margin between each quiz option */
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .top-bar h2 {
+      font-size: 16px; /* Smaller font size for headings on smaller screens */
+    }
+  }
+  

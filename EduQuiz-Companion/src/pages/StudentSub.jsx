@@ -1,7 +1,22 @@
 import "../styles.css";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 function StudentSub() {
+  useEffect(() => {
+    const preventBack = () => {
+      window.history.forward();
+    };
+
+    setTimeout(preventBack, 0);
+
+    window.onunload = () => {
+      null;
+    };
+
+    return () => {
+      window.onunload = null;
+    };
+  }, []);
   const [activeLevel, setActiveLevel] = useState(null);
   const list = [
     "Quiz 1 details",

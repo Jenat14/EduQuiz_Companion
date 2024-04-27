@@ -12,6 +12,9 @@ import Facultydash from "./pages/facultydash";
 import Result from "./pages/Result";
 import Question from "./pages/Question";
 import PageLayout from "./pages/PageLayout";
+import LeadView from "./pages/LeadView";
+
+
 function App() {
   return (
     <Router>
@@ -30,6 +33,10 @@ function App() {
         <Route path="/Facultylogin" element={<Facultylogin/>}/>
         <Route path="/Facultydash" element={<Facultydash/>}/>
         <Route path="/PageLayout" element={<PageLayout/>}/>
+        <Route path="/LeadView" element={<LeadView/>}/>
+
+        
+
       </Routes>
       </div>
     </Router>

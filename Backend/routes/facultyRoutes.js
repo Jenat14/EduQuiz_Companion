@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { db } = require('../firebase');
 
-router.post('/facultylogin', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
       const { id, password } = req.body;
       if (!id || !password) {

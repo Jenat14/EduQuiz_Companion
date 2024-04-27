@@ -1,5 +1,4 @@
-// Question.js
-import React, { useState, useEffect } from "react";
+
 import "../LeadView.css"; // Import CSS file for custom styling
 import { Link } from 'react-router-dom';
 
@@ -29,8 +28,7 @@ const LeadView = () => {
   const paragraphStyle = {
     margin: '5px', // Remove default margins
   };
-   // State for timer
-  
+   
    const questionsData = [
     {
       question: "Question 1",
@@ -57,18 +55,18 @@ const LeadView = () => {
   return (
     <>
       <div className="page">
-      <div className="top-bar bg-teal text-white py-2" >
+      <div className="top-bar bg-teal text-white py-2" style={{height:"150px"}} >
         <div className="container-fluid">
           <div className="row align-items-center" style={{paddingTop:"30px"}}>
             <div className="col-12 col-md-4">
               <h2>OPERATING SYSTEMS</h2>
             </div>
-            <Link to="/Leaderboard"><div className=" finish-btn  text-right">
-              <button className="btn btn-light"style={{position:"absolute",right:"60px",top:"180px",padding:"10px",borderRadius:"20px",width:"200px"}}>View Leaderboard</button>
-            </div></Link>
-            <div className="level-info">
+            <div className=" finish-btn  text-right">
+              <button className="btn btn-light"style={{position:"absolute",right:"155px",top:"180px",padding:"10px"}}>View Leaderboard</button>
+            </div>
+            <div className="level-info" >
+              <br></br>
                 <h3>Level: 1</h3>
-                
               </div>
             
           </div>

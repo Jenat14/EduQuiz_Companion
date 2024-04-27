@@ -78,7 +78,7 @@ app.post('/facultylogin', async (req, res) => {
   }
 });
 
-// Example defining a route in Express
+
 app.get('/', (req, res) => {
   res.send('<h1>Hello hi, Express.js Server!</h1>');
 });

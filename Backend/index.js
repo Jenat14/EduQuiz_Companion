@@ -122,6 +122,26 @@ app.post('/question', async (req, res) => {
   }
 });
 
+app.post('/result', async (req, res) => {
+  try {
+    const { studentId, quizId, score, timestamp, timeTaken } = req.body;
+    
+    // Create new result document
+    await db.collection('results').add({
+      studentId,
+      quizId,
+      score,
+      timestamp,
+      timeTaken,
+    });
+
+    res.status(201).json({ message: 'Result created successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create result', message: error.message });
+  }
+});
+
+
 app.get('/', (req, res) => {
   res.send('<h1>Hello hi, Express.js Server!</h1>');
 });

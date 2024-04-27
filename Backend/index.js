@@ -78,6 +78,49 @@ app.post('/facultylogin', async (req, res) => {
   }
 });
 
+app.post('/quiz', async (req, res) => {
+  try {
+    const db = admin.firestore();
+    const { level, time, numberOfQuestions, facultyId, subjectId, totalMarks } = req.body;
+    
+    // Create new quiz document
+    const newQuizRef = await db.collection('quizzes').add({
+      level,
+      time,
+      numberOfQuestions,
+      facultyId,
+      subjectId,
+      totalMarks,
+    });
+    res.status(201).json({ message: 'Quiz created successfully', quizId: newQuizRef.id });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create quiz', message: error.message });
+  }
+});
+
+app.post('/question', async (req, res) => {
+  try {
+    const db = admin.firestore();
+    const { quizId, questionNumber, question, option1, option2, option3, option4, correctAnswer, mark } = req.body;
+    
+    // Create new question document
+    await db.collection('questions').add({
+      quizId,
+      questionNumber,
+      question,
+      option1,
+      option2,
+      option3,
+      option4,
+      correctAnswer,
+      mark,
+    });
+
+    res.status(201).json({ message: 'Question created successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create question', message: error.message });
+  }
+});
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello hi, Express.js Server!</h1>');

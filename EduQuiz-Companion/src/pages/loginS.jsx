@@ -17,18 +17,22 @@ const LoginStudent = () => {
         },
         body: JSON.stringify({ id: username, password }),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error);
       }
-
+  
       // Login successful, handle the response data
       const userData = await response.json();
       console.log('Login successful:', userData);
+  
+      // Store the user's name in local storage
+      localStorage.setItem('userName', userData.user.Name);
+  
       // Redirect to the dashboard or whatever page you want
       window.location.href = "/cardpage";
-
+  
     } catch (error) {
       setErrorMessage(error.message);
       // Clear error message after 3 seconds

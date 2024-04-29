@@ -7,7 +7,6 @@ function StudentSub() {
 
     const location = window.location;
     const subjectId = new URLSearchParams(location.search).get("subjectId");
-    console.log("subid",subjectId);
     if (subjectId) {
       fetchSubjectName(subjectId);
     }
@@ -30,7 +29,6 @@ function StudentSub() {
   }, []);
   
   const fetchSubjectName = (id) => {
-    console.log("id",id);
     fetch(`http://localhost:3000/subject?id=${id}`)
       .then((response) => {
         if (!response.ok) {

@@ -2,6 +2,7 @@ import "../styles.css";
 import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 function StudentSub() {
+  const [subname, setSubname] = useState("");
   
   useEffect(() => {
 
@@ -38,6 +39,7 @@ function StudentSub() {
       })
       .then((data) => {
         console.log("Subject Name:", data.name);
+        setSubname(data.name);
       })
       .catch((error) => {
         console.error("Error fetching subject:", error);
@@ -60,7 +62,7 @@ function StudentSub() {
   return (
     <>
       <div style={{marginTop:"70px"}}>
-        <h1 style={{ textAlign: "center", color: "#222831" }}>Subject</h1>
+        <h1 style={{ textAlign: "center", color: "#222831" }}>{subname}</h1>
         <div className="instructions-container">
           <h2>General Instructions</h2>
           <p>

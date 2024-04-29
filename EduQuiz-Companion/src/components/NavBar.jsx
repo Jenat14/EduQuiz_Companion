@@ -1,6 +1,6 @@
 import personIcon from "../assets/person-icon.png";
 import { Link } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 
 
 function NavBar(){
@@ -9,6 +9,16 @@ function NavBar(){
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isPasswordMatch, setIsPasswordMatch] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    // Retrieve the user's name from local storage
+    const storedUserName = localStorage.getItem('userName');
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+  }, []);
+ 
   const getHomeRoute = () => {
     // Get the current location pathname
     const path = window.location.pathname;
@@ -78,11 +88,12 @@ function NavBar(){
                   data-bs-toggle="dropdown"
                 >
                   <img src={personIcon} style={{height:"25px", width:"25px"}}></img>
+                  
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <a className="dropdown-item disabled" aria-disabled="true" href="#">
-                      Name
+                    <a className="dropdown-item disabled" aria-disabled="true" href="#" style={{color:"#76ABAE", fontWeight:"bold"}}>
+                    {userName ? <span>{userName}</span> : <span>Loading...</span>}
                     </a>
                   </li>
                   <li>
@@ -91,7 +102,7 @@ function NavBar(){
     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="dropdown-item">
+                    <Link to="/" className="dropdown-item" onClick={handleLogout}>
                       Logout
                     </Link>
                   </li>

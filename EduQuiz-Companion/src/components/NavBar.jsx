@@ -18,7 +18,12 @@ function NavBar(){
       setUserName(storedUserName);
     }
   }, []);
- 
+  const handleLogout = () => {
+    // Clear all data stored in local storage
+    localStorage.clear();
+    // Redirect to the logout page or wherever you want
+    window.location.href = "/";
+  };
   const getHomeRoute = () => {
     // Get the current location pathname
     const path = window.location.pathname;

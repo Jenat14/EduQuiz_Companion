@@ -1,7 +1,18 @@
 import "../styles.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 function StudentSub() {
+  
+  useEffect(() => {
+
+    const location = window.location;
+    const subjectId = new URLSearchParams(location.search).get("subjectId");
+    console.log("subid",subjectId);
+    if (subjectId) {
+      fetchSubjectName(subjectId);
+    }
+  }, []);
+
   useEffect(() => {
     const preventBack = () => {
       window.history.forward();
@@ -17,6 +28,24 @@ function StudentSub() {
       window.onunload = null;
     };
   }, []);
+  
+  const fetchSubjectName = (id) => {
+    console.log("id",id);
+    fetch(`http://localhost:3000/subject?id=${id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch subject");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Subject Name:", data.name);
+      })
+      .catch((error) => {
+        console.error("Error fetching subject:", error);
+      });
+  };
+
   const [activeLevel, setActiveLevel] = useState(null);
   const list = [
     "Quiz 1 details",
@@ -24,10 +53,12 @@ function StudentSub() {
     "Quiz 3 details",
     "Quiz 4 details",
   ];
-  const Levelno = "1";
+
   const handleLevelClick = (level) => {
     setActiveLevel(level);
   };
+
+  
   return (
     <>
       <div style={{marginTop:"70px"}}>

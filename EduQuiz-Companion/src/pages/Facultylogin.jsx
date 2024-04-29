@@ -9,7 +9,7 @@ const Facultylogin = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   
-  const navigate = useNavigate();
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -29,6 +29,7 @@ const Facultylogin = () => {
       // Login successful, handle the response data
       const userData = await response.json();
       console.log('Login successful:', userData);
+      localStorage.setItem('userName', userData.user.Name);
       // Redirect to the dashboard or whatever page you want
       window.location.href = "/Facultydash";
 

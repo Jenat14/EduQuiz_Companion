@@ -1,9 +1,36 @@
 import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
 function Subject() {
-    const subject="SUBJECT";
+      const [subname, setSubname] = useState("");
+      
+      useEffect(() => {
+
+        const location = window.location;
+        const subjectId = new URLSearchParams(location.search).get("subjectId");
+        if (subjectId) {
+          fetchSubjectName(subjectId);
+        }
+      }, []);
+      const fetchSubjectName = (id) => {
+        fetch(`http://localhost:3000/subject?id=${id}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch subject");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Subject Name:", data.name);
+            setSubname(data.name);
+          })
+          .catch((error) => {
+            console.error("Error fetching subject:", error);
+          });
+      };
+    
     return (
       <div className='Scontainer' style={{marginTop:"70px",padding:"5%"}}>
-        <h2 style={{color:'#222831'}}>{subject}</h2>
+        <h2 style={{color:'#222831'}}>{subname}</h2>
         
       <div className="row row-cols-1 row-cols-md-3 g-4" style={{paddingTop:"5%"}}>
       <div className="col">

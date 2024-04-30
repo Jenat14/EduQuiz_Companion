@@ -6,7 +6,7 @@ const PageLayout = () => {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
 
   const handleDownloadTemplate = () => {
-    const templateUrl = "../assets/template.xlsx"; 
+    const templateUrl = "../assets/Book1.xlsx"; 
     setFileDownloadUrl(templateUrl);
   };
 

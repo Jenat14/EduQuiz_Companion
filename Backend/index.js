@@ -6,6 +6,7 @@ const quizRoutes = require('./routes/quizRoutes');
 const questionRoutes = require('./routes/questionRoutes');
 const resultRoutes = require('./routes/resultRoutes');
 const subjectRoutes = require('./routes/subjectRoutes');
+const quizdataRoutes = require('./routes/quizdataRoutes');
 
 
 const app = express();
@@ -21,6 +22,7 @@ app.use('/quiz', quizRoutes);
 app.use('/question', questionRoutes);
 app.use('/result', resultRoutes);
 app.use('/subject', subjectRoutes);
+app.use('/quizdata', quizdataRoutes);
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello hi, Express.js Server!</h1>');

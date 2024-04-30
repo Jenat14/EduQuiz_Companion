@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { db } = require('../firebase');
-router.get('/', async (req, res) => {
+router.get('/quizd', async (req, res) => {
     const { subjectId, level, name } = req.query;
     let levelnum =parseInt(level);
     try {

@@ -10,6 +10,8 @@ npm i -D react-router-dom@latest
 npm install bootstrap@5.3.3
 npm install chart.js
 npm install firebase
+npm install xlsx
+
 
 Backend
 npm init

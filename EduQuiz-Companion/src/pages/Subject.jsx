@@ -7,6 +7,7 @@ function Subject() {
 
         const location = window.location;
         const subjectId = new URLSearchParams(location.search).get("subjectId");
+        localStorage.setItem('subId', subjectId);
         if (subjectId) {
           fetchSubjectName(subjectId);
         }

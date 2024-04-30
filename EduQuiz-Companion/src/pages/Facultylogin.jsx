@@ -30,6 +30,8 @@ const Facultylogin = () => {
       const userData = await response.json();
       console.log('Login successful:', userData);
       localStorage.setItem('userName', userData.user.Name);
+      localStorage.setItem('Id', username)
+      console.log(localStorage.getItem('Id'))
       // Redirect to the dashboard or whatever page you want
       window.location.href = "/Facultydash";
 

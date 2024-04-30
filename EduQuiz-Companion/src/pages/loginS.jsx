@@ -33,7 +33,7 @@ const LoginStudent = () => {
       console.log(localStorage.getItem('Id'))
       
       // Redirect to the dashboard or whatever page you want
-      //window.location.href = "/cardpage";
+      window.location.href = "/cardpage";
   
     } catch (error) {
       setErrorMessage(error.message);

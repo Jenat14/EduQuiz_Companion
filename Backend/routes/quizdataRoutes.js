@@ -28,5 +28,31 @@ router.get('/quizd', async (req, res) => {
         return res.status(500).json({ error: 'An error occurred while fetching quiz details.' });
     }
 });
+router.post('/questions', async (req, res) => {
+    try {
+        const { quizId } = req.body;
 
+        // Validate input parameter
+        if (!quizId || typeof quizId !== 'string') {
+            return res.status(400).json({ error: 'Invalid input parameter: quizId' });
+        }
+
+        // Query the questions collection based on the quizId
+        const questionsSnapshot = await db.collection('questions')
+            .where('quizId', '==', quizId)
+            .get();
+
+        // Check if questions are found
+        if (questionsSnapshot.empty) {
+            return res.status(404).json({ error: 'No questions found for the given quiz ID' });
+        }
+
+        // Extract question details from the snapshot and send them in the response
+        const questions = questionsSnapshot.docs.map(doc => doc.data());
+        res.json({ questions });
+    } catch (error) {
+        console.error('Error fetching questions:', error);
+        res.status(500).json({ error: 'Failed to fetch questions' });
+    }
+});
 module.exports = router;

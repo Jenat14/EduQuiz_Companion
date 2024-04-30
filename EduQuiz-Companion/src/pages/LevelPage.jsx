@@ -1,7 +1,20 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 function LevelPage() {
     const list = ["Quiz 1", "Quiz 2", "Quiz 3","Quiz 4"];
     const Levelno="1"
+    useEffect(() => {
+        // Get the level value from the URL parameter
+        const location = window.location;
+        const level = new URLSearchParams(location.search).get("level");
+    
+        // Store the level value in local storage
+        if (level) {
+          localStorage.setItem('level', level);
+        }
+      }, []);
+      
+    
     return(
         <div style={{marginTop:"70px",padding:"5%"}}>
             <div className="row">

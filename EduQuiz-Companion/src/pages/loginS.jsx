@@ -29,11 +29,11 @@ const LoginStudent = () => {
   
       // Store the user's name in local storage
       localStorage.setItem('userName', userData.user.Name);
-      localStorage.setItem('studentId', username)
-      console.log(localStorage.getItem('studentId'))
+      localStorage.setItem('Id', username)
+      console.log(localStorage.getItem('Id'))
       
       // Redirect to the dashboard or whatever page you want
-      window.location.href = "/cardpage";
+      //window.location.href = "/cardpage";
   
     } catch (error) {
       setErrorMessage(error.message);

@@ -35,7 +35,7 @@ function Subject() {
         
       <div className="row row-cols-1 row-cols-md-3 g-4" style={{paddingTop:"5%"}}>
       <div className="col">
-      <Link to="/LevelPage" style={{ textDecoration: 'none' }}>
+      <Link to='/LevelPage?level=1' style={{ textDecoration: 'none' }}>
         <div className="card " style={{height:"200px",width: "350px",backgroundColor:"#76ABAE",borderRadius: "25px"}}>
           <div className="card-body d-flex align-items-center justify-content-center">
             <h5 className="card-title"style={{color:"#FFFFFF"}}>Level 1</h5>
@@ -44,7 +44,7 @@ function Subject() {
         </Link>
       </div>
       <div className="col" >
-      <Link to="/LevelPage" style={{ textDecoration: 'none' }}>
+      <Link to={{ pathname:"/LevelPage", search: '?level=2'}} style={{ textDecoration: 'none' }}>
         <div className="card" style={{height:"200px", width: "350px",backgroundColor:"#76ABAE",borderRadius: "25px"}}>
           <div className="card-body d-flex align-items-center justify-content-center">
             <h5 className="card-title" style={{color:"#FFFFFF"}}>Level 2</h5>
@@ -53,7 +53,7 @@ function Subject() {
         </Link>
       </div>
       <div className="col">
-      <Link to="/LevelPage" style={{ textDecoration: 'none' }}>
+      <Link to="/LevelPage?level=3" style={{ textDecoration: 'none' }}>
         <div className="card" style={{height:"200px",width: "350px",backgroundColor:"#76ABAE",borderRadius: "25px"}}>
           <div className="card-body d-flex align-items-center justify-content-center"> 
             <h5 className="card-title" style={{color:"#FFFFFF"}}>Level 3</h5>

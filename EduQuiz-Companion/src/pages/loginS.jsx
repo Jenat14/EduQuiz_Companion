@@ -6,7 +6,7 @@ const LoginStudent = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
+  
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
@@ -29,7 +29,9 @@ const LoginStudent = () => {
   
       // Store the user's name in local storage
       localStorage.setItem('userName', userData.user.Name);
-  
+      localStorage.setItem('studentId', username)
+      console.log(localStorage.getItem('studentId'))
+      
       // Redirect to the dashboard or whatever page you want
       window.location.href = "/cardpage";
   

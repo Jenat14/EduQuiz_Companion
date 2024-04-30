@@ -30,9 +30,9 @@ function LevelPage() {
 
                 // Parse the JSON response
                 const data = await response.json();
-
+                const sortedQuizNames = data.quizNames.sort((a, b) => a.localeCompare(b));
                 // Set the quiz names in the state
-                setQuizNames(data.quizNames);
+                setQuizNames(sortedQuizNames);
             } catch (error) {
                 console.error('Error fetching quizzes:', error);
                 // Handle errors

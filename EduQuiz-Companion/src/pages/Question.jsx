@@ -180,13 +180,13 @@ const Question = () => {
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-12 col-md-4">
-                <h2>OPERATING SYSTEMS</h2>
+                <h2>{localStorage.getItem("subjectname")}</h2>
               </div>
               <div className=" finish-btn  text-right">
                 <Link to="/Result"><button className="btn btn-light" style={{ position:"absolute", right:"155px"}} onClick={handleFinish}>Finish</button></Link>
               </div>
               <div className="level-info">
-                <h3>Level: 1</h3>
+                <h3>Level:  {quizDetails.level}</h3>
                 <h3>Time left: {formatTime(timer)}</h3> {/* Display time left */}
               </div>
             </div>

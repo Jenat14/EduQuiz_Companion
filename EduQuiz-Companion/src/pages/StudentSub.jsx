@@ -42,6 +42,7 @@ function StudentSub() {
       .then((data) => {
         console.log("Subject Name:", data.name);
         setSubname(data.name);
+        localStorage.setItem("subjectname",data.name);
       })
       .catch((error) => {
         console.error("Error fetching subject:", error);

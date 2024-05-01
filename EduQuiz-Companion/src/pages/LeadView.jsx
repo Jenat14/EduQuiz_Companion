@@ -163,7 +163,7 @@ const LeadView = () => {
                 </div>
                 <div className="row">
                   <div className="col-12" style={{ textAlign:"left" }}>
-                    <p style={{ margin: "10px", padding: "5px" }}>Correct Answer: {questionObj.correctAnswer}</p>
+                    <p style={{ margin: "10px", padding: "5px",fontWeight:"bold",color:"green" }}>Correct Answer: {questionObj.correctAnswer}</p>
                   </div>
                 </div>
               </div>

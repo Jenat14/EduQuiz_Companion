@@ -3,52 +3,42 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../Question.css"; // Import CSS file for custom styling
 
+const timeStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  borderRadius: '5px',
+  padding: '20px',
+  paddingLeft:'0px',
+  width: '80rem', // Adjust width as needed
+  margin: '0 auto', // Center the container
+};
+
+const rightAlign = {
+  textAlign: 'right',
+};
+const labelStyle = {
+  display: 'flex',
+};
+
+const inputStyle = {
+  width:'15px',
+  margin: '5px', // Adjust as needed
+};
+
+const paragraphStyle = {
+  margin: '5px', // Remove default margins
+};
+
 const Question = () => {
+  const [quizDetails, setQuizDetails] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const timeStyle = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    borderRadius: '5px',
-    padding: '20px',
-    paddingLeft:'0px',
-    width: '80rem', // Adjust width as needed
-    margin: '0 auto', // Center the container
-  };
-
-  const rightAlign = {
-    textAlign: 'right',
-  };
-  const labelStyle = {
-    display: 'flex',
-  };
-  
-  const inputStyle = {
-    width:'15px',
-    margin: '5px', // Adjust as needed
-  };
-  
-  const paragraphStyle = {
-    margin: '5px', // Remove default margins
-  };
-  useEffect(() => {
-    const preventBack = () => {
-      window.history.forward();
-    };
-
-    setTimeout(preventBack, 0);
-
-    window.onunload = () => {
-      null;
-    };
-
-    return () => {
-      window.onunload = null;
-    };
-  }, []);
   // State for timer
   const [timer, setTimer] = useState(localStorage.getItem("timer") || 900); // 15 minutes in seconds
   const [isTimerRunning, setIsTimerRunning] = useState(true);
+  const [selectedOptions, setSelectedOptions] = useState(JSON.parse(localStorage.getItem("selectedOptions")) || {});
 
   // Convert time remaining to HH:MM:SS format
   const formatTime = (time) => {
@@ -58,6 +48,57 @@ const Question = () => {
     return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
+  // Fetch quiz details and questions
+  useEffect(() => {
+    const fetchQuizDetailsAndQuestions = async () => {
+      try {
+        const searchParams = new URLSearchParams(window.location.search);
+        const quizParam = searchParams.get('quiz');
+
+        if (!quizParam) {
+          throw new Error('No quiz parameter found in the URL');
+        }
+
+        const decodedQuizData = decodeURIComponent(quizParam);
+        const parsedQuizData = JSON.parse(decodedQuizData);
+
+        // Fetch quiz details
+        const id = localStorage.getItem("subId");
+        const level = localStorage.getItem("level");
+        const quizResponse = await fetch(`http://localhost:3000/quizdata/quizd?subjectId=${id}&level=${level}&name=${parsedQuizData}`);
+        if (!quizResponse.ok) {
+          throw new Error('Failed to fetch quiz details');
+        }
+        const quizData = await quizResponse.json();
+
+        // Set quiz details state
+        setQuizDetails(quizData);
+
+        // Fetch questions
+        const questionsResponse = await fetch('http://localhost:3000/quizdata/questions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ quizId: quizData.id }),
+        });
+        if (!questionsResponse.ok) {
+          throw new Error('Failed to fetch questions');
+        }
+        const questionsData = await questionsResponse.json();
+        // Set questions state
+        setQuestions(questionsData.questions);
+      } catch (error) {
+        console.error('Error fetching quiz details and questions:', error);
+        // Set error state
+        setError('Failed to fetch quiz details and questions');
+      }
+    };
+
+    fetchQuizDetailsAndQuestions();
+  }, []);
+
+  // Timer logic
   useEffect(() => {
     // Start the timer when the component mounts
     if (isTimerRunning) {
@@ -81,14 +122,6 @@ const Question = () => {
       return () => clearInterval(intervalId);
     }
   }, [isTimerRunning, timer, navigate]);
-  const [selectedOptions, setSelectedOptions] = useState(JSON.parse(localStorage.getItem("selectedOptions")) || {});
-  const handleOptionChange = (questionIndex, optionIndex) => {
-    // Update selectedOptions state
-    setSelectedOptions(prevState => ({
-      ...prevState,
-      [questionIndex]: optionIndex
-    }));
-  };
 
   // Save selected options to local storage whenever selectedOptions state changes
   useEffect(() => {
@@ -98,11 +131,28 @@ const Question = () => {
       localStorage.removeItem("selectedOptions"); // Clear selectedOptions when component unmounts
     };
   }, [selectedOptions]);
+
+  const handleOptionChange = (questionIndex, optionIndex) => {
+    // Update selectedOptions state
+    setSelectedOptions(prevState => ({
+      ...prevState,
+      [questionIndex]: optionIndex
+    }));
+  };
+
   const handleFinish = () => {
     setIsTimerRunning(false); // Stop the timer when Finish button is clicked
     localStorage.removeItem("timer"); // Clear the timer value from localStorage
   };
-  
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!quizDetails || questions.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   const questionsData = [
     {
       question: "Question 1",
@@ -121,6 +171,7 @@ const Question = () => {
     },
     // Add more questions here as needed
   ];
+
 
   return (
     <>
@@ -142,10 +193,10 @@ const Question = () => {
           </div>
         </div>
         <div>
-          <div style={{ paddingTop:"30px" }}>Time Limit: 15min</div>
+          <div style={{ paddingTop:"30px" }}>Time Limit: {quizDetails.time}min</div>
           <div style={rightAlign}>
-            <div style={{ paddingRight:"30px" }}>Total Questions: 10</div>
-            <div style={{ paddingRight:"30px" }}>Maximum Mark: 100</div>
+            <div style={{ paddingRight:"30px" }}>Total Questions: {quizDetails.numberOfQuestions}</div>
+            <div style={{ paddingRight:"30px" }}>Maximum Mark: {quizDetails.totalMarks}</div>
           </div>
         </div>
 

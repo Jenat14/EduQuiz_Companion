@@ -152,7 +152,7 @@ function StudentSub() {
                     }}
                   >
                     <Link
-                      to={`/Question?quiz=${quizName}`}
+                      to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quizName))}`}
                       className="btn btn-primary btn-sm"
                       style={{
                         backgroundColor: "#76ABAE",

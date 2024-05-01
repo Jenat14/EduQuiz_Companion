@@ -89,7 +89,6 @@ const LeadView = () => {
   if (!quizDetails || questions.length === 0) {
     return <div>Loading...</div>;
   }
-
   return (
     <>
       <div className="page" style={{marginTop:"70px"}}>

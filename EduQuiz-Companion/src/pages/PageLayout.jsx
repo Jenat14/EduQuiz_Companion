@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import * as XLSX from "xlsx"; // Import xlsx library
+
 const PageLayout = () => {
   const [fileDownloadUrl, setFileDownloadUrl] = useState('');
   const [isUploadComplete, setIsUploadComplete] = useState(false);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [jsonData, setJsonData] = useState(null); // State to store JSON data
 
   const handleDownloadTemplate = () => {
     const templateUrl = "../assets/Book1.xlsx"; 
@@ -12,61 +15,86 @@ const PageLayout = () => {
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    // Simulate file upload completion
-    setTimeout(() => {
-      // Handle the selected file here
-      console.log("Selected file:", selectedFile);
-      setIsUploadComplete(true);
-    }, 2000); // Simulating 2 seconds delay for upload completion
+    const acceptedFileTypes = [
+      "application/vnd.ms-excel",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    ];
+
+    // Check if the selected file is of the accepted types
+    if (selectedFile && acceptedFileTypes.includes(selectedFile.type)) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: "array" });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+        // Filter out first three rows
+        const filteredData = jsonData.slice(3).filter((row) => row[0]);
+        
+        setJsonData(filteredData); // Store filtered JSON data in state
+        setIsUploadComplete(true);
+      };
+      reader.readAsArrayBuffer(selectedFile);
+    } else {
+      // Alert user about the invalid file type
+      window.alert("Please upload a valid Excel file (xls or xlsx).");
+    }
   };
 
   const handleSwitchChange = () => {
     setIsSwitchOn(!isSwitchOn);
   };
+  const handleSave = async () => {
+    try {
+        const quizId = "29";
+        
+        // Iterate over each item in mappedData and make a POST request for each item
+        for (const item of jsonData) {
+            const mappedData = {
+                quizId: quizId,
+                questionNumber: item[0],
+                question: item[1],
+                option1: item[2],
+                option2: item[3],
+                option3: item[4],
+                option4: item[5],
+                correctAnswer: item[6],
+                mark: item[7],
+            };
+            const jsonString = JSON.stringify(mappedData);
+            // Make POST request to backend for each item
+            const response = await fetch("http://localhost:3000/question", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+               // body: JSON.stringify(mappedData),
+               body:jsonString,
+            });
 
-  const handleSave = () => {
-    // Handle save functionality here
-    console.log("Save button clicked");
-  };
+            if (!response.ok) {
+                // If the response is not okay, throw an error
+                window.alert(`Failed to upload question ${mappedData.questionNumber}`);
+            }
+        }
 
-  const rightAlign = {
-    textAlign: 'right',
-  };
+        // If all POST requests are successful, show success message
+        window.alert("Questions uploaded successfully.");
+    } catch (error) {
+        // If an error occurs during any POST request, show error message
+        console.error("Error uploading questions:", error);
+        window.alert("Failed to upload questions. Please try again later.");
+    }
+};
+const questionsData = jsonData ? jsonData.map((item, index) => ({
+  question: item[1],
+  options: [item[2], item[3], item[4], item[5]],
+  marks: parseInt(item[7]), // Assuming the mark is stored as a string and needs to be converted to a number
+  correctAnswer: item[6], // Assuming the correct answer index is stored as a string and needs to be converted to a number
+})) : [];
 
-  const labelStyle = {
-    display: 'flex',
-  };
-  
-  const inputStyle = {
-    width:'15px',
-    margin: '5px', // Adjust as needed
-  };
-  
-  const paragraphStyle = {
-    margin: '5px', // Remove default margins
-  };
-
-  const questionsData = [
-    {
-      question: "Question 1",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 10,
-      correctAnswer: 2, // Index of the correct answer option
-    },
-    {
-      question: "Question 2",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 2,
-      correctAnswer: 1,
-    },
-    {
-      question: "Question 3",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 5,
-      correctAnswer: 3,
-    },
-    // Add more questions here as needed
-  ];
 
   return (
     <div style={{marginTop:"70px"}}>
@@ -75,17 +103,28 @@ const PageLayout = () => {
         <a href={fileDownloadUrl} download="template.xlsx">
           <button className="btn btn-light" style={{ width: "250px", background: "#76ABAE", color: "#ffffff", marginRight: "10px" }} onClick={handleDownloadTemplate}>Download template</button>
         </a>
-        <label htmlFor="file-upload" type="button" className="btn upload-button" style={{ width: "250px", background: "#76ABAE", color: "#ffffff", marginRight: "10px" }}>
+        <label
+          htmlFor="file-upload"
+          type="button"
+          className="btn upload-button"
+          style={{
+            width: "250px",
+            background: "#76ABAE",
+            color: "#ffffff",
+            marginRight: "10px",
+          }}
+        >
           <input
             type="file"
             id="file-upload"
+            accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             style={{ display: "none" }}
             onChange={handleFileChange}
           />
           Upload Questions
         </label>
       </div>
-      {isUploadComplete && (
+      {isUploadComplete && jsonData &&  (
         <div className="main-content py-4">
           <div className="container">
             {/* Map through questionsData array to render questions and options */}
@@ -110,10 +149,11 @@ const PageLayout = () => {
                   )) }
                 </div>
                 <div className="row">
-                  <div className="col-12" style={{ textAlign:"left" }}>
-                    <p style={{ margin: "10px", padding: "5px" }}>Correct Answer: {questionObj.options[questionObj.correctAnswer]}</p>
-                  </div>
-                </div>
+  <div className="col-12" style={{ textAlign:"left" }}>
+    <p style={{ margin: "10px", padding: "5px", fontWeight:"bold",color:"green"}}>Correct Answer: {questionObj.correctAnswer}</p>
+  </div>
+</div>
+
               </div>
             )) }
           </div>

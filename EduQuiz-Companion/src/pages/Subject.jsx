@@ -22,6 +22,7 @@ function Subject() {
           })
           .then((data) => {
             console.log("Subject Name:", data.name);
+            localStorage.setItem("subjectname",data.name)
             setSubname(data.name);
           })
           .catch((error) => {

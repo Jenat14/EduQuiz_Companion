@@ -97,7 +97,7 @@ const LeadView = () => {
           <div className="container-fluid">
             <div className="row align-items-center" style={{paddingTop:"30px"}}>
               <div className="col-12 col-md-4">
-                <h2>OPERATING SYSTEMS</h2>
+                <h2>{localStorage.getItem("subjectname")}</h2>
               </div>
               <Link to="/Leaderboard">
                 <div className=" finish-btn  text-right">

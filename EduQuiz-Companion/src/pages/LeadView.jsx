@@ -77,9 +77,6 @@ const LeadView = () => {
         const quizData = await quizResponse.json();
   
         // Set quiz details state
-        console.log(id);
-        console.log(level);
-        console.log(parsedQuizData);
         setQuizDetails(quizData);
         console.log(quizDetails);
   
@@ -131,17 +128,17 @@ const LeadView = () => {
 
             <div className="level-info" >
               <br></br>
-                <h3>Level: {localStorage.getItem("level")}</h3>
+                <h3>Level: {quizDetails.level}</h3>
               </div>
             
           </div>
         </div>
       </div>
       <div >
-      <div style={{paddingTop:"30px"}}>Time Limit: min</div>
+      <div style={{paddingTop:"30px"}}>Time Limit:{quizDetails.time} min</div>
       <div style={rightAlign}>
-      <div style={{paddingRight:"30px"}}>Total Questions: 10</div>
-      <div style={{paddingRight:"30px"}}>Maximum Mark: 100</div>
+      <div style={{paddingRight:"30px"}}>Total Questions: {quizDetails.numberOfQuestions}</div>
+      <div style={{paddingRight:"30px"}}>Maximum Mark: {quizDetails.totalMarks}</div>
       </div>
     </div>
 

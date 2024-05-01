@@ -6,7 +6,8 @@ const PageLayout = () => {
   const [fileDownloadUrl, setFileDownloadUrl] = useState('');
   const [isUploadComplete, setIsUploadComplete] = useState(false);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
-  const [jsonData, setJsonData] = useState(null); // State to store JSON data
+  const [jsonData, setJsonData] = useState(null);
+  const [quizData, setQuizData] = useState(null);
 
   const handleDownloadTemplate = () => {
     const templateUrl = "../assets/Book1.xlsx"; 
@@ -32,11 +33,11 @@ const PageLayout = () => {
         const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-        // Filter out first three rows
         const filteredData = jsonData.slice(3).filter((row) => row[0]);
-        
-        setJsonData(filteredData); // Store filtered JSON data in state
+        const quizData = jsonData[1]; // Assuming quizData is in the second row of jsonData
+
+        setJsonData(filteredData);
+        setQuizData(quizData);
         setIsUploadComplete(true);
       };
       reader.readAsArrayBuffer(selectedFile);
@@ -45,6 +46,7 @@ const PageLayout = () => {
       window.alert("Please upload a valid Excel file (xls or xlsx).");
     }
   };
+
 
   const handleSwitchChange = () => {
     setIsSwitchOn(!isSwitchOn);
@@ -98,7 +100,6 @@ const questionsData = jsonData ? jsonData.map((item, index) => ({
   correctAnswer: item[6], // Assuming the correct answer index is stored as a string and needs to be converted to a number
 })) : [];
 
-
   return (
     <div style={{marginTop:"70px"}}>
       <h1 style={{ textAlign: "center" }}>Add New Quiz</h1>
@@ -130,12 +131,12 @@ const questionsData = jsonData ? jsonData.map((item, index) => ({
       {isUploadComplete && jsonData &&  (
         <>
         <div>
-          <div style={{ paddingTop:"30px",paddingLeft:"30px" }}>Time Limit: 15min</div>
+          <div style={{ paddingTop:"30px",paddingLeft:"30px" }}>Time Limit: {quizData[1]} minutes</div>
           <div style={rightAlign}>
-            <div style={{ paddingRight:"30px" }}>Total Questions: 10</div>
-            <div style={{ paddingRight:"30px" }}>Maximum Mark: 100</div>
+            <div style={{ paddingRight:"30px" }}>Total Questions: {quizData[2]}</div>
+            <div style={{ paddingRight:"30px" }}>Maximum Marks: {parseInt(quizData[3])}</div>
           </div>
-        </div>
+  </div>
         <div className="main-content py-4">
           <div className="container">
             {/* Map through questionsData array to render questions and options */}

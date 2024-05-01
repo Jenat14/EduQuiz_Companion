@@ -204,37 +204,81 @@ const Question = () => {
         <div className="main-content py-4">
           <div className="container">
             {/* Map through questionsData array to render questions and options */}
-            {questionsData.map((questionObj, index) => (
-              <div key={index} className="quiz-box" style={{backgroundColor:"#F7FCFC",borderColor:"#76ABAE"}}>
-                <div className="row">
-                  <div className="col-8">
-                    <h5>{questionObj.question}</h5>
-                  </div>
-                  <div className="col-4" style={{ textAlign:"end" }}>
-                    <p>Marks: {questionObj.marks}</p>
-                  </div>
-                </div>
-                <div className="row">
-                  {questionObj.options.map((option, optionIndex) => (
-                    <div key={optionIndex} className="col-6 option">
-                      <label htmlFor={`q${index + 1}_option${optionIndex + 1}`} style={labelStyle}>
-                        <input 
-                          type="radio" 
-                          id={`q${index + 1}_option${optionIndex + 1}`} 
-                          name={`q${index + 1}`} 
-                          value={`option${optionIndex + 1}`} 
-                          style={inputStyle} 
-                          disabled={!isTimerRunning} 
-                          checked={selectedOptions[index] === optionIndex} // Set checked state based on selectedOptions
-                          onChange={() => handleOptionChange(index, optionIndex)} // Call handleOptionChange when option is selected
-                        />
-                        <p style={paragraphStyle}>{option}</p>
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+            {questions.map((questionObj, index) => (
+  <div key={index} className="quiz-box" style={{backgroundColor:"#F7FCFC", borderColor:"#76ABAE"}}>
+    <div className="row">
+      <div className="col-8">
+        <h5>{questionObj.question}</h5>
+      </div>
+      <div className="col-4" style={{textAlign:"end"}}>
+        <p>Marks: {questionObj.mark}</p>
+      </div>
+    </div>
+    <div className="row">
+      <div className="col-6 option">
+        <label htmlFor={`q${index + 1}_option1`} style={labelStyle}>
+          <input 
+            type="radio" 
+            id={`q${index + 1}_option1`} 
+            name={`q${index + 1}`} 
+            value={questionObj.option1} 
+            style={inputStyle} 
+            disabled={!isTimerRunning} 
+            checked={selectedOptions[index] === 0} 
+            onChange={() => handleOptionChange(index, 0)} 
+          />
+          <p style={paragraphStyle}>{questionObj.option1}</p>
+        </label>
+      </div>
+      <div className="col-6 option">
+        <label htmlFor={`q${index + 1}_option2`} style={labelStyle}>
+          <input 
+            type="radio" 
+            id={`q${index + 1}_option2`} 
+            name={`q${index + 1}`} 
+            value={questionObj.option2} 
+            style={inputStyle} 
+            disabled={!isTimerRunning} 
+            checked={selectedOptions[index] === 1} 
+            onChange={() => handleOptionChange(index, 1)} 
+          />
+          <p style={paragraphStyle}>{questionObj.option2}</p>
+        </label>
+      </div>
+      <div className="col-6 option">
+        <label htmlFor={`q${index + 1}_option3`} style={labelStyle}>
+          <input 
+            type="radio" 
+            id={`q${index + 1}_option3`} 
+            name={`q${index + 1}`} 
+            value={questionObj.option3} 
+            style={inputStyle} 
+            disabled={!isTimerRunning} 
+            checked={selectedOptions[index] === 2} 
+            onChange={() => handleOptionChange(index, 2)} 
+          />
+          <p style={paragraphStyle}>{questionObj.option3}</p>
+        </label>
+      </div>
+      <div className="col-6 option">
+        <label htmlFor={`q${index + 1}_option4`} style={labelStyle}>
+          <input 
+            type="radio" 
+            id={`q${index + 1}_option4`} 
+            name={`q${index + 1}`} 
+            value={questionObj.option4} 
+            style={inputStyle} 
+            disabled={!isTimerRunning} 
+            checked={selectedOptions[index] === 3} 
+            onChange={() => handleOptionChange(index, 3)} 
+          />
+          <p style={paragraphStyle}>{questionObj.option4}</p>
+        </label>
+      </div>
+    </div>
+  </div>
+))}
+
           </div>
         </div>
       </div>

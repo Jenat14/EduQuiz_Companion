@@ -5,7 +5,7 @@ const { db } = require('../firebase');
 router.post('/', async (req, res) => {
     try {
       
-      const { name, level, time, numberOfQuestions, facultyId, subjectId, totalMarks } = req.body;
+      const { name, level, time, numberOfQuestions,reattempt,facultyId, subjectId, totalMarks } = req.body;
       
       // Create new quiz document
       const newQuizRef = await db.collection('quizzes').add({
@@ -13,6 +13,7 @@ router.post('/', async (req, res) => {
         level,
         time,
         numberOfQuestions,
+        reattempt,
         facultyId,
         subjectId,
         totalMarks,

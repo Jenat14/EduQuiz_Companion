@@ -12,6 +12,9 @@ const PageLayout = () => {
     const templateUrl = "../assets/Book1.xlsx"; 
     setFileDownloadUrl(templateUrl);
   };
+  const rightAlign = {
+    textAlign: 'right',
+  };
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -125,6 +128,14 @@ const questionsData = jsonData ? jsonData.map((item, index) => ({
         </label>
       </div>
       {isUploadComplete && jsonData &&  (
+        <>
+        <div>
+          <div style={{ paddingTop:"30px",paddingLeft:"30px" }}>Time Limit: 15min</div>
+          <div style={rightAlign}>
+            <div style={{ paddingRight:"30px" }}>Total Questions: 10</div>
+            <div style={{ paddingRight:"30px" }}>Maximum Mark: 100</div>
+          </div>
+        </div>
         <div className="main-content py-4">
           <div className="container">
             {/* Map through questionsData array to render questions and options */}
@@ -174,6 +185,7 @@ const questionsData = jsonData ? jsonData.map((item, index) => ({
       </div>
           
         </div>
+        </>
       )}
    
     </div>

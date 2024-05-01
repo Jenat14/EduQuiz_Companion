@@ -65,6 +65,8 @@ const Question = () => {
         // Fetch quiz details
         const id = localStorage.getItem("subId");
         const level = localStorage.getItem("level");
+        console.log(localStorage.getItem("subId"));
+        console.log(localStorage.getItem("level"));
         const quizResponse = await fetch(`http://localhost:3000/quizdata/quizd?subjectId=${id}&level=${level}&name=${parsedQuizData}`);
         if (!quizResponse.ok) {
           throw new Error('Failed to fetch quiz details');

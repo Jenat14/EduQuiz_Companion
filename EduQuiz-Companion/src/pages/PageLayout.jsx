@@ -88,27 +88,13 @@ const PageLayout = () => {
         window.alert("Failed to upload questions. Please try again later.");
     }
 };
-  const questionsData = [
-    {
-      question: "Question 1",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 10,
-      correctAnswer: 2, // Index of the correct answer option
-    },
-    {
-      question: "Question 2",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 2,
-      correctAnswer: 1,
-    },
-    {
-      question: "Question 3",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 5,
-      correctAnswer: 3,
-    },
-    // Add more questions here as needed
-  ];
+const questionsData = jsonData ? jsonData.map((item, index) => ({
+  question: item[1],
+  options: [item[2], item[3], item[4], item[5]],
+  marks: parseInt(item[7]), // Assuming the mark is stored as a string and needs to be converted to a number
+  correctAnswer: item[6], // Assuming the correct answer index is stored as a string and needs to be converted to a number
+})) : [];
+
 
   return (
     <div style={{marginTop:"70px"}}>
@@ -141,7 +127,6 @@ const PageLayout = () => {
       {isUploadComplete && jsonData &&  (
         <div className="main-content py-4">
           <div className="container">
-          <pre>{JSON.stringify(jsonData, null, 2)}</pre>
             {/* Map through questionsData array to render questions and options */}
             { questionsData.map((questionObj, index) => (
               <div key={ index } className="quiz-box" style={{backgroundColor:"#F7FCFC",borderColor:"#76ABAE"}}>
@@ -164,10 +149,11 @@ const PageLayout = () => {
                   )) }
                 </div>
                 <div className="row">
-                  <div className="col-12" style={{ textAlign:"left" }}>
-                    <p style={{ margin: "10px", padding: "5px" }}>Correct Answer: {questionObj.options[questionObj.correctAnswer]}</p>
-                  </div>
-                </div>
+  <div className="col-12" style={{ textAlign:"left" }}>
+    <p style={{ margin: "10px", padding: "5px", fontWeight:"bold",color:"green"}}>Correct Answer: {questionObj.correctAnswer}</p>
+  </div>
+</div>
+
               </div>
             )) }
           </div>

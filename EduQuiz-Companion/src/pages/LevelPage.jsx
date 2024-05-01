@@ -62,7 +62,7 @@ function LevelPage() {
             {/*correct here*/}
             <div style={{ padding: "5%" }}>
                 {quizNames.map((quiz, index) => (
-                    <Link to="/LeadView" style={{ textDecoration: 'none' }} key={index}>
+                    <Link to={`/LeadView?quiz=${encodeURIComponent(JSON.stringify(quiz))}`} style={{ textDecoration: 'none' }} key={index}>
                         <div className="card mb-3 shadow-bottom" style={{ width: "70rem", backgroundColor: "#EEEEEE", borderColor: "#76ABAE" }}>
                             <div className="card-body d-flex align-items-center justify-content-center">
                                 <h5 className="card-title" style={{ color: "#222831" }}>{quiz}</h5>

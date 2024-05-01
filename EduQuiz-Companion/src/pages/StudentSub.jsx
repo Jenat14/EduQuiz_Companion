@@ -59,7 +59,9 @@ function StudentSub() {
     const subjectId = new URLSearchParams(window.location.search).get("subjectId");
     console.log("subid")
     console.log(subjectId)
-    fetch('http://localhost:3000/quizName', {
+    localStorage.setItem("subId",subjectId);
+    localStorage.setItem("level",level);
+      fetch('http://localhost:3000/quizName', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

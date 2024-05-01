@@ -3,15 +3,17 @@ import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 function StudentSub() {
   const [subname, setSubname] = useState("");
-  
-  useEffect(() => {
+  const [activeLevel, setActiveLevel] = useState(null);
+  const [quizNames, setQuizNames] = useState([]);
+  const [error, setError] = useState(null);
+  const location = useLocation();
 
-    const location = window.location;
+  useEffect(() => {
     const subjectId = new URLSearchParams(location.search).get("subjectId");
     if (subjectId) {
       fetchSubjectName(subjectId);
     }
-  }, []);
+  }, [location]);
 
   useEffect(() => {
     const preventBack = () => {
@@ -45,17 +47,46 @@ function StudentSub() {
         console.error("Error fetching subject:", error);
       });
   };
-
-  const [activeLevel, setActiveLevel] = useState(null);
-  const list = [
-    "Quiz 1 details",
-    "Quiz 2 details",
-    "Quiz 3 details",
-    "Quiz 4 details",
-  ];
-
   const handleLevelClick = (level) => {
     setActiveLevel(level);
+    // Fetch quiz names for the selected subject and level
+    fetchQuizNames(level);
+  };
+  
+  const fetchQuizNames = (level) => {
+    
+    console.log(level)
+    const subjectId = new URLSearchParams(window.location.search).get("subjectId");
+    console.log("subid")
+    console.log(subjectId)
+    fetch('http://localhost:3000/quizName', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ subjectId, level }),
+      
+    })
+   
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch quiz names");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Quiz Names:", data.quizNames);
+        const sortedQuizNames = data.quizNames.sort(); // Sort the quizNames array
+        setQuizNames(sortedQuizNames);
+      })
+      .catch((error) => {
+        console.error("Error fetching quiz names:", error);
+        setError('Failed to fetch quiz names');
+      });
+  };
+  
+  const redirectToQuiz = (quizName) => {
+    history.push(`/Question?quiz=${quizName}`);
   };
 
   
@@ -80,165 +111,65 @@ function StudentSub() {
           <button
             type="button"
             className={`btn btn-lg ${activeLevel === "level1" ? "active" : ""}`}
-            onClick={() => handleLevelClick("level1")}
+            onClick={() => handleLevelClick("1")}
           >
             Level 1
           </button>
           <button
             type="button"
             className={`btn btn-lg ${activeLevel === "level2" ? "active" : ""}`}
-            onClick={() => handleLevelClick("level2")}
+            onClick={() => handleLevelClick("2")}
           >
             Level 2
           </button>
           <button
             type="button"
             className={`btn btn-lg ${activeLevel === "level3" ? "active" : ""}`}
-            onClick={() => handleLevelClick("level3")}
+            onClick={() => handleLevelClick("3")}
           >
             Level 3
           </button>
         </div>
         {activeLevel && (
           <div className="level-click">
-            {activeLevel === "level1" && (
-              <div className="level-content">
-                <div>
-                  {list.map((quiz, index) => (
-                    <Link to="" style={{ textDecoration: "none" }}>
-                      <div
-                        className="card mb-3 shadow-bottom"
-                        style={{
-                          height: "150px",
-                          width: "68rem",
-                          backgroundColor: "#EEEEEE",
-                          borderColor: "#76ABAE",
-                          position: "relative",
-                        }}
-                        key={index}
-                      >
-                        <div className="card-body d-flex flex-column align-items-center justify-content-between">
-                          <h5 className="card-title" style={{ color: "#222831" }}>
-                            {quiz}
-                          </h5>
-                          <div
-                            style={{
-                              position: "absolute",
-                              bottom: "10px",
-                              right: "10px",
-                            }}
-                          >
-                            <Link
-                              to="/Question"
-                              type="button"
-                              className="btn btn-primary btn-sm"
-                              style={{
-                                backgroundColor: "#76ABAE",
-                                borderColor: "#76ABAE",
-                              }}
-                            >
-                              Attempt Quiz
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
+            {quizNames.map((quizName, index) => (
+              <div
+                className="card mb-3 shadow-bottom"
+                style={{
+                  height: "150px",
+                  width: "68rem",
+                  backgroundColor: "#EEEEEE",
+                  borderColor: "#76ABAE",
+                  margin: "20px auto"
+                }}
+                key={index}
+              >
+                <div className="card-body d-flex flex-column align-items-center justify-content-between">
+                  <h5 className="card-title" style={{ color: "#222831" }}>
+                    {quizName}
+                  </h5>
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "10px",
+                      right: "10px",
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className="btn btn-primary btn-sm"
+                      style={{
+                        backgroundColor: "#76ABAE",
+                        borderColor: "#76ABAE",
+                      }}
+                      onClick={() => redirectToQuiz(quizName)}
+                    >
+                      Attempt Quiz
+                    </button>
+                  </div>
                 </div>
               </div>
-            )}
-            {activeLevel === "level2" && (
-              <div className="level-content">
-                <div>
-                  {list.map((quiz, index) => (
-                    <Link to="" style={{ textDecoration: "none" }}>
-                      <div
-                        className="card mb-3 shadow-bottom"
-                        style={{
-                          height: "150px",
-                          width: "68rem",
-                          backgroundColor: "#EEEEEE",
-                          borderColor: "#76ABAE",
-                          position: "relative",
-                        }}
-                        key={index}
-                      >
-                        <div className="card-body d-flex flex-column align-items-center justify-content-between">
-                          <h5 className="card-title" style={{ color: "#222831" }}>
-                            {quiz}
-                          </h5>
-                          <div
-                            style={{
-                              position: "absolute",
-                              bottom: "10px",
-                              right: "10px",
-                            }}
-                          >
-                            <Link
-                              to="/Question"
-                              type="button"
-                              className="btn btn-primary btn-sm"
-                              style={{
-                                backgroundColor: "#76ABAE",
-                                borderColor: "#76ABAE",
-                              }}
-                            >
-                              Attempt Quiz
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-            {activeLevel === "level3" && (
-              <div className="level-content">
-                <div>
-                  {list.map((quiz, index) => (
-                    <Link to="" style={{ textDecoration: "none" }}>
-                      <div
-                        className="card mb-3 shadow-bottom"
-                        style={{
-                          height: "150px",
-                          width: "68rem",
-                          backgroundColor: "#EEEEEE",
-                          borderColor: "#76ABAE",
-                          position: "relative",
-                        }}
-                        key={index}
-                      >
-                        <div className="card-body d-flex flex-column align-items-center justify-content-between">
-                          <h5 className="card-title" style={{ color: "#222831" }}>
-                            {quiz}
-                          </h5>
-                          <div
-                            style={{
-                              position: "absolute",
-                              bottom: "10px",
-                              right: "10px",
-                            }}
-                          >
-                            <Link
-                              to="/Question"
-                              type="button"
-                              className="btn btn-primary btn-sm"
-                              style={{
-                                backgroundColor: "#76ABAE",
-                                borderColor: "#76ABAE",
-                              }}
-                            >
-                              Attempt Quiz
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
+            ))}
           </div>
         )}
       </div>

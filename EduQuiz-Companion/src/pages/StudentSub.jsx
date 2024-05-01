@@ -84,10 +84,6 @@ function StudentSub() {
         setError('Failed to fetch quiz names');
       });
   };
-  
-  const redirectToQuiz = (quizName) => {
-    history.push(`/Question?quiz=${quizName}`);
-  };
 
   
   return (
@@ -155,17 +151,16 @@ function StudentSub() {
                       right: "10px",
                     }}
                   >
-                    <button
-                      type="button"
+                    <Link
+                      to={`/Question?quiz=${quizName}`}
                       className="btn btn-primary btn-sm"
                       style={{
                         backgroundColor: "#76ABAE",
                         borderColor: "#76ABAE",
                       }}
-                      onClick={() => redirectToQuiz(quizName)}
                     >
                       Attempt Quiz
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

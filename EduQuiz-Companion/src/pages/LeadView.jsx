@@ -1,57 +1,121 @@
-
+import { useEffect, useState } from 'react';
 import "../LeadView.css"; // Import CSS file for custom styling
 import { Link } from 'react-router-dom';
+const timeStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  borderRadius: '5px',
+  padding: '20px',
+  paddingLeft:'0px',
+  width: '80rem', // Adjust width as needed
+  margin: '0 auto', // Center the container
+};
 
+const rightAlign = {
+  textAlign: 'right',
+};
+const labelStyle = {
+  display: 'flex',
+};
+
+const inputStyle = {
+  width:'15px',
+  margin: '5px', // Adjust as needed
+};
+
+const paragraphStyle = {
+  margin: '5px', // Remove default margins
+};
+ 
+ const questionsData = [
+  {
+    question: "Question 1",
+    options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+    marks: 10,
+    correctAnswer: 2,
+  },
+  {
+    question: "Question 2",
+    options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+    marks: 2,
+    correctAnswer: 3,
+  },
+  {
+    question: "Question 3",
+    options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+    marks: 5,
+    correctAnswer: 1,
+  },
+  // Add more questions here as needed
+];
 const LeadView = () => {
-  const timeStyle = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    borderRadius: '5px',
-    padding: '20px',
-    paddingLeft:'0px',
-    width: '80rem', // Adjust width as needed
-    margin: '0 auto', // Center the container
-  };
+ 
+  const [quizDetails, setQuizDetails] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [error, setError] = useState(null);
 
-  const rightAlign = {
-    textAlign: 'right',
-  };
-  const labelStyle = {
-    display: 'flex',
-  };
+  useEffect(() => {
+    const fetchQuizDetailsAndQuestions = async () => {
+      try {
+        const searchParams = new URLSearchParams(window.location.search);
+        const quizParam = searchParams.get('quiz');
   
-  const inputStyle = {
-    width:'15px',
-    margin: '5px', // Adjust as needed
-  };
+        if (!quizParam) {
+          throw new Error('No quiz parameter found in the URL');
+        }
+
+        const decodedQuizData = decodeURIComponent(quizParam);
+        const parsedQuizData = JSON.parse(decodedQuizData);
+
+        // Fetch quiz details
+        const id = localStorage.getItem("subId");
+        const level = localStorage.getItem("level");
+        const quizResponse = await fetch(`http://localhost:3000/quizdata/quizd?subjectId=${id}&level=${level}&name=${parsedQuizData}`);
+        if (!quizResponse.ok) {
+          throw new Error('Failed to fetch quiz details');
+        }
+        const quizData = await quizResponse.json();
   
-  const paragraphStyle = {
-    margin: '5px', // Remove default margins
-  };
-   
-   const questionsData = [
-    {
-      question: "Question 1",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 10,
-      correctAnswer: 2,
-    },
-    {
-      question: "Question 2",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 2,
-      correctAnswer: 3,
-    },
-    {
-      question: "Question 3",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 5,
-      correctAnswer: 1,
-    },
-    // Add more questions here as needed
-  ];
-   
-   
+        // Set quiz details state
+        console.log(id);
+        console.log(level);
+        console.log(parsedQuizData);
+        setQuizDetails(quizData);
+        console.log(quizDetails);
+  
+        // Fetch questions
+        const questionsResponse = await fetch('http://localhost:3000/quizdata/questions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ quizId: quizData.id }),
+        });
+        if (!questionsResponse.ok) {
+          throw new Error('Failed to fetch questions');
+        }
+        const questionsData = await questionsResponse.json();
+        // Set questions state
+        setQuestions(questionsData.questions);
+      } catch (error) {
+        console.error('Error fetching quiz details and questions:', error);
+        // Set error state
+        setError('Failed to fetch quiz details and questions');
+      }
+    };
+
+    fetchQuizDetailsAndQuestions();
+  }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!quizDetails || questions.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+
   return (
     <>
       <div className="page" style={{marginTop:"70px"}}>
@@ -67,14 +131,14 @@ const LeadView = () => {
 
             <div className="level-info" >
               <br></br>
-                <h3>Level: 1</h3>
+                <h3>Level: {localStorage.getItem("level")}</h3>
               </div>
             
           </div>
         </div>
       </div>
       <div >
-      <div style={{paddingTop:"30px"}}>Time Limit: 15min</div>
+      <div style={{paddingTop:"30px"}}>Time Limit: min</div>
       <div style={rightAlign}>
       <div style={{paddingRight:"30px"}}>Total Questions: 10</div>
       <div style={{paddingRight:"30px"}}>Maximum Mark: 100</div>

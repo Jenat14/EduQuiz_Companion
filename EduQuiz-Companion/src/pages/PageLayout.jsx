@@ -49,7 +49,10 @@ const PageLayout = () => {
 
 
   const handleSwitchChange = () => {
-    setIsSwitchOn(!isSwitchOn);
+    // Set value to true if isSwitchOn is false, and false if isSwitchOn is true
+    const value = !isSwitchOn;
+    setIsSwitchOn(value);
+
   };
   const handleSave = async () => {
     try {

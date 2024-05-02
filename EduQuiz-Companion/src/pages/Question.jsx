@@ -75,7 +75,7 @@ const Question = () => {
 
         // Set quiz details state
         setQuizDetails(quizData);
-
+        localStorage.setItem("quizid",quizData.id)
         // Fetch questions
         const questionsResponse = await fetch('http://localhost:3000/quizdata/questions', {
           method: 'POST',
@@ -142,44 +142,74 @@ const Question = () => {
     }));
   };
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     setIsTimerRunning(false); // Stop the timer when Finish button is clicked
+    const totalTime = 900; // Get the total time allocated for the quiz
+    const timeTaken = totalTime - timer; // Calculate the time taken by subtracting remaining time from total time
+  
     localStorage.removeItem("timer"); // Clear the timer value from localStorage
-        let score = 0;
-        let correctAnswers = 0;
-        let incorrectAnswers = 0;
-        let attemptedQuestions = 0;
-      questions.forEach((question, index) => {
-        const selectedOptionIndex = selectedOptions[index];
-        if (selectedOptionIndex !== undefined && selectedOptionIndex !== null) {
-          attemptedQuestions++;
-          if (question[`option${selectedOptionIndex + 1}`] === question.correctAnswer) {
-            // If correct, add the mark to the total marks
-            correctAnswers++;
-            score += question.mark;
-          }else {
-            incorrectAnswers++;
-          }
+    let score = 0;
+    let correctAnswers = 0;
+    let incorrectAnswers = 0;
+    let attemptedQuestions = 0;
+  
+    questions.forEach((question, index) => {
+      const selectedOptionIndex = selectedOptions[index];
+      if (selectedOptionIndex !== undefined && selectedOptionIndex !== null) {
+        attemptedQuestions++;
+        if (question[`option${selectedOptionIndex + 1}`] === question.correctAnswer) {
+          // If correct, add the mark to the total marks
+          correctAnswers++;
+          score += question.mark;
+        } else {
+          incorrectAnswers++;
         }
-  });
-
-        // Display the total marks or any other result calculation logic you want
-        console.log("Navigating to /Result with state:", {
-          score,
-          correctAnswers,
-          incorrectAnswers,
-          attemptedQuestions
-        });
-        // Redirect to the result page or perform any other actions as needed
-        navigate("/Result", {
-          state: {
-            score,
-            correctAnswers,
-            incorrectAnswers,
-            attemptedQuestions
-          }
-        });
+      }
+    });
+  
+    // Calculate timestamp
+    const timestamp = new Date().toISOString();
+  
+    // Prepare data for the fetch request
+    const data = {
+      studentId: localStorage.getItem("Id"),
+      quizId: localStorage.getItem("quizid"),
+      score,
+      timestamp,
+      timeTaken,
+    };
+  
+    try {
+      // Make the fetch request
+      const response = await fetch('http://localhost:3000/result', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      // Check if request was successful
+      if (response.ok) {
+        console.log('Result created successfully');
+      } else {
+        console.error('Failed to create result:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error creating result:', error.message);
+    }
+  
+    // Redirect to the result page or perform any other actions as needed
+    navigate("/Result", {
+      state: {
+        score,
+        correctAnswers,
+        incorrectAnswers,
+        attemptedQuestions
+      }
+    });
   };
+  
 
   if (error) {
     return <div>Error: {error}</div>;

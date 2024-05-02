@@ -145,6 +145,25 @@ const Question = () => {
   const handleFinish = () => {
     setIsTimerRunning(false); // Stop the timer when Finish button is clicked
     localStorage.removeItem("timer"); // Clear the timer value from localStorage
+    // Calculate the result
+      let totalMarks = 0;
+      questions.forEach((question, index) => {
+        const selectedOptionIndex = selectedOptions[index];
+        if (selectedOptionIndex !== undefined && selectedOptionIndex !== null) {
+          // Check if the selected option index matches the index of the correct answer
+          console.log(selectedOptionIndex);
+          if (question[`option${selectedOptionIndex + 1}`] === question.correctAnswer) {
+            // If correct, add the mark to the total marks
+            totalMarks += question.mark;
+          }
+        }
+  });
+
+        // Display the total marks or any other result calculation logic you want
+        console.log("Total Marks:", totalMarks);
+
+        // Redirect to the result page or perform any other actions as needed
+        navigate("/Result");
   };
 
   if (error) {

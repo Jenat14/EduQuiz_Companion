@@ -46,8 +46,6 @@ const PageLayout = () => {
       window.alert("Please upload a valid Excel file (xls or xlsx).");
     }
   };
-
-
   const handleSwitchChange = () => {
     // Set value to true if isSwitchOn is false, and false if isSwitchOn is true
     const value = !isSwitchOn;
@@ -56,8 +54,29 @@ const PageLayout = () => {
   };
   const handleSave = async () => {
     try {
-        const quizId = "29";
-        
+
+      const quizResponse = await fetch("http://localhost:3000/quiz", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name:"quiz3",
+          level: quizData[0],
+          time: quizData[1],
+          numberOfQuestions: quizData[2],
+          reattempt: isSwitchOn,
+          facultyId: 1,
+          subjectId: 2,
+          totalMarks: quizData[3],
+        }),
+      });
+
+      if (!quizResponse.ok) {
+        window.alert("Failed to create quiz.");
+        return;
+      }
+      const { quizId } = await quizResponse.json();
         // Iterate over each item in mappedData and make a POST request for each item
         for (const item of jsonData) {
             const mappedData = {

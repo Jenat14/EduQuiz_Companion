@@ -5,7 +5,7 @@ import '../styles.css';
 import { Link } from "react-router-dom";
 const Result = ({ data }) => {
   const location = useLocation();
-  const { score, correctAnswers, incorrectAnswers, attemptedQuestions } = location.state;
+  const { score, correctAnswers, incorrectAnswers, attemptedQuestions,finishTimestamp  } = location.state;
   const chartData = {
     labels: ['Score', 'Correct Answers', 'Incorrect Anwers', 'Attempted Questions'],
     datasets: [

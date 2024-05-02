@@ -12,7 +12,7 @@ const Result = ({ data }) => {
       {
         label: 'Result',
         data: data || [score, correctAnswers, incorrectAnswers, attemptedQuestions], 
-        backgroundColor: ['#222831', '#4A9094', '#60BCC1', '#76ABAE'],
+        backgroundColor: ['#4A9094', '#76ABAE', '#222831', '#60BCC1'],
       },
     ],
   };

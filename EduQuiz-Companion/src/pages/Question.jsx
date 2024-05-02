@@ -144,7 +144,7 @@ const Question = () => {
 
   const handleFinish = async () => {
     setIsTimerRunning(false); // Stop the timer when Finish button is clicked
-    const totalTime = 900; // Get the total time allocated for the quiz
+    const totalTime = quizDetails.time*60; // Get the total time allocated for the quiz
     const timeTaken = totalTime - timer; // Calculate the time taken by subtracting remaining time from total time
   
     localStorage.removeItem("timer"); // Clear the timer value from localStorage

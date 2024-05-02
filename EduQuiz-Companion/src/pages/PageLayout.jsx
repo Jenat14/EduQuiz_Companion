@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import * as XLSX from "xlsx"; // Import xlsx library
 
 const PageLayout = () => {
+  console.log(localStorage.getItem("subId"))
+  console.log(localStorage.getItem("Id"))
   const [fileDownloadUrl, setFileDownloadUrl] = useState('');
   const [isUploadComplete, setIsUploadComplete] = useState(false);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -66,8 +68,8 @@ const PageLayout = () => {
           time: quizData[1],
           numberOfQuestions: quizData[2],
           reattempt: isSwitchOn,
-          facultyId: 1,
-          subjectId: 2,
+          facultyId: localStorage.getItem("Id"),
+          subjectId: localStorage.getItem("subId"),
           totalMarks: quizData[3],
         }),
       });

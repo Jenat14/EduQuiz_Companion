@@ -145,25 +145,40 @@ const Question = () => {
   const handleFinish = () => {
     setIsTimerRunning(false); // Stop the timer when Finish button is clicked
     localStorage.removeItem("timer"); // Clear the timer value from localStorage
-    // Calculate the result
-      let totalMarks = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let incorrectAnswers = 0;
+        let attemptedQuestions = 0;
       questions.forEach((question, index) => {
         const selectedOptionIndex = selectedOptions[index];
         if (selectedOptionIndex !== undefined && selectedOptionIndex !== null) {
-          // Check if the selected option index matches the index of the correct answer
-          console.log(selectedOptionIndex);
+          attemptedQuestions++;
           if (question[`option${selectedOptionIndex + 1}`] === question.correctAnswer) {
             // If correct, add the mark to the total marks
-            totalMarks += question.mark;
+            correctAnswers++;
+            score += question.mark;
+          }else {
+            incorrectAnswers++;
           }
         }
   });
 
         // Display the total marks or any other result calculation logic you want
-        console.log("Total Marks:", totalMarks);
-
+        console.log("Navigating to /Result with state:", {
+          score,
+          correctAnswers,
+          incorrectAnswers,
+          attemptedQuestions
+        });
         // Redirect to the result page or perform any other actions as needed
-        navigate("/Result");
+        navigate("/Result", {
+          state: {
+            score,
+            correctAnswers,
+            incorrectAnswers,
+            attemptedQuestions
+          }
+        });
   };
 
   if (error) {
@@ -184,7 +199,7 @@ const Question = () => {
                 <h2>{localStorage.getItem("subjectname")}</h2>
               </div>
               <div className=" finish-btn  text-right">
-                <Link to="/Result"><button className="btn btn-light" style={{ position:"absolute", right:"155px"}} onClick={handleFinish}>Finish</button></Link>
+                <button className="btn btn-light" style={{ position:"absolute", right:"155px"}} onClick={handleFinish}>Finish</button>
               </div>
               <div className="level-info">
                 <h3>Level:  {quizDetails.level}</h3>

@@ -216,7 +216,15 @@ const Question = () => {
   }
 
   if (!quizDetails || questions.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+  <div className="text-center">
+    <div className="spinner-grow" role="status" style={{ width: "6rem", height: "6rem",color:"#212529", animationDuration: "1s" }}>
+    </div>
+    <p style={{color:"#212529"}}>Loading...</p>
+  </div>
+</div>
+    );
   }
 
   return (

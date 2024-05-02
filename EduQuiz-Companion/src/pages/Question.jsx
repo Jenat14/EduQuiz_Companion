@@ -155,26 +155,6 @@ const Question = () => {
     return <div>Loading...</div>;
   }
 
-  const questionsData = [
-    {
-      question: "Question 1",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 10,
-    },
-    {
-      question: "Question 2",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 2,
-    },
-    {
-      question: "Question 3",
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      marks: 5,
-    },
-    // Add more questions here as needed
-  ];
-
-
   return (
     <>
       <div className="page">

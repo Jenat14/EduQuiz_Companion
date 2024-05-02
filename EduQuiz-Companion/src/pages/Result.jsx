@@ -1,14 +1,17 @@
 import React, { useEffect, useRef } from 'react';
+import { useLocation } from "react-router-dom";
 import Chart from 'chart.js/auto';
 import '../styles.css'; 
 import { Link } from "react-router-dom";
 const Result = ({ data }) => {
+  const location = useLocation();
+  const { score, correctAnswers, incorrectAnswers, attemptedQuestions } = location.state;
   const chartData = {
     labels: ['Score', 'Correct Answers', 'Incorrect Anwers', 'Attempted Questions'],
     datasets: [
       {
         label: 'Result',
-        data: data || [50, 30, 20, 40], 
+        data: data || [score, correctAnswers, incorrectAnswers, attemptedQuestions], 
         backgroundColor: ['#222831', '#4A9094', '#60BCC1', '#76ABAE'],
       },
     ],

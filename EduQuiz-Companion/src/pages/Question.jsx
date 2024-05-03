@@ -61,6 +61,7 @@ const Question = () => {
 
         const decodedQuizData = decodeURIComponent(quizParam);
         const parsedQuizData = JSON.parse(decodedQuizData);
+        localStorage.setItem("quizname",parsedQuizData);
 
         // Fetch quiz details
         const id = localStorage.getItem("subId");
@@ -181,7 +182,7 @@ const Question = () => {
   
     try {
       // Make the fetch request
-      const response = await fetch('http://localhost:3000/result', {
+      const response = await fetch('http://localhost:3000/resultUpdatedRoutes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

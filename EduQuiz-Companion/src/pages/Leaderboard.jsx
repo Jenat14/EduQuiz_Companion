@@ -31,11 +31,7 @@ const styles = {
         backgroundColor:"#F7FCFC"
     }
   };
-  const participantsCount =70;
-  const averageScore=75;
-  const highestScore=90;
-  const totalScore=100;
-  const participantsWithHighestScore=3;
+  
 function Leaderboard() {
     const [leaderboardData, setLeaderboardData] = useState({
         leaderboard: [],
@@ -58,19 +54,13 @@ function Leaderboard() {
         };
     
         fetchLeaderboardData();
-      }, []); // Empty dependency array to run effect only once on component mount
+      }, []); 
     
       const { leaderboard, statistics } = leaderboardData;
-    const participants = [
-        { name: "John Doe", score: 95, timetaken: 1 },
-        { name: "Jane Smith", score: 90, timetaken: 2 },
-        { name: "Alice Johnson", score: 85, timetaken: 3 },
-    ];
     
     return (
         <div style={styles.container}>
           <div style={styles.row}>
-            {/* Participants count */}
             <div style={styles.column}>
               <div style={styles.card}>
                 <div style={styles.body}>
@@ -80,7 +70,6 @@ function Leaderboard() {
               </div>
             </div>
       
-            {/* Average score */}
             <div style={styles.column}>
               <div style={styles.card}>
                 <div style={styles.body}>
@@ -90,7 +79,6 @@ function Leaderboard() {
               </div>
             </div>
       
-            {/* Highest score */}
             <div style={styles.column}>
               <div style={styles.card}>
                 <div style={styles.body}>
@@ -100,7 +88,6 @@ function Leaderboard() {
               </div>
             </div>
       
-            {/* Participants with highest score */}
             <div style={styles.column}>
               <div style={styles.card}>
                 <div style={styles.body}>
@@ -111,7 +98,6 @@ function Leaderboard() {
             </div>
           </div>
       
-          {/* Leaderboard */}
           <div style={styles.row}>
             <h2 style={{ paddingTop: "10rem", paddingBottom: "2rem", color: "#222831" }}>LEADERBOARD</h2>
           </div>

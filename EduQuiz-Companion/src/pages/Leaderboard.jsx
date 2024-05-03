@@ -1,4 +1,5 @@
-
+import React, { useState, useEffect } from 'react';
+//import {  useLocation } from "react-router-dom";
 const styles = {
     container: {
       margin:"4%",
@@ -36,79 +37,106 @@ const styles = {
   const totalScore=100;
   const participantsWithHighestScore=3;
 function Leaderboard() {
+    const [leaderboardData, setLeaderboardData] = useState({
+        leaderboard: [],
+        statistics: {}
+      });
+    
+      useEffect(() => {
+        const fetchLeaderboardData = async () => {
+          try {
+            const quizId = new URLSearchParams(window.location.search).get("quizId");
+            const response = await fetch(`http://localhost:3000/leaderboardRoutes?quizId=${quizId}`); 
+            if (!response.ok) {
+              throw new Error('Failed to fetch leaderboard data');
+            }
+            const data = await response.json();
+            setLeaderboardData(data);
+          } catch (error) {
+            console.error('Error fetching leaderboard:', error);
+          }
+        };
+    
+        fetchLeaderboardData();
+      }, []); // Empty dependency array to run effect only once on component mount
+    
+      const { leaderboard, statistics } = leaderboardData;
     const participants = [
         { name: "John Doe", score: 95, timetaken: 1 },
         { name: "Jane Smith", score: 90, timetaken: 2 },
         { name: "Alice Johnson", score: 85, timetaken: 3 },
     ];
     
-    return(
+    return (
         <div style={styles.container}>
-            <div >
-            <div style={styles.row}>
-                <div style={styles.column}>
-                <div style={styles.card}>
-                    <div style={styles.body}>
-                    <h2>{participantsCount}</h2>
-                    <h5>PARTICIPANTS</h5>
-                    </div>
+          <div style={styles.row}>
+            {/* Participants count */}
+            <div style={styles.column}>
+              <div style={styles.card}>
+                <div style={styles.body}>
+                  <h2>{statistics.numberOfParticipants}</h2>
+                  <h5>PARTICIPANTS</h5>
                 </div>
-                </div>
-
-                <div style={styles.column}>
-                <div style={styles.card}>
-                    <div style={styles.body}>
-                    <h2>{averageScore}</h2>
-                    <h5>AVERAGE SCORE</h5>
-                    </div>
-                </div>
-                </div>
-
-                <div style={styles.column}>
-                <div style={styles.card}>
-                    <div style={styles.body}>   
-                    <h2>{highestScore}/{totalScore}</h2>
-                    <h5>HIGHEST SCORE</h5>
-                    </div>
-                </div>
-                </div>
-
-                <div style={styles.column}>
-                <div style={styles.card}>
-                    <div style={styles.body}>
-                    <h2>{participantsWithHighestScore}</h2>
-                    <h5>PARTICIPANTS WITH HIGHEST SCORE</h5>
-                    </div>
-                </div>
-                </div>
-                </div>
-                </div>
-                <div style={styles.row}>
-                <h2 style={{paddingTop:"10rem",paddingBottom:"2rem",color:"#222831" }}>LEADERBOARD</h2>
+              </div>
             </div>
-                <table className="" style={{ width: "100%"}} >
-                <thead style={styles.tablehead}>
-                    <tr>
-                    <th scope="col">Rank</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Score</th>
-                    <th scope="col">Time Taken</th>
-                    </tr>
-                </thead>
-                <tbody style={styles.tablebody}>
-                    {participants.map((participant, index) => (
-                    <tr key={index} style={{height:"3rem"}} >
-                        <th scope="row">{index + 1}</th>
-                        <td>{participant.name}</td>
-                        <td>{participant.score}</td>
-                        <td>{participant.timetaken}</td>
-                    </tr>
-                    ))}
-                </tbody>
-                </table>
-                
+      
+            {/* Average score */}
+            <div style={styles.column}>
+              <div style={styles.card}>
+                <div style={styles.body}>
+                  <h2>{statistics.averageScore}</h2>
+                  <h5>AVERAGE SCORE</h5>
+                </div>
+              </div>
+            </div>
+      
+            {/* Highest score */}
+            <div style={styles.column}>
+              <div style={styles.card}>
+                <div style={styles.body}>
+                  <h2>{statistics.highestScore}/{statistics.totalMark}</h2>
+                  <h5>HIGHEST SCORE</h5>
+                </div>
+              </div>
+            </div>
+      
+            {/* Participants with highest score */}
+            <div style={styles.column}>
+              <div style={styles.card}>
+                <div style={styles.body}>
+                  <h2>{statistics.participantsWithHighestScore}</h2>
+                  <h5>PARTICIPANTS WITH HIGHEST SCORE</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          {/* Leaderboard */}
+          <div style={styles.row}>
+            <h2 style={{ paddingTop: "10rem", paddingBottom: "2rem", color: "#222831" }}>LEADERBOARD</h2>
+          </div>
+          <table className="" style={{ width: "100%" }}>
+            <thead style={styles.tablehead}>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">Name</th>
+                <th scope="col">Score</th>
+                <th scope="col">Time Taken</th>
+              </tr>
+            </thead>
+            <tbody style={styles.tablebody}>
+              {leaderboard.map((participant, index) => (
+                <tr key={index} style={{ height: "3rem" }}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{participant.studentName}</td>
+                  <td>{participant.score}</td>
+                  <td>{participant.timeTaken}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-    );
-
+      );
+      
 };
 export default Leaderboard

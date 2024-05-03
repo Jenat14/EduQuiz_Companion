@@ -36,7 +36,7 @@ const Question = () => {
   const navigate = useNavigate();
 
   // State for timer
-  const [timer, setTimer] = useState(localStorage.getItem("timer") || 900); // 15 minutes in seconds
+  const [timer, setTimer] = useState(localStorage.getItem("timer")); // 15 minutes in seconds
   const [isTimerRunning, setIsTimerRunning] = useState(true);
   const [selectedOptions, setSelectedOptions] = useState(JSON.parse(localStorage.getItem("selectedOptions")) || {});
 
@@ -77,6 +77,7 @@ const Question = () => {
         // Set quiz details state
         setQuizDetails(quizData);
         localStorage.setItem("quizid",quizData.id)
+        setTimer(quizData.time * 60);
         // Fetch questions
         const questionsResponse = await fetch('http://localhost:3000/quizdata/questions', {
           method: 'POST',

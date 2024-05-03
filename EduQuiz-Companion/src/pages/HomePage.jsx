@@ -102,8 +102,10 @@ function HomePage() {
       <input
   type="text"
   className="form-control"
-  id="queriesInput" // Add this id
+  id="queriesInput"
   placeholder="Enter your Queries"
+  autoComplete="off" 
+
 />
         <div className="input-group-append">
   <button

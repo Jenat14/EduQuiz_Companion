@@ -143,7 +143,7 @@ function StudentSub() {
                   <p>No. of Attempts: {quiz.noofattempts !== null ? quiz.noofattempts : "Not attempted yet"}</p>
                   <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
                     <Link
-                      to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quiz))}`}
+                      to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quiz.name))}`}
                       className="btn btn-primary btn-sm"
                       style={{ backgroundColor: "#76ABAE", borderColor: "#76ABAE" }}
                     >

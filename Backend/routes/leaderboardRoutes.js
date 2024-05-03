@@ -43,10 +43,13 @@ router.get('/', async (req, res) => {
         const leaderboard = await Promise.all(resultsData.map(async result => {
             const studentDoc = await db.collection('Student').doc(result.studentId).get();
             const studentData = studentDoc.data();
+            const minutes = Math.floor(result.timeTaken / 60);
+            const seconds = result.timeTaken % 60;
+            const timeTakenFormatted = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
             return {
                 studentName: studentData.Name, // Include student name
                 score: result.score,
-                timeTaken: result.timeTaken
+                timeTaken: timeTakenFormatted
             };
         }));
 

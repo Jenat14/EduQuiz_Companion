@@ -99,20 +99,28 @@ function HomePage() {
   <div className="row">
     <div className="col">
       <div className="input-group">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Enter your Queries"
-        />
+      <input
+  type="text"
+  className="form-control"
+  id="queriesInput" // Add this id
+  placeholder="Enter your Queries"
+/>
         <div className="input-group-append">
-          <button
-            className="btn btn-outline-secondary"
-            type="button"
-            id="button-addon2"
-          >
-            Send
-          </button>
-        </div>
+  <button
+    className="btn btn-outline-secondary"
+    type="button"
+    id="button-addon2"
+    onClick={() => {
+      const queries = document.getElementById("queriesInput").value;
+      const encodedQueries = encodeURIComponent(queries);
+      window.location.href = `mailto:jenat.csa2125@saintgits.org?subject=Queries&body=${encodedQueries}`;
+      queriesInput.value = "";
+    }}
+  >
+    Send
+  </button>
+</div>
+
       </div>
     </div>
   </div>

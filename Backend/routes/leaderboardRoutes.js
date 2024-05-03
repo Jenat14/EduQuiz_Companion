@@ -8,6 +8,12 @@ router.get('/', async (req, res) => {
         if (!quizId) {
             return res.status(400).json({ error: 'Missing quizId parameter' });
         }
+        // Fetch totalMarks from the quiz table using quizId
+        const quizDoc = await db.collection('quizzes').doc(quizId).get();
+        if (!quizDoc.exists) {
+            return res.status(404).json({ error: 'Quiz not found' });
+        }
+        const { totalMarks } = quizDoc.data();
 
         // Fetch data from results table
         const resultsSnapshot = await db.collection('results')
@@ -38,7 +44,7 @@ router.get('/', async (req, res) => {
             const studentDoc = await db.collection('Student').doc(result.studentId).get();
             const studentData = studentDoc.data();
             return {
-                studentName: studentData.name, // Include student name
+                studentName: studentData.Name, // Include student name
                 score: result.score,
                 timeTaken: result.timeTaken
             };
@@ -51,7 +57,7 @@ router.get('/', async (req, res) => {
                 numberOfParticipants,
                 averageScore,
                 highestScore,
-                totalMark: highestScore, // Assuming totalMark is the same as highestScore in this context
+                totalMarks, // Assuming totalMark is the same as highestScore in this context
                 participantsWithHighestScore
             }
         });

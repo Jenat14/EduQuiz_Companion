@@ -116,7 +116,7 @@ function Leaderboard() {
                   <th scope="row">{index + 1}</th>
                   <td>{participant.studentName}</td>
                   <td>{participant.score}</td>
-                  <td>{participant.timeTaken}</td>
+                  <td>{participant.timeTaken} minutes</td>
                 </tr>
               ))}
             </tbody>

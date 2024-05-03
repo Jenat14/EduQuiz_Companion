@@ -144,7 +144,7 @@ function StudentSub() {
                   <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
                   <Link
   to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quiz.name))}`}
-  className={`btn btn-primary btn-sm ${(!quiz.reattempt && quiz.noofattempts > 1) ? 'disabled' : ''}`}
+  className={`btn btn-primary btn-sm ${(!quiz.reattempt && quiz.noofattempts > 0) ? 'disabled' : ''}`}
   style={{ backgroundColor: "#76ABAE", borderColor: "#76ABAE" }}
   disabled={!quiz.reattempt || quiz.noofattempts > 1}
 >

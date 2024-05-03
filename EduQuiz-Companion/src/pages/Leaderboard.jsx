@@ -94,7 +94,7 @@ function Leaderboard() {
             <div style={styles.column}>
               <div style={styles.card}>
                 <div style={styles.body}>
-                  <h2>{statistics.highestScore}/{statistics.totalMark}</h2>
+                  <h2>{statistics.highestScore}/{statistics.totalMarks}</h2>
                   <h5>HIGHEST SCORE</h5>
                 </div>
               </div>

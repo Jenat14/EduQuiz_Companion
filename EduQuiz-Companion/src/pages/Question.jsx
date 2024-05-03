@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../Question.css"; // Import CSS file for custom styling
 
@@ -36,7 +35,7 @@ const Question = () => {
   const navigate = useNavigate();
 
   // State for timer
-  const [timer, setTimer] = useState(localStorage.getItem("timer")); // 15 minutes in seconds
+  const [timer, setTimer] = useState(localStorage.getItem("timer")||900); // 15 minutes in seconds
   const [isTimerRunning, setIsTimerRunning] = useState(true);
   const [selectedOptions, setSelectedOptions] = useState(JSON.parse(localStorage.getItem("selectedOptions")) || {});
 
@@ -49,61 +48,63 @@ const Question = () => {
   };
 
   // Fetch quiz details and questions
-  useEffect(() => {
-    const fetchQuizDetailsAndQuestions = async () => {
-      try {
-        const searchParams = new URLSearchParams(window.location.search);
-        const quizParam = searchParams.get('quiz');
+  // Fetch quiz details and questions
+useEffect(() => {
+  const fetchQuizDetailsAndQuestions = async () => {
+    try {
+      const searchParams = new URLSearchParams(window.location.search);
+      const quizParam = searchParams.get('quiz');
 
-        if (!quizParam) {
-          throw new Error('No quiz parameter found in the URL');
-        }
-
-        const decodedQuizData = decodeURIComponent(quizParam);
-        const parsedQuizData = JSON.parse(decodedQuizData);
-        localStorage.setItem("quizname",parsedQuizData);
-
-        // Fetch quiz details
-        const id = localStorage.getItem("subId");
-        const level = localStorage.getItem("level");
-        console.log(localStorage.getItem("subId"));
-        console.log(localStorage.getItem("level"));
-        const quizResponse = await fetch(`http://localhost:3000/quizdata/quizd?subjectId=${id}&level=${level}&name=${parsedQuizData}`);
-        if (!quizResponse.ok) {
-          throw new Error('Failed to fetch quiz details');
-        }
-        const quizData = await quizResponse.json();
-
-        // Set quiz details state
-        setQuizDetails(quizData);
-        localStorage.setItem("quizid",quizData.id)
-        setTimer(quizData.time * 60);
-        // Fetch questions
-        const questionsResponse = await fetch('http://localhost:3000/quizdata/questions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ quizId: quizData.id }),
-        });
-        if (!questionsResponse.ok) {
-          throw new Error('Failed to fetch questions');
-        }
-        const questionsData = await questionsResponse.json();
-        // Set questions state
-        setQuestions(questionsData.questions);
-      } catch (error) {
-        console.error('Error fetching quiz details and questions:', error);
-        // Set error state
-        setError('Failed to fetch quiz details and questions');
+      if (!quizParam) {
+        throw new Error('No quiz parameter found in the URL');
       }
-    };
 
-    fetchQuizDetailsAndQuestions();
-  }, []);
+      const decodedQuizData = decodeURIComponent(quizParam);
+      const parsedQuizData = JSON.parse(decodedQuizData);
+      localStorage.setItem("quizname",parsedQuizData);
+
+      // Fetch quiz details
+      const id = localStorage.getItem("subId");
+      const level = localStorage.getItem("level");
+      console.log(localStorage.getItem("subId"));
+      console.log(localStorage.getItem("level"));
+      const quizResponse = await fetch(`http://localhost:3000/quizdata/quizd?subjectId=${id}&level=${level}&name=${parsedQuizData}`);
+      if (!quizResponse.ok) {
+        throw new Error('Failed to fetch quiz details');
+      }
+      const quizData = await quizResponse.json();
+
+      // Set quiz details state
+      setQuizDetails(quizData);
+      localStorage.setItem("quizid",quizData.id);
+      localStorage.setItem("reattempt",quizData.reattempt);
+      // Fetch questions
+      const questionsResponse = await fetch('http://localhost:3000/quizdata/questions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ quizId: quizData.id }),
+      });
+      if (!questionsResponse.ok) {
+        throw new Error('Failed to fetch questions');
+      }
+      const questionsData = await questionsResponse.json();
+      setQuestions(questionsData.questions);
+    } catch (error) {
+      console.error('Error fetching quiz details and questions:', error);
+      // Set error state
+      setError('Failed to fetch quiz details and questions');
+    }
+  };
+
+  fetchQuizDetailsAndQuestions();
+}, []);
+
 
   // Timer logic
   useEffect(() => {
+   
     // Start the timer when the component mounts
     if (isTimerRunning) {
       const intervalId = setInterval(() => {
@@ -249,7 +250,7 @@ const Question = () => {
           </div>
         </div>
         <div>
-          <div style={{ paddingTop:"30px" }}>Time Limit: {quizDetails.time}min</div>
+          <div style={{ paddingTop:"30px"}}>Time Limit: {quizDetails.time}min</div>
           <div style={rightAlign}>
             <div style={{ paddingRight:"30px" }}>Total Questions: {quizDetails.numberOfQuestions}</div>
             <div style={{ paddingRight:"30px" }}>Maximum Mark: {quizDetails.totalMarks}</div>

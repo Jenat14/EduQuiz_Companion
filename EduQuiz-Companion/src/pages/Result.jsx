@@ -21,6 +21,8 @@ const Result = ({ data }) => {
 
   const chartRef = useRef(null);
   const quizname=localStorage.getItem("quizname");
+  const reattempt = localStorage.getItem("reattempt") === "true";
+
   useEffect(() => {
     if (attemptedQuestions > 0) {
       const config = {
@@ -78,7 +80,7 @@ const Result = ({ data }) => {
               <Link to="#" className="btn mt-4" style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}>
                 View Questions
               </Link>
-              <Link to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quizname))}`} className="btn mt-4" style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}>
+              <Link to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quizname))}`} className={`btn mt-4 ${!reattempt ? "disabled" : ""}`} style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}>
                 Retry
               </Link>
             </div>

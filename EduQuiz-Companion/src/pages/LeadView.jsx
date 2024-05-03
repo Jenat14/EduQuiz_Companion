@@ -57,7 +57,7 @@ const LeadView = () => {
 
         // Set quiz details state
         setQuizDetails(quizData);
-
+        localStorage.setItem("quizId",quizData.id) 
         // Fetch questions
         const questionsResponse = await fetch('http://localhost:3000/quizdata/questions', {
           method: 'POST',
@@ -88,7 +88,9 @@ const LeadView = () => {
 
   if (!quizDetails || questions.length === 0) {
     return <div>Loading...</div>;
+    
   }
+  //quizId=localStorage.getItem("quizId")
   return (
     <>
       <div className="page" style={{marginTop:"70px"}}>
@@ -98,7 +100,8 @@ const LeadView = () => {
               <div className="col-12 col-md-4">
                 <h2>{localStorage.getItem("subjectname")}</h2>
               </div>
-              <Link to="/Leaderboard">
+              
+              <Link to={`/Leaderboard?quizId=${localStorage.getItem("quizId")}`} >
                 <div className=" finish-btn  text-right">
                   <button className="btn btn-light" style={{position:"absolute",right:"60px",top:"180px",padding:"10px",borderRadius:"20px",width:"200px"}}>View Leaderboard</button>
                 </div>

@@ -1,114 +1,125 @@
 import React, { useState, useEffect } from 'react';
-//import {  useLocation } from "react-router-dom";
+
 const styles = {
-    container: {
-      margin:"4%",
-      marginTop:"70px"
-    },
-    column: {
-      float: 'left',
-      width: '25%',
-      padding: '0 10px',
-    },
-    row: {
-      margin: '0 -5px',
-    },
-    card: {
-      padding: '16px',
-      textAlign: 'center',
-      backgroundColor:'#76ABAE',
-      height:"120px",
-      borderRadius:"15px"
-    },
-    body: {
-        color:"#FFFFFF"
-    },
-    tablehead: {
-        backgroundColor:"#EEEEEE",
-        height:"4rem"
-    },
-    tablebody: {
-        backgroundColor:"#F7FCFC"
-    }
-  };
-  
+  container: {
+    margin:"4%",
+    marginTop:"70px"
+  },
+  column: {
+    float: 'left',
+    width: '25%',
+    padding: '0 10px',
+  },
+  row: {
+    margin: '0 -5px',
+  },
+  card: {
+    padding: '16px',
+    textAlign: 'center',
+    backgroundColor:'#76ABAE',
+    height:"120px",
+    borderRadius:"15px"
+  },
+  body: {
+    color:"#FFFFFF"
+  },
+  tablehead: {
+    backgroundColor:"#EEEEEE",
+    height:"4rem"
+  },
+  tablebody: {
+    backgroundColor:"#F7FCFC"
+  }
+};
+
 function Leaderboard() {
   const id = localStorage.getItem('Id');
   const role = id && id.startsWith('F') ? 'faculty' : 'student';
   localStorage.setItem("role", role);
-  console.log(role)
-  console.log(localStorage.getItem("role"))
-    const [leaderboardData, setLeaderboardData] = useState({
-        leaderboard: [],
-        statistics: {}
-      });
-    
-      useEffect(() => {
-        const fetchLeaderboardData = async () => {
-          try {
-            const quizId = new URLSearchParams(window.location.search).get("quizId");
-            const response = await fetch(`http://localhost:3000/leaderboardRoutes?quizId=${quizId}`); 
-            if (!response.ok) {
-              throw new Error('Failed to fetch leaderboard data');
-            }
-            const data = await response.json();
-            setLeaderboardData(data);
-          } catch (error) {
-            console.error('Error fetching leaderboard:', error);
-          }
-        };
-    
-        fetchLeaderboardData();
-      }, []); 
-    
-      const { leaderboard, statistics } = leaderboardData;
-      const userRoleIsFaculty = localStorage.getItem('userRoleIsFaculty') === 'true';
-    
-    return (
-        <div style={styles.container}>
-         { role === 'faculty' && ( 
-          <div> 
-          <div style={styles.row}>
-            <div style={styles.column}>
-              <div style={styles.card}>
-                <div style={styles.body}>
-                  <h2>{statistics.numberOfParticipants}</h2>
-                  <h5>PARTICIPANTS</h5>
-                </div>
-              </div>
-            </div>
-      
-            <div style={styles.column}>
-              <div style={styles.card}>
-                <div style={styles.body}>
-                  <h2>{statistics.averageScore}</h2>
-                  <h5>AVERAGE SCORE</h5>
-                </div>
-              </div>
-            </div>
-      
-            <div style={styles.column}>
-              <div style={styles.card}>
-                <div style={styles.body}>
-                  <h2>{statistics.highestScore}/{statistics.totalMarks}</h2>
-                  <h5>HIGHEST SCORE</h5>
-                </div>
-              </div>
-            </div>
-      
-            <div style={styles.column}>
-              <div style={styles.card}>
-                <div style={styles.body}>
-                  <h2>{statistics.participantsWithHighestScore}</h2>
-                  <h5>PARTICIPANTS WITH HIGHEST SCORE</h5>
-                </div>
-              </div>
-            </div>
+
+  const [loading, setLoading] = useState(true); // State to track loading status
+  const [leaderboardData, setLeaderboardData] = useState({
+    leaderboard: [],
+    statistics: {}
+  });
+
+  useEffect(() => {
+    const fetchLeaderboardData = async () => {
+      try {
+        const quizId = new URLSearchParams(window.location.search).get("quizId");
+        const response = await fetch(`http://localhost:3000/leaderboardRoutes?quizId=${quizId}`); 
+        if (!response.ok) {
+          throw new Error('Failed to fetch leaderboard data');
+        }
+        const data = await response.json();
+        setLeaderboardData(data);
+        setLoading(false); // Update loading state when data is fetched
+      } catch (error) {
+        console.error('Error fetching leaderboard:', error);
+      }
+    };
+
+    fetchLeaderboardData();
+  }, []); 
+
+  const { leaderboard, statistics } = leaderboardData;
+
+  return (
+    <div style={styles.container}>
+      {loading ? ( // Conditional rendering based on loading state
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+        <div className="text-center">
+          <div className="spinner-grow" role="status" style={{ width: "4rem", height: "4rem",color:"#212529", animationDuration: "1s" }}>
           </div>
-          </div>
+          <p style={{color:"#212529"}}>Loading...</p>
+        </div>
+      </div>
+      ) : (
+        <>
+          { role === 'faculty' && ( 
+            <div> 
+              <div style={styles.row}>
+                <div style={styles.column}>
+                  <div style={styles.card}>
+                    <div style={styles.body}>
+                      <h2>{statistics.numberOfParticipants}</h2>
+                      <h5>PARTICIPANTS</h5>
+                    </div>
+                  </div>
+                </div>
+                <div style={styles.column}>
+                  <div style={styles.card}>
+                    <div style={styles.body}>
+                      <h2>{statistics.averageScore}</h2>
+                      <h5>AVERAGE SCORE</h5>
+                    </div>
+                  </div>
+                </div>
+                <div style={styles.column}>
+                  <div style={styles.card}>
+                    <div style={styles.body}>
+                      <h2>{statistics.highestScore}/{statistics.totalMarks}</h2>
+                      <h5>HIGHEST SCORE</h5>
+                    </div>
+                  </div>
+                </div>
+                <div style={styles.column}>
+                  <div style={styles.card}>
+                    <div style={styles.body}>
+                      <h2>{statistics.participantsWithHighestScore}</h2>
+                      <h5>PARTICIPANTS WITH HIGHEST SCORE</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
           <div style={styles.row}>
-            <h2 style={{ paddingTop: "10rem", paddingBottom: "2rem", color: "#222831" }}>LEADERBOARD</h2>
+          { role === 'student' ? (
+  <h2 style={{ paddingBottom: "2rem", color: "#222831" }}>LEADERBOARD</h2>
+) : (
+  <h2 style={{ paddingTop: "10rem", paddingBottom: "2rem", color: "#222831" }}>LEADERBOARD</h2>
+)}
           </div>
           <table className="" style={{ width: "100%" }}>
             <thead style={styles.tablehead}>
@@ -130,8 +141,10 @@ function Leaderboard() {
               ))}
             </tbody>
           </table>
-        </div>
-      );
-      
-};
-export default Leaderboard
+        </>
+      )}
+    </div>
+  );
+}
+
+export default Leaderboard;

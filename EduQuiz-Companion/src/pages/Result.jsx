@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import noResultImage from "../assets/no result.png";
 
 const Result = ({ data }) => {
+  const selectedOptions = localStorage.getItem('selectedOptions');
+  console.log(selectedOptions)
   const location = useLocation();
   const navigate = useNavigate(); // Access the navigate function
   const { score, correctAnswers, incorrectAnswers, attemptedQuestions, finishTimestamp } = location.state;
@@ -108,10 +110,15 @@ const Result = ({ data }) => {
               </div>
             )}
             <div className="button-container">
+              
+           
             <button 
       className="btn mt-4" 
       style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}
-      onClick={() => navigate(`/LeadView?quiz=${encodeURIComponent(JSON.stringify(quizname))}`)}
+      
+      onClick={() => navigate(`/LeadView?quiz=${encodeURIComponent(JSON.stringify(quizname))}`,
+       { state: { selectedOptions } })}
+
     >
       View Questions
     </button>

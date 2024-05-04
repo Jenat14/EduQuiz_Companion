@@ -152,7 +152,14 @@ function StudentSub() {
 >
   Attempt Quiz
 </Link>
-                  </div>
+  </div>
+   <div className={`btn btn-primary btn-sm `}style={{ backgroundColor: "#76ABAE", borderColor: "#76ABAE",
+   position: "absolute", bottom: "10px", right: "170px" }}>
+    Leaderboard
+
+
+
+    </div>
                 </div>
               </div>
             ))}

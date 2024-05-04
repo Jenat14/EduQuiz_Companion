@@ -33,6 +33,11 @@ const styles = {
   };
   
 function Leaderboard() {
+  const id = localStorage.getItem('Id');
+  const role = id && id.startsWith('F') ? 'faculty' : 'student';
+  localStorage.setItem("role", role);
+  console.log(role)
+  console.log(localStorage.getItem("role"))
     const [leaderboardData, setLeaderboardData] = useState({
         leaderboard: [],
         statistics: {}
@@ -57,9 +62,12 @@ function Leaderboard() {
       }, []); 
     
       const { leaderboard, statistics } = leaderboardData;
+      const userRoleIsFaculty = localStorage.getItem('userRoleIsFaculty') === 'true';
     
     return (
         <div style={styles.container}>
+         { role === 'faculty' && ( 
+          <div> 
           <div style={styles.row}>
             <div style={styles.column}>
               <div style={styles.card}>
@@ -97,7 +105,8 @@ function Leaderboard() {
               </div>
             </div>
           </div>
-      
+          </div>
+          )}
           <div style={styles.row}>
             <h2 style={{ paddingTop: "10rem", paddingBottom: "2rem", color: "#222831" }}>LEADERBOARD</h2>
           </div>

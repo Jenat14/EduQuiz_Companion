@@ -59,9 +59,10 @@ function HomePage() {
         <div id="home" className="section full-screen">
           <div className="home-row">
             <h1 style={{fontStyle:"Bold",color:"#76ABAE"}}>
-              EDUQUIZ <br />
-              COMPANION
-            </h1>
+              EDUQUIZ COMPANION<br />
+              </h1>
+              <h5 style={{align:'centre',color:"#76ABAE"}}>"Quiz, Learn, Excel: EduQuiz Companion - Your Gateway to Academic Excellence."</h5>
+            
             <div className="textbox">
             <p>EduQuiz Companion is a dynamic platform  specifically crafted for BTech Computer Science and Engineering students. 
               Dive into three challenging levels of quizzes across five core subjects, empowering students to enhance their understanding.

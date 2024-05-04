@@ -47,7 +47,7 @@ function StudentSub() {
         console.error("Error fetching subject:", error);
       });
   };
-
+ console.log(quizResults)
   const handleLevelClick = (level) => {
     setActiveLevel(level);
     fetchQuizResults(level);
@@ -133,7 +133,7 @@ function StudentSub() {
                 }}
                 key={index}
               >
-                <div className="card-body d-flex flex-column align-items-center justify-content-between" style={{padding:"100px "}}>
+              <div className="card-body d-flex flex-column align-items-center justify-content-between" style={{padding:"100px "}}>
                   <h5 className="card-title" style={{ color: "#222831", position:"absolute",left:"6px",top:"0px",padding:"10px"}}>
                     {quiz.name}
                   </h5>
@@ -145,21 +145,20 @@ function StudentSub() {
                   </div>
                   <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
                   <Link
-  to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quiz.name))}`}
-  className={`btn btn-primary btn-sm ${(!quiz.reattempt && quiz.noofattempts > 0) ? 'disabled' : ''}`}
-  style={{ backgroundColor: "#76ABAE", borderColor: "#76ABAE" }}
-  disabled={!quiz.reattempt || quiz.noofattempts > 1}
->
-  Attempt Quiz
-</Link>
-  </div>
-   <div className={`btn btn-primary btn-sm `}style={{ backgroundColor: "#76ABAE", borderColor: "#76ABAE",
-   position: "absolute", bottom: "10px", right: "170px" }}>
-    Leaderboard
-
-
-
-    </div>
+                      to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quiz.name))}`}
+                      className={`btn btn-primary btn-sm ${(!quiz.reattempt && quiz.noofattempts > 0) ? 'disabled' : ''}`}
+                      style={{ backgroundColor: "#76ABAE", borderColor: "#76ABAE" }}
+                      disabled={!quiz.reattempt || quiz.noofattempts > 1}
+                    >
+                      Attempt Quiz
+                    </Link>
+                      </div>
+                      < Link to= {`/Leaderboard?quizId=${quiz.quizId}`}>
+                      <div className={`btn btn-primary btn-sm `}style={{ backgroundColor: "#76ABAE", borderColor: "#76ABAE",
+                      position: "absolute", bottom: "10px", right: "170px" }}>
+                        Leaderboard
+                       </div>
+                       </Link>
                 </div>
               </div>
             ))}

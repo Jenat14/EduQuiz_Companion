@@ -133,14 +133,16 @@ function StudentSub() {
                 }}
                 key={index}
               >
-                <div className="card-body d-flex flex-column align-items-center justify-content-between">
-                  <h5 className="card-title" style={{ color: "#222831" }}>
+                <div className="card-body d-flex flex-column align-items-center justify-content-between" style={{padding:"100px "}}>
+                  <h5 className="card-title" style={{ color: "#222831", position:"absolute",left:"6px",top:"0px",padding:"10px"}}>
                     {quiz.name}
                   </h5>
-                  <p>Number of Questions: {quiz.numberOfQuestions}</p>
-                  <p>Time: {quiz.time} minutes</p>
-                  <p>Score: {quiz.score !== null ? quiz.score : "Not attempted yet"}</p>
-                  <p>No. of Attempts: {quiz.noofattempts !== null ? quiz.noofattempts : "Not attempted yet"}</p>
+                  <div className="attempt" style={{position:"absolute",left:"90px",top:"25px",padding:"10px"}}>
+                    <p>Number of Questions: {quiz.numberOfQuestions}</p>
+                    <p>Time: {quiz.time} minutes</p>
+                    <p>Your Score: {quiz.score !== null ? quiz.score : "Not attempted yet"}</p>
+                    <p>No. of Attempts: {quiz.noofattempts !== null ? quiz.noofattempts : "Not attempted yet"}</p>
+                  </div>
                   <div style={{ position: "absolute", bottom: "10px", right: "10px" }}>
                   <Link
   to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quiz.name))}`}

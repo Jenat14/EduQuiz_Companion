@@ -1,6 +1,7 @@
 import personIcon from "../assets/person-icon.png";
 import { Link } from "react-router-dom";
 import React, { useState,useEffect} from 'react';
+import logo from "../assets/logof.jpg";
 
 
 function NavBar(){
@@ -77,7 +78,7 @@ function NavBar(){
         <nav className="navbar navbar-expand-lg  bg-light  fixed-top" style={{marginBottom:"70px"}}>
           <div className="container-fluid">
             <a className="navbar-brand" style={{fontWeight:"700",color:"#555555"}}>
-              <img src="#"></img> EduQuiz.
+              <img src={logo} style={{height:"30px", width:"30px",marginTop:"0px"}}></img> EduQuiz.
             </a>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">

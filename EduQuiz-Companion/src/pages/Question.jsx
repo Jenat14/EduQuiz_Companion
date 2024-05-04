@@ -101,7 +101,21 @@ useEffect(() => {
   fetchQuizDetailsAndQuestions();
 }, []);
 
+useEffect(() => {
+  const preventBack = () => {
+    window.history.forward();
+  };
 
+  setTimeout(preventBack, 0);
+
+  window.onunload = () => {
+    null;
+  };
+
+  return () => {
+    window.onunload = null;
+  };
+}, []);
   // Timer logic
   useEffect(() => {
    
@@ -129,14 +143,14 @@ useEffect(() => {
   }, [isTimerRunning, timer, navigate]);
 
   // Save selected options to local storage whenever selectedOptions state changes
-  /*useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("selectedOptions", JSON.stringify(selectedOptions));
   
     return () => {
       localStorage.removeItem("selectedOptions"); // Clear selectedOptions when component unmounts
     };
   }, [selectedOptions]);
-*/
+
   const handleOptionChange = (questionIndex, optionIndex) => {
     // Update selectedOptions state
     setSelectedOptions(prevState => ({

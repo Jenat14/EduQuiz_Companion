@@ -41,6 +41,8 @@ function NavBar(){
         return studentHomeRoute; // If LeadView in student interface, return student home route
       } else if (path === "/LeadView" && role=="faculty") {
         return facultyHomeRoute; // If LeadView in faculty interface, return faculty home route
+      }else if (path === "/Leaderboard" && role=="student") {
+        return studentHomeRoute; // If LeadView in faculty interface, return faculty home route
       } else {
         return facultyHomeRoute; // If LeadView is not in either interface, default to faculty home route
       }

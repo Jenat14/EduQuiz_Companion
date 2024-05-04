@@ -2,6 +2,7 @@ import "../styles.css";
 import Home1 from "../assets/Home1.jpg";
 import Home2 from "../assets/Home2.jpg";
 import { Link } from "react-router-dom";
+import logo from "../assets/logof.jpg"
 function HomePage() {
   return (
     <> 
@@ -9,7 +10,7 @@ function HomePage() {
         <nav className="navbar navbar-expand-lg  bg-light  fixed-top">
           <div className="container-fluid">
             <a className="navbar-brand" style={{fontWeight:"700",color:"#555555"}}>
-              <img src="#"></img> EduQuiz.
+              <img src={logo} style={{height:"30px", width:"30px",marginTop:"0px"}}></img> EduQuiz.
             </a>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">

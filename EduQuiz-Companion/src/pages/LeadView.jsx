@@ -161,12 +161,11 @@ const LeadView = () => { // Receive role as a prop
                 name={`q${index + 1}`}
                 value={optionKey}
                 style={inputStyle}
-                disabled // Always disabled
+                checked={selectedOptionIndex === optionIndex}
               />
               {/* Check if optionIndex matches selectedOptionIndex */}
               <p style={paragraphStyle}>
                 {questionObj[optionKey]}
-                {selectedOptionIndex === optionIndex ? " (Selected)" : ""}
               </p>
             </label>
           </div>

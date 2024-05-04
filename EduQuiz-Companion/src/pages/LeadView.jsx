@@ -30,24 +30,18 @@ const paragraphStyle = {
 };
 
 const LeadView = () => { // Receive role as a prop
-  console.log("selected:");
-  
   const location = useLocation();
-  const selectedOptions = location.state;
-  console.log(selectedOptions);
+  console.log("selected:");
+  const data = location.state;
+ const selectedOptionsString = data.selectedOptions; // Extract the JSON string
+ const selectedOptions = JSON.parse(selectedOptionsString); // Parse the JSON string to get the object
+ console.log(selectedOptions);
   const [quizDetails, setQuizDetails] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
   const id = localStorage.getItem('Id');
   const role = id && id.startsWith('F') ? 'faculty' : 'student';
   localStorage.setItem("role",role)
-  useEffect(() => {
-    // Fetch selectedOptions from localStorage
-    const selectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
-    if (selectedOptions) {
-      setSelectedOptions(selectedOptions);
-    }
-  }, []);
   useEffect(() => {
     const fetchQuizDetailsAndQuestions = async () => {
       try {
@@ -144,44 +138,49 @@ const LeadView = () => { // Receive role as a prop
         {/* Main Quiz Section */}
         <div className="main-content py-4">
           <div className="container">
-            {questions.map((questionObj, index) => (
-              <div key={index} className="quiz-box"style={{backgroundColor:"#F7FCFC",borderColor:"#76ABAE"}}>
-                <div className="row">
-                  <div className="col-8">
-                    <h5>{questionObj.question}</h5>
-                  </div>
-                  <div className="col-4" style={{textAlign:"end"}}>
-                    <p>Marks: {questionObj.mark}</p>
-                  </div>
-                </div>
-                <div className="row">
-  {/* Render options with highlighting if user is a student */}
-  {[1, 2, 3, 4].map(optionIndex => {
-    const optionKey = `option${optionIndex}`;
-    return (
-      <div key={optionIndex} className="col-6 option">
-        <label htmlFor={`q${index + 1}_option${optionIndex}`} style={labelStyle}>
-          <input
-            type="radio"
-            id={`q${index + 1}_option${optionIndex}`}
-            name={`q${index + 1}`}
-            value={optionKey}
-            style={inputStyle}
-            disabled // Always disabled
-          />
-          <p style={paragraphStyle}>{questionObj[optionKey]}</p>
-        </label>
+          {questions.map((questionObj, index) => (
+  <div key={index} className="quiz-box" style={{ backgroundColor: "#F7FCFC", borderColor: "#76ABAE" }}>
+    <div className="row">
+      <div className="col-8">
+        <h5>{questionObj.question}</h5>
       </div>
-    );
-  })}
-</div>
-                <div className="row">
-                  <div className="col-12" style={{ textAlign:"left" }}>
-                    <p style={{ margin: "10px", padding: "5px",fontWeight:"bold",color:"green" }}>Correct Answer: {questionObj.correctAnswer}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+      <div className="col-4" style={{ textAlign: "end" }}>
+        <p>Marks: {questionObj.mark}</p>
+      </div>
+    </div>
+    <div className="row">
+      {[1, 2, 3, 4].map(optionIndex => {
+        const optionKey = `option${optionIndex}`;
+        const selectedOptionIndex = selectedOptions[index] +1; // Get index of selected option for current question
+        return (
+          <div key={optionIndex} className="col-6 option">
+            <label htmlFor={`q${index + 1}_option${optionIndex}`} style={labelStyle}>
+              <input
+                type="radio"
+                id={`q${index + 1}_option${optionIndex}`}
+                name={`q${index + 1}`}
+                value={optionKey}
+                style={inputStyle}
+                disabled // Always disabled
+              />
+              {/* Check if optionIndex matches selectedOptionIndex */}
+              <p style={paragraphStyle}>
+                {questionObj[optionKey]}
+                {selectedOptionIndex === optionIndex ? " (Selected)" : ""}
+              </p>
+            </label>
+          </div>
+        );
+      })}
+    </div>
+    <div className="row">
+      <div className="col-12" style={{ textAlign: "left" }}>
+        <p style={{ margin: "10px", padding: "5px", fontWeight: "bold", color: "green" }}>Correct Answer: {questionObj.correctAnswer}</p>
+      </div>
+    </div>
+  </div>
+))}
+
           </div>
         </div>
       </div>

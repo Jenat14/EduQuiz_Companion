@@ -1,7 +1,7 @@
 import personIcon from "../assets/person-icon.png";
 import { Link } from "react-router-dom";
 import React, { useState,useEffect} from 'react';
-import logo from "../assets/logof.jpg";
+import logo from "../assets/logo.png";
 
 
 function NavBar(){

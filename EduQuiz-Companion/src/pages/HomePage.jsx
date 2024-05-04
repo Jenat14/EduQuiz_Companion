@@ -2,7 +2,7 @@ import "../styles.css";
 import Home1 from "../assets/Home1.jpg";
 import Home2 from "../assets/Home2.jpg";
 import { Link } from "react-router-dom";
-import logo from "../assets/logof.jpg"
+import logo from "../assets/logo.png"
 function HomePage() {
   return (
     <> 

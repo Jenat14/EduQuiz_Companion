@@ -131,7 +131,7 @@ useEffect(() => {
 
       // Redirect to /Result page when timer reaches 0
       if (timer === 0) {
-        navigate("/Result");
+        handleFinish(); // Call handleFinish function
         setIsTimerRunning(false); // Stop the timer
         localStorage.removeItem("timer"); // Clear the timer value from localStorage
         clearInterval(intervalId); // Clear the interval

@@ -12,7 +12,7 @@ const PageLayout = () => {
   const [quizData, setQuizData] = useState(null);
 
   const handleDownloadTemplate = () => {
-    const templateUrl = "http://localhost:5173/Book1.xlsx"; 
+    const templateUrl = process.env.PUBLIC_URL + "/Book1.xlsx"; 
     setFileDownloadUrl(templateUrl);
   };
   const rightAlign = {

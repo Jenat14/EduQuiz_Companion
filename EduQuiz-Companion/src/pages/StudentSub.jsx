@@ -54,6 +54,7 @@ function StudentSub() {
   };
 
   const fetchQuizResults = (level) => {
+    setQuizResults([]);
     const subjectId = new URLSearchParams(window.location.search).get("subjectId");
     localStorage.setItem("subId", subjectId);
     localStorage.setItem("level", level);

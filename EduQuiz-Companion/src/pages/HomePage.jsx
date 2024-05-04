@@ -63,9 +63,10 @@ function HomePage() {
               COMPANION
             </h1>
             <div className="textbox">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque ullamcorpernisl at placerat.
-               Nam diam purus, ultrices eu ligula ut, lacinia ornare lorem. Nunc sodales mauris eget turpis ullamcorper, 
-               ac varius massa convallis. Mauris eleifend, libero vel consectetur sodales, nisi odio dictum eros, et finibus sem nibh et elit</p>
+            <p>EduQuiz Companion is a dynamic platform  specifically crafted for BTech Computer Science and Engineering students. 
+              Dive into three challenging levels of quizzes across five core subjects, empowering students to enhance their understanding.
+                With features like personalized quiz history, adaptive difficulty levels, and detailed performance insights, both students and faculty can embark 
+                on a journey of interactive learning and assessment.</p>
             </div><a href="#mission" className="btn-start">
               Get Started
             </a>
@@ -82,11 +83,9 @@ function HomePage() {
           <div className="col-md-7 pt-5" data-aos="fade-left">
             <h2 style={{fontStyle:"Bold",color:"#76ABAE"}}>MISSION</h2>
             <div className="textbox">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque ullamcorper nisl at placerat. 
-              Nam diam purus, ultrices eu ligula ut, lacinia ornare lorem. Nunc sodales mauris eget turpis ullamcorper, 
-              ac varius massa convallis. Mauris eleifend, libero vel consectetur sodales, 
-              nisi odio dictum eros, et finibus sem nibh et elit.
-                Phasellus justo mauris, mattis vel </p>
+            <p>Our mission is to revolutionize learning in BTech Computer Science and Engineering by providing a dynamic and engaging platform for comprehensive subject assessment. 
+              Through EduQuiz Companion, we aim to empower students with personalized learning experiences, fostering deeper understanding and mastery of core concepts.
+              By leveraging innovative technology,we strive to bridge the gap between traditional education and modern interactive learning methods, ensuring academic excellence for all. </p>
           </div></div>
         </div>
         <div id="contact" className="section half-screen">

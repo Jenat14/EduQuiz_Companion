@@ -116,7 +116,7 @@ const LeadView = () => { // Receive role as a prop
                 <h2>{localStorage.getItem("subjectname")}</h2>
               </div>
               {role === 'faculty' ? (
-                <Link to={`/Leaderboard?quizId=${localStorage.getItem("quizId")}`} >
+                <Link to={`/Leaderboard?quizId=${localStorage.getItem("quizid")}`} >
                   <div className=" finish-btn  text-right">
                     <button className="btn btn-light" style={{position:"absolute",right:"60px",top:"180px",padding:"10px",borderRadius:"20px",width:"200px"}}>View Leaderboard</button>
                   </div>

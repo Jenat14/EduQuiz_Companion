@@ -8,6 +8,9 @@ import img5 from '../assets/coa.webp';
 import img6 from '../assets/flat.jpg';
 
 const Facultydash = () => {
+  const id = localStorage.getItem('Id');
+  const role = id && id.startsWith('F') ? 'faculty' : 'student';
+  localStorage.setItem("role", role);
   return (
 <div style={{marginTop:"100px"}}>
 <div class="container-f">

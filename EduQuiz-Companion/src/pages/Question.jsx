@@ -62,7 +62,6 @@ useEffect(() => {
       const decodedQuizData = decodeURIComponent(quizParam);
       const parsedQuizData = JSON.parse(decodedQuizData);
       localStorage.setItem("quizname",parsedQuizData);
-
       // Fetch quiz details
       const id = localStorage.getItem("subId");
       const level = localStorage.getItem("level");
@@ -73,9 +72,9 @@ useEffect(() => {
         throw new Error('Failed to fetch quiz details');
       }
       const quizData = await quizResponse.json();
-
       // Set quiz details state
       setQuizDetails(quizData);
+      
       localStorage.setItem("quizid",quizData.id);
       localStorage.setItem("reattempt",quizData.reattempt);
       // Fetch questions
@@ -85,6 +84,7 @@ useEffect(() => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ quizId: quizData.id }),
+        
       });
       if (!questionsResponse.ok) {
         throw new Error('Failed to fetch questions');
@@ -96,8 +96,8 @@ useEffect(() => {
       // Set error state
       setError('Failed to fetch quiz details and questions');
     }
-  };
 
+  };
   fetchQuizDetailsAndQuestions();
 }, []);
 
@@ -129,20 +129,25 @@ useEffect(() => {
   }, [isTimerRunning, timer, navigate]);
 
   // Save selected options to local storage whenever selectedOptions state changes
-  useEffect(() => {
+  /*useEffect(() => {
     localStorage.setItem("selectedOptions", JSON.stringify(selectedOptions));
   
     return () => {
       localStorage.removeItem("selectedOptions"); // Clear selectedOptions when component unmounts
     };
   }, [selectedOptions]);
-
+*/
   const handleOptionChange = (questionIndex, optionIndex) => {
     // Update selectedOptions state
     setSelectedOptions(prevState => ({
       ...prevState,
       [questionIndex]: optionIndex
     }));
+    const updatedSelectedOptions = {
+      ...selectedOptions,
+      [questionIndex]: optionIndex
+    };
+    localStorage.setItem("selectedOptions", JSON.stringify(updatedSelectedOptions));
   };
 
   const handleFinish = async () => {

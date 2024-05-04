@@ -101,6 +101,8 @@ function StudentSub() {
           <button
             type="button"
             className={`btn btn-lg ${activeLevel === "level1" ? "active" : ""}`}
+            style={{ backgroundColor: activeLevel === "1" ? "#222831" : "#76ABAE" }}
+
             onClick={() => handleLevelClick("1")}
           >
             Level 1
@@ -108,6 +110,7 @@ function StudentSub() {
           <button
             type="button"
             className={`btn btn-lg ${activeLevel === "level2" ? "active" : ""}`}
+            style={{ backgroundColor: activeLevel === "2" ? "#222831" : "#76ABAE" }}
             onClick={() => handleLevelClick("2")}
           >
             Level 2
@@ -115,6 +118,7 @@ function StudentSub() {
           <button
             type="button"
             className={`btn btn-lg ${activeLevel === "level3" ? "active" : ""}`}
+            style={{ backgroundColor: activeLevel === "3" ? "#222831" : "#76ABAE" }}
             onClick={() => handleLevelClick("3")}
           >
             Level 3

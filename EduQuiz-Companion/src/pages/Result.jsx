@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Chart from 'chart.js/auto';
 import '../styles.css'; 
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import noResultImage from "../assets/no result.png";
 
 const Result = ({ data }) => {
   const location = useLocation();
+  const navigate = useNavigate(); // Access the navigate function
   const { score, correctAnswers, incorrectAnswers, attemptedQuestions, finishTimestamp } = location.state;
   const chartData = {
     labels: ['Score', 'Correct Answers', 'Incorrect Answers', 'Attempted Questions'],
@@ -21,6 +22,21 @@ const Result = ({ data }) => {
   const chartRef = useRef(null);
   const quizname=localStorage.getItem("quizname");
   const reattempt = localStorage.getItem("reattempt") === "true";
+   useEffect(() => {
+    const preventBack = () => {
+      window.history.forward();
+    };
+
+    setTimeout(preventBack, 0);
+
+    window.onunload = () => {
+      null;
+    };
+
+    return () => {
+      window.onunload = null;
+    };
+  }, []);
   useEffect(() => {
     if (attemptedQuestions > 0) {
       const config = {
@@ -42,6 +58,25 @@ const Result = ({ data }) => {
       };
     }
   }, [chartData, attemptedQuestions]);
+
+  // Prevent user from navigating back
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      // Cancel the event
+      event.preventDefault();
+      // Chrome requires returnValue to be set
+      event.returnValue = '';
+    };
+
+    // Add event listener when component mounts
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // Remove event listener when component unmounts
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <div className="container full-screen" style={{ marginTop: "70px" }}>
       <div className="row justify-content-center">
@@ -76,9 +111,14 @@ const Result = ({ data }) => {
               <Link to={`/LeadView?quiz=${encodeURIComponent(JSON.stringify(quizname))}`}  className="btn mt-4" style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}>
                 View Questions
               </Link>
-              <Link to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quizname))}`} className={`btn mt-4 ${!reattempt ? "disabled" : ""}`} style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}>
+              <button
+                className={`btn mt-4 ${!reattempt ? "disabled" : ""}`}
+                style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}
+                onClick={() => navigate(`/Question?quiz=${encodeURIComponent(JSON.stringify(quizname))}`)}
+                disabled={!reattempt}
+              >
                 Retry
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -88,7 +128,3 @@ const Result = ({ data }) => {
 };
 
 export default Result;
-
-
-
-

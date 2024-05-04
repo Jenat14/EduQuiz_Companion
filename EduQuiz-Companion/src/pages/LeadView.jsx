@@ -34,7 +34,7 @@ const LeadView = () => { // Receive role as a prop
   
   const location = useLocation();
   const selectedOptions = location.state;
-  console.log(localStorage.getItem(selectedOptions));
+  console.log(selectedOptions);
   const [quizDetails, setQuizDetails] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);

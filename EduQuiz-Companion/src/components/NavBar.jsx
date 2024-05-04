@@ -32,12 +32,18 @@ function NavBar(){
     // Define the home routes for different interfaces
     const studentHomeRoute = "/CardPage";
     const facultyHomeRoute = "/Facultydash";
-  
+  const role=localStorage.getItem("role");
     // Check if the current location matches any of the specified pages
     if (path === "/StudentSub" || path === "/Result") {
       return studentHomeRoute; // If student interface, return student home route
     } else if (path === "/Facultydash" || path === "/Subject" || path === "/LevelPage" || path === "/LeadView" || path === "/Leaderboard" || path === "/PageLayout") {
-      return facultyHomeRoute; // If faculty interface, return faculty home route
+      if (path === "/LeadView" && role=="student") {
+        return studentHomeRoute; // If LeadView in student interface, return student home route
+      } else if (path === "/LeadView" && role=="faculty") {
+        return facultyHomeRoute; // If LeadView in faculty interface, return faculty home route
+      } else {
+        return facultyHomeRoute; // If LeadView is not in either interface, default to faculty home route
+      }
     } 
   };
   

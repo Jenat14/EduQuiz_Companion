@@ -31,7 +31,7 @@ function NavBar(){
     
     // Define the home routes for different interfaces
     const studentHomeRoute = "/CardPage";
-    const facultyHomeRoute = "/Facultydash";
+    const facultyHomeRoute = "/facultydash";
   const role=localStorage.getItem("role");
     // Check if the current location matches any of the specified pages
     if (path === "/StudentSub" || path === "/Result") {
@@ -46,7 +46,6 @@ function NavBar(){
       }
     } 
   };
-  
   const handleCurrentPasswordChange = (e) => {
     setCurrentPassword(e.target.value);
   };

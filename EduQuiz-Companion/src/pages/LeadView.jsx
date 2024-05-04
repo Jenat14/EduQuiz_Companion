@@ -40,6 +40,7 @@ const LeadView = () => { // Receive role as a prop
   const [error, setError] = useState(null);
   const id = localStorage.getItem('Id');
   const role = id && id.startsWith('F') ? 'faculty' : 'student';
+  localStorage.setItem("role",role)
   useEffect(() => {
     // Fetch selectedOptions from localStorage
     const selectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
@@ -47,7 +48,6 @@ const LeadView = () => { // Receive role as a prop
       setSelectedOptions(selectedOptions);
     }
   }, []);
-  console.log(selectedOptions);
   useEffect(() => {
     const fetchQuizDetailsAndQuestions = async () => {
       try {

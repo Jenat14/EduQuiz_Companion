@@ -108,9 +108,13 @@ const Result = ({ data }) => {
               </div>
             )}
             <div className="button-container">
-              <Link to={`/LeadView?quiz=${encodeURIComponent(JSON.stringify(quizname))}`}  className="btn mt-4" style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}>
-                View Questions
-              </Link>
+            <button 
+      className="btn mt-4" 
+      style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}
+      onClick={() => navigate(`/LeadView?quiz=${encodeURIComponent(JSON.stringify(quizname))}`)}
+    >
+      View Questions
+    </button>
               <button
                 className={`btn mt-4 ${!reattempt ? "disabled" : ""}`}
                 style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}

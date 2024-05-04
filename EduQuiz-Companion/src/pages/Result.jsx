@@ -18,11 +18,9 @@ const Result = ({ data }) => {
       },
     ],
   };
-
   const chartRef = useRef(null);
   const quizname=localStorage.getItem("quizname");
   const reattempt = localStorage.getItem("reattempt") === "true";
-
   useEffect(() => {
     if (attemptedQuestions > 0) {
       const config = {
@@ -37,7 +35,6 @@ const Result = ({ data }) => {
           },
         },
       };
-
       const chartInstance = new Chart(chartRef.current, config);
 
       return () => {
@@ -45,7 +42,6 @@ const Result = ({ data }) => {
       };
     }
   }, [chartData, attemptedQuestions]);
-
   return (
     <div className="container full-screen" style={{ marginTop: "70px" }}>
       <div className="row justify-content-center">
@@ -77,7 +73,7 @@ const Result = ({ data }) => {
               </div>
             )}
             <div className="button-container">
-              <Link to="#" className="btn mt-4" style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}>
+              <Link to={`/LeadView?quiz=${encodeURIComponent(JSON.stringify(quizname))}`}  className="btn mt-4" style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}>
                 View Questions
               </Link>
               <Link to={`/Question?quiz=${encodeURIComponent(JSON.stringify(quizname))}`} className={`btn mt-4 ${!reattempt ? "disabled" : ""}`} style={{ backgroundColor: '#76ABAE', color: '#ffffff' }}>

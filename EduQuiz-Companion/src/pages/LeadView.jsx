@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import "../LeadView.css"; // Import CSS file for custom styling
 
 const timeStyle = {
@@ -29,10 +30,14 @@ const paragraphStyle = {
 };
 
 const LeadView = () => { // Receive role as a prop
+  console.log("selected:");
+  
+  const location = useLocation();
+  const selectedOptions = location.state;
+  console.log(localStorage.getItem(selectedOptions));
   const [quizDetails, setQuizDetails] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
-  const selectedOptions = JSON.parse(localStorage.getItem('selectedOptions')); // Get selectedOptions from localStorage
   const id = localStorage.getItem('Id');
   const role = id && id.startsWith('F') ? 'faculty' : 'student';
   useEffect(() => {

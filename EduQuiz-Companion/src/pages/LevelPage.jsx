@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 function LevelPage() {
     const [quizNames, setQuizNames] = useState([]);
+    const [counter, setCounter] = useState(0); // Initialize counter variable
     const level = new URLSearchParams(window.location.search).get("level");
 
     useEffect(() => {
@@ -33,17 +34,19 @@ function LevelPage() {
                 const sortedQuizNames = data.quizNames.sort((a, b) => a.localeCompare(b));
                 // Set the quiz names in the state
                 setQuizNames(sortedQuizNames);
+                setCounter(sortedQuizNames.length);
             } catch (error) {
                 console.error('Error fetching quizzes:', error);
                 // Handle errors
             }
         };
-
         const subjectId = localStorage.getItem("subId");
         if (subjectId && level) {
             fetchQuizzes(subjectId, level);
         }
     }, [level]);
+    localStorage.setItem("quiznum",counter+1);
+    console.log((localStorage.getItem("quiznum")))
 
     return (
         <div style={{ marginTop: "70px", padding: "5%" }}>

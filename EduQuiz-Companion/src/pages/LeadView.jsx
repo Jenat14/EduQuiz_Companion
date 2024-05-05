@@ -162,10 +162,12 @@ const LeadView = () => { // Receive role as a prop
                 value={optionKey}
                 style={inputStyle}
                 checked={selectedOptionIndex === optionIndex}
+                className={selectedOptionIndex === optionIndex ? (questionObj.correctAnswer === questionObj[optionKey] ? "correct-answer" : "wrong-answer") : ""}
               />
               {/* Check if optionIndex matches selectedOptionIndex */}
               <p style={paragraphStyle}>
                 {questionObj[optionKey]}
+                {selectedOptionIndex === optionIndex ?  (questionObj.correctAnswer === questionObj[optionKey] ? " " : "  ❌") : ""}
               </p>
             </label>
           </div>

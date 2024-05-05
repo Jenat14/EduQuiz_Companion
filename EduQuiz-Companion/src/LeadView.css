@@ -36,6 +36,15 @@
   .option {
     margin-bottom: 10px; /* Margin between each quiz option */
   }
+
+  .correct-answer {
+    accent-color: green ;
+  }
+  
+  .wrong-answer {
+    accent-color: red;
+  }
+  
   
   /* Responsive Styles */
   @media (max-width: 768px) {

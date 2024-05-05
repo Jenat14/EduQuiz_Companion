@@ -68,10 +68,13 @@ function Leaderboard() {
     <div style={styles.container}>
       {loading ? ( // Conditional rendering based on loading state
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
-        <div className="text-center">
-          <div className="spinner-grow" role="status" style={{ width: "4rem", height: "4rem",color:"#212529", animationDuration: "1s" }}>
+        <div className="text-center" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <div className="spinner-grow" role="status" style={{ width: "2rem", height: "2rem", color: "#222831", marginRight: "1rem", animationDuration: "1s", animationDelay: "0s" }} />
+            <div className="spinner-grow" role="status" style={{ width: "2rem", height: "2rem", color: "#2D5D81", marginRight: "1rem", animationDuration: "1s", animationDelay: "0.25s" }} />
+            <div className="spinner-grow" role="status" style={{ width: "2rem", height: "2rem", color: "#76ABAE", animationDuration: "1s", animationDelay: ".5s" }} />
           </div>
-          <p style={{color:"#212529"}}>Loading...</p>
+          <p style={{ color: "#222831", marginTop: "1rem",fontFamily:"monospace" }}>Loading...</p>
         </div>
       </div>
       ) : (

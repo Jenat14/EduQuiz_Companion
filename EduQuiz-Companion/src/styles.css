@@ -132,13 +132,10 @@
   }
   #level-btn .btn{
     width: 30%;
-    background-color: #76ABAE;
     border: none;
     border-radius:0;
   }
-  #level-btn .btn:hover{
-    background-color: #222831;
-  }
+
   #level-btn .btn-lg {
     color: #fff;
     padding: 25px;

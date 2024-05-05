@@ -81,7 +81,7 @@ function HomePage() {
           <div className="img">
             <img src={Home2} height="200" width="300" className="img-fluid" alt=""/>
           </div>
-          <div className="col-md-7 pt-5" data-aos="fade-left">
+          <div className="col-md-7 pt-5" >
             <h2 style={{fontStyle:"Bold",color:"#76ABAE"}}>MISSION</h2>
             <div className="textbox">
             <p>Our mission is to revolutionize learning in BTech Computer Science and Engineering by providing a dynamic and engaging platform for comprehensive subject assessment. 

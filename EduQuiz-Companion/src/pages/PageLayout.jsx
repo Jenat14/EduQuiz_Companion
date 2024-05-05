@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as XLSX from "xlsx"; // Import xlsx library
 
 const PageLayout = () => {
+  const quizName = `quiz ${localStorage.getItem("quiznum")}`;
   console.log(localStorage.getItem("subId"))
   console.log(localStorage.getItem("Id"))
   const [fileDownloadUrl, setFileDownloadUrl] = useState('');
@@ -18,7 +19,6 @@ const PageLayout = () => {
   const rightAlign = {
     textAlign: 'right',
   };
-
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     const acceptedFileTypes = [
@@ -56,14 +56,13 @@ const PageLayout = () => {
   };
   const handleSave = async () => {
     try {
-
       const quizResponse = await fetch("http://localhost:3000/quiz", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name:"quiz3",
+          name:quizName,
           level: quizData[0],
           time: quizData[1],
           numberOfQuestions: quizData[2],
@@ -73,7 +72,6 @@ const PageLayout = () => {
           totalMarks: quizData[3],
         }),
       });
-
       if (!quizResponse.ok) {
         window.alert("Failed to create quiz.");
         return;
@@ -117,12 +115,27 @@ const PageLayout = () => {
         window.alert("Failed to upload questions. Please try again later.");
     }
 };
+
 const questionsData = jsonData ? jsonData.map((item, index) => ({
   question: item[1],
   options: [item[2], item[3], item[4], item[5]],
   marks: parseInt(item[7]), // Assuming the mark is stored as a string and needs to be converted to a number
   correctAnswer: item[6], // Assuming the correct answer index is stored as a string and needs to be converted to a number
 })) : [];
+// Fetch all items from local storage
+const fetchAllItemsFromLocalStorage = () => {
+  const allItems = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    allItems[key] = value;
+  }
+  return allItems;
+};
+
+// Usage example
+const allItems = fetchAllItemsFromLocalStorage();
+console.log(allItems);
 
   return (
     <div style={{marginTop:"70px"}}>
@@ -204,7 +217,7 @@ const questionsData = jsonData ? jsonData.map((item, index) => ({
     <span style={{ marginLeft: "5px" }}>Enable Reattempt</span>
   </label>
 </div>
-<Link to="/LevelPage"><div style={{ position: "relative",top:"20px",bottom: "20px", right: "20px" }}>
+<Link to={`/LevelPage?level=${quizData[0]}`}><div style={{ position: "relative",top:"20px",bottom: "20px", right: "20px" }}>
         <button className="btn btn-primary" onClick={handleSave} style={{backgroundColor:"#76ABAE",border:"none"}}>Save</button>
       </div></Link>
       </div>

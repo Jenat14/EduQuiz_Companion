@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function LevelPage() {
-    const data={};
     const [quizNames, setQuizNames] = useState([]);
     const [counter, setCounter] = useState(0); // Initialize counter variable
     const level = new URLSearchParams(window.location.search).get("level");
 
     useEffect(() => {
-        // Get the level value from the URL parameter and store it in local storage
         if (level) {
           localStorage.setItem('level', level);
         }
@@ -69,7 +67,6 @@ function LevelPage() {
                     <Link to={{
                         pathname: `/LeadView`,
                         search: `?quiz=${encodeURIComponent(JSON.stringify(quiz))}`,
-                        state: { data } // Add your state variable here
                       }}
                       style={{ textDecoration: 'none' }} key={index}>
                         <div className="card mb-3 shadow-bottom" style={{ width: "70rem", backgroundColor: "#EEEEEE", borderColor: "#76ABAE" }}>

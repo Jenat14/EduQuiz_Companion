@@ -181,7 +181,7 @@ console.log(allItems);
               <div key={ index } className="quiz-box" style={{backgroundColor:"#F7FCFC",borderColor:"#76ABAE"}}>
                 <div className="row">
                   <div className="col-8">
-                    <h5>{ questionObj.question }</h5>
+                    <h5>{index + 1}. { questionObj.question }</h5>
                   </div>
                   <div className="col-4" style={{ textAlign:"end" }}>
                     <p>Marks: { questionObj.marks }</p>

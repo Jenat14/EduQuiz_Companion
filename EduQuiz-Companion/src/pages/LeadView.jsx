@@ -31,11 +31,24 @@ const paragraphStyle = {
 
 const LeadView = () => { // Receive role as a prop
   const location = useLocation();
-  console.log("selected:");
   const data = location.state;
- const selectedOptionsString = data.selectedOptions; // Extract the JSON string
- const selectedOptions = JSON.parse(selectedOptionsString); // Parse the JSON string to get the object
- console.log(selectedOptions);
+
+let selectedOptions = {}; 
+
+// Check if location.state exists
+if (data) {
+  const selectedOptionsString = data.selectedOptions; // Extract the JSON string
+  
+  // Check if selectedOptionsString is not null
+  if (selectedOptionsString) {
+    selectedOptions = JSON.parse(selectedOptionsString);
+  } else {
+    // If selectedOptionsString is null
+    console.log("selectedOptionsString is null");
+  }
+} else {
+  console.log("location.state is null");
+}
   const [quizDetails, setQuizDetails] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
@@ -151,7 +164,7 @@ const LeadView = () => { // Receive role as a prop
     <div className="row">
       {[1, 2, 3, 4].map(optionIndex => {
         const optionKey = `option${optionIndex}`;
-        const selectedOptionIndex = selectedOptions[index] +1; // Get index of selected option for current question
+        const selectedOptionIndex = selectedOptions[index] +1; 
         return (
           <div key={optionIndex} className="col-6 option">
             <label htmlFor={`q${index + 1}_option${optionIndex}`} style={labelStyle}>

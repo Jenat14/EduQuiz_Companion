@@ -115,8 +115,18 @@ if (data) {
   }
 
   if (!quizDetails || questions.length === 0) {
-    return <div>Loading...</div>;  
-  }
+    return( 
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+    <div className="text-center" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <div className="spinner-grow" role="status" style={{ width: "2rem", height: "2rem", color: "#222831", marginRight: "1rem", animationDuration: "1s", animationDelay: "0s" }} />
+        <div className="spinner-grow" role="status" style={{ width: "2rem", height: "2rem", color: "#2D5D81", marginRight: "1rem", animationDuration: "1s", animationDelay: "0.25s" }} />
+        <div className="spinner-grow" role="status" style={{ width: "2rem", height: "2rem", color: "#76ABAE", animationDuration: "1s", animationDelay: ".5s" }} />
+      </div>
+      <p style={{ color: "#222831", marginTop: "1rem",fontFamily:"monospace" }}>Loading...</p>
+    </div>
+  </div>
+ ) }
 
   return (
     <>

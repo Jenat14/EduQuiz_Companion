@@ -11,6 +11,7 @@ const quizNamesRoutes = require('./routes/quizNamesRoutes');
 const resultUpdatedRoutes = require('./routes/resultupdatedRoutes');
 const quizDetailsRoutes =require('./routes/quizdetailsRoutes');
 const leaderboardRoutes =require('./routes/leaderboardRoutes');
+const deleteRoutes =require('./routes/deleteRoutes')
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -29,6 +30,7 @@ app.use('/quizName', quizNamesRoutes);
 app.use('/resultUpdatedRoutes', resultUpdatedRoutes);
 app.use('/quizDetailsRoutes', quizDetailsRoutes);
 app.use('/leaderboardRoutes', leaderboardRoutes);
+app.use('/delete', deleteRoutes);
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello hi, Express.js Server!</h1>');

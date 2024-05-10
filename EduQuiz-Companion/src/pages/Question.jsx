@@ -118,6 +118,34 @@ useEffect(() => {
     window.onunload = null;
   };
 }, []);
+useEffect(() => {
+  const handleBeforeUnload = (event) => {
+    event.preventDefault();
+    event.returnValue = ''; // For Chrome
+    return ''; // For other browsers
+  };
+
+  const showAlertOnUnload = () => {
+    window.addEventListener('beforeunload', handleBeforeUnload);
+  };
+
+  const cleanup = () => {
+    window.removeEventListener('beforeunload', handleBeforeUnload);
+  };
+
+  showAlertOnUnload();
+
+  return cleanup;
+}, []);
+
+// Alert message when attempting to change tabs
+window.onblur = () => {
+  if (isTimerRunning) {
+    alert('Do not change tab while attending the quiz');
+  }
+
+};
+
   // Timer logic
   useEffect(() => {
     // Retrieve the timer value from local storage

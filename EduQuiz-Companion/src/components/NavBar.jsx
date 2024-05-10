@@ -129,7 +129,8 @@ function NavBar(){
       <div className="modal-content">
         <div className="modal-header">
           <h1 className="modal-title fs-5" id="exampleModalLabel">Change Password</h1>
-          <button type="button" className="btn-close" onClick={handleModalClose} aria-label="Close"></button>
+          <button button type="button" className="btn-close" onClick={handleModalClose} data-bs-dismiss="modal"></button>
+
         </div>
         <div className="modal-body">
           <div className="mb-3">

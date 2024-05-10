@@ -1,11 +1,23 @@
+.card-container-f {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next row */
+  justify-content: space-between;
+  padding-left: 200px; /* Adjust padding as needed */
+  padding-right: 200px; /* Adjust padding as needed */
+}
+
+.card-f {
+  width: calc(30% - 20px); /* Adjust width to fit three cards in a row */
+  margin-bottom: 20px;
+}
 .container-f{
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   padding-left: 10%;
   padding-right:0%;
+  margin-bottom: 3%;
 }
-
 .top-right-button {
   position: relative;
   top: 20px;
@@ -24,75 +36,33 @@
 .top-right-button:hover {
   background-color: grey;
 }
-.card-f {
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-right: 100px;
-    margin-top: 50px;
-    width: calc(22% - 10px);
-    height: 270px;
-  
-  }
-  
-  
-  .faculty-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px; /* Adjust as needed */
-  }
-  .card-container-f {
-   
-    display: flex;
-    flex-direction: column;
-    padding-left: 200px;
-  }
-  .card-row-f {
-    display: flex;
-    justify-content: space;
-    margin-bottom: 20px; /* Adjust as needed */
-  }
-  .card-image-f {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-  
-  .card-content-f {
-    display: flex;
-    align-items: center;
-    background-color: #76ABAE;
-    height: 70px;
-    
-  }
-  
-  .card-title-f {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
 
-  .card-text-f {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .card-button-f {
-    padding: 10px 20px;
-    background-color: #76ABAE;
-    color:  #FFFFFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    outline-color: black;
-    font-size: 1rem;
-    
-  }
-  
-  .card-button-f:hover {
-    background-color: grey;
-  }
-  
+.card-image-f {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-content-f {
+  display: flex;
+  align-items: center;
+  background-color: #76ABAE;
+  height: 70px;
+}
+
+.card-button-f {
+  padding: 10px 20px;
+  background-color: #76ABAE;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline-color: black;
+  font-size: 1rem;
+}
+
+.card-button-f:hover {
+  background-color: grey;
+}

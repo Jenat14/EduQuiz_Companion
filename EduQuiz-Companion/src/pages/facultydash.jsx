@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../Facultydash.css"; // Import your CSS file here
 import img2 from '../assets/os.jpeg'; // Import your image here
@@ -7,68 +7,92 @@ import img4 from '../assets/dbms.png';
 import img5 from '../assets/coa.webp';
 import img6 from '../assets/flat.jpg';
 
+
 const Facultydash = () => {
   const id = localStorage.getItem('Id');
   const role = id && id.startsWith('F') ? 'faculty' : 'student';
   localStorage.setItem("role", role);
+
+  const [showForm, setShowForm] = useState(false);
+  const [newSubject, setNewSubject] = useState({ id: '', name: '', image: '' });
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewSubject({ ...newSubject, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Add the new subject to the subjects array
+    subjects.push(newSubject);
+    // You might want to handle saving this data permanently here (e.g., API call or saving to localStorage)
+    // Clear the form and hide it
+    setNewSubject({ id: '', name: '', image: '' });
+    setShowForm(false);
+  };
+
+
+  // Define an array of objects to store subject details
+  const subjects = [
+    { id: 'S-OS-001', name: 'Operating Systems', image: img2 },
+    { id: 'S-DS-002', name: 'Data Structures', image: img3 },
+    { id: 'S-DMS-003', name: 'Database Management System', image: img4 },
+    { id: 'S-COA-004', name: 'Computer Organization And Architecture', image: img5 },
+    { id: 'S-FLAT-005', name: 'Formal Languages And Automata Theory', image: img6 }
+  ];
+
   return (
-<div style={{marginTop:"100px"}}>
-<div class="container-f">
-<h2><b>FACULTY DASHBOARD</b></h2>
-<button className='top-right-button'> Add New Subject </button>
-</div>
-       
-    <div className="card-container-f">
-      
-      <div className="card-row-f">
-        <div className="card-f">
-        <Link to={{ pathname: "/Subject", search: `?subjectId=S-OS-001` }} style={{textDecoration:"none"}}>
-          <img src={img2} alt="Card" className="card-image-f" />
-          <div className="card-content-f">
-            <button className="card-button"><b>Operating Systems</b></button>
-          </div>
-          </Link>
+    <div style={{ marginTop: "100px" }}>
+      {!showForm && (
+        <div className="container-f">
+          <h2><b>FACULTY DASHBOARD</b></h2>
+          <button className='top-right-button' onClick={toggleForm}>Add New Subject</button>
         </div>
-    
-        <div className="card-f">
-        <Link to={{ pathname: "/Subject", search: `?subjectId=S-DS-002` }} style={{textDecoration:"none"}}>
-          <img src={img3} alt="Card" className="card-image-f" />
-          <div className="card-content-f">
-            <button className="card-button" ><b>Data Structures</b></button>
-          </div>
-          </Link>
-        </div>
+      )}
 
-        <div className="card-f">
-          <Link to={{ pathname: "/Subject", search: `?subjectId=S-DMS-003` }} style={{textDecoration:"none"}}>
-          <img src={img4} alt="Card" className="card-image-f" />
-          <div className="card-content-f">
-            <button className="card-button"><b>Database Management System</b></button>
-          </div>
-          </Link>
-        </div>
+      {/* Display the form if showForm is true */}
+      {showForm && (
+  <div className="container d-flex justify-content-center">
+    <div className="form-floating" style={{backgroundColor:"#EEEEEE",padding:"20px",width:"60%"}}>
+      <button type="button" className="btn-close" aria-label="Close" onClick={toggleForm} style={{ position: "absolute", top: "10px", right: "10px", fontSize: "1.5rem" }}></button>
+      <h3 style={{color:"#76ABAE",paddingBottom:"20px"}}>Add New Subject</h3>
+      <div className="mb-3">
+        <label htmlFor="subjectName" className="form-label">Enter Subject Name</label>
+        <input type="text" className="form-control" id="subjectName" aria-describedby="subjectNameHelp" />
       </div>
-
-      <div className="card-row-f">
-        <div className="card-f">
-        <Link to={{ pathname: "/Subject", search: `?subjectId=S-COA-004` }} style={{textDecoration:"none"}}>
-          <img src={img5} alt="Card" className="card-image-f" />
-          <div className="card-content-f">
-            <button className="card-button"><b>Computer Organization And Architecture</b></button>
-          </div>
-          </Link>
-        </div>
-
-        <div className="card-f">
-        <Link to={{ pathname: "/Subject", search: `?subjectId=S-FLAT-005` }} style={{textDecoration:"none"}}>
-          <img src={img6} alt="Card" className="card-image-f" />
-          <div className="card-content-f">
-            <button className="card-button"><b>Formal Languages And Automata Theory</b></button>
-          </div>
-          </Link>
-        </div>
+      <div className="mb-3">
+        <label htmlFor="subjectName" className="form-label">Enter Subject Id</label>
+        <input type="text" className="form-control" id="subjectName" aria-describedby="subjectNameHelp" />
       </div>
+      <div className="mb-3">
+        <label htmlFor="formFile" className="form-label">Add an Image</label>
+        <input className="form-control" type="file" id="formFile" />
+      </div>
+      <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#76ABAE", color: "white", border: "none" }}>Add Subject</button>
     </div>
+  </div>
+)}
+
+
+      {!showForm && (
+        <div className="card-container-f">
+          {/* Map over the subjects array to generate cards */}
+          {subjects.map((subject, index) => (
+            <div key={index} className="card-f">
+              <Link to={{ pathname: "/Subject", search: `?subjectId=${subject.id}` }} style={{ textDecoration: "none" }}>
+                <img src={subject.image} alt={subject.name} className="card-image-f" />
+                <div className="card-content-f">
+                  <button className="card-button" ><b>{subject.name}</b></button>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

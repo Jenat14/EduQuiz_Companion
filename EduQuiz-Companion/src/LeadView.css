@@ -52,4 +52,44 @@
       font-size: 16px; /* Smaller font size for headings on smaller screens */
     }
   }
-  
+  /* ChatbotIcon.css */
+
+.chatbot-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #76ABAE;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Adjust as needed */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Improved shadow effect */
+  transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.chatbot-icon:hover {
+  transform: scale(1.1); /* Scale up on hover for a lifelike effect */
+}
+
+.chatbot-icon img {
+  width: 40px; /* Adjust icon size as needed */
+  height: 40px;
+}
+
+/* Chatbot interface styles */
+.chatbot-interface {
+  /* Your chat interface styles go here */
+  position: fixed;
+  bottom: 100px; /* Adjust the distance from the bottom */
+  right: 20px;
+  width: 300px; /* Adjust width as needed */
+  height: 400px; /* Adjust height as needed */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); /* Improved shadow effect */
+  z-index: 1000; /* Adjust z-index as needed */
+}

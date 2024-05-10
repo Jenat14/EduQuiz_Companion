@@ -8,7 +8,7 @@ const PageLayout = () => {
   console.log(localStorage.getItem("Id"))
   const [fileDownloadUrl, setFileDownloadUrl] = useState('');
   const [isUploadComplete, setIsUploadComplete] = useState(false);
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [isSwitchOn, setIsSwitchOn] = useState(true);
   const [jsonData, setJsonData] = useState(null);
   const [quizData, setQuizData] = useState(null);
 
@@ -41,6 +41,7 @@ const PageLayout = () => {
         setJsonData(filteredData);
         setQuizData(quizData);
         setIsUploadComplete(true);
+
       };
       reader.readAsArrayBuffer(selectedFile);
     } else {
@@ -165,10 +166,28 @@ console.log(allItems);
           Upload Questions
         </label>
       </div>
+      <div className="instructions-container">
+            <h2 style={{ textAlign: 'center' }}>General Instructions</h2>
+            <p>
+              Please read the following instructions carefully before adding a new quiz:
+            </p>
+            <ol>
+              <li>You can download the template for adding quiz by clicking the download template button.</li>
+              <li>Fill the required details and questions in the template and upload to the website.</li>
+              <li>Strictly follow the template and fill all the details accurately.</li>
+              <li>Enter the time in minutes.</li>
+              <li>After checking the preview, click the save button to add the new quiz.</li>
+              <li>Double-check all the questions and answers before saving.</li>
+              <li>You can disable the permission for students to reattempt the quiz by deselecting the checkbox.</li>
+              <li>You cannot edit the quiz once you save the Questions.</li>
+            </ol>
+          </div>
+          
       {isUploadComplete && jsonData &&  (
         <>
         <div>
-          <div style={{ paddingTop:"30px",paddingLeft:"30px" }}>Time Limit: {quizData[1]} minutes</div>
+          <h2 style={{textAlign:"center", fontWeight:"bold"}}>Preview</h2>
+          <div style={{ paddingTop:"20px",paddingLeft:"30px" }}>Time Limit: {quizData[1]} minutes</div>
           <div style={rightAlign}>
             <div style={{ paddingRight:"30px" }}>Total Questions: {quizData[2]}</div>
             <div style={{ paddingRight:"30px" }}>Maximum Marks: {parseInt(quizData[3])}</div>

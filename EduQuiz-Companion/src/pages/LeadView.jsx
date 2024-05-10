@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import icon from "../assets/message-circle.svg";
 import "../LeadView.css"; // Import CSS file for custom styling
 
 const timeStyle = {
@@ -54,7 +55,12 @@ if (data) {
   const [error, setError] = useState(null);
   const id = localStorage.getItem('Id');
   const role = id && id.startsWith('F') ? 'faculty' : 'student';
+  const [CisOpen, setCIsOpen] = useState(false);
   localStorage.setItem("role",role)
+  const toggleChatbot = () => {
+    setCIsOpen(!CisOpen);
+    // Additional logic to open/close chat interface
+  };
   useEffect(() => {
     const fetchQuizDetailsAndQuestions = async () => {
       try {
@@ -207,7 +213,20 @@ if (data) {
 
           </div>
         </div>
+        {role === 'student' && (
+          <div className='Chatbot'>
+            <div className="chatbot-icon" onClick={toggleChatbot}>
+              <img src={icon} alt="Chatbot" />
+            </div>
+            {CisOpen && (
+              <div className="chatbot-interface">
+                {/* Your chat interface component goes here */}
+              </div>
+            )}
+          </div>
+        )}
       </div>
+
     </>
   );
 };

@@ -106,7 +106,8 @@ function StudentSub() {
               <li>Ensure you have a stable internet connection.</li>
               <li>Answer all questions to the best of your ability.</li>
               <li>Double-check your answers before submitting.</li>
-              <li>Use the navigation buttons to move between questions.</li>
+              <li>Do not press back button or refresh the page while attending the quiz.</li>
+              <li>Click the finish button after completing the quiz.</li>
             </ol>
           </div>
           

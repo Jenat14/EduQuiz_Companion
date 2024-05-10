@@ -91,6 +91,8 @@ useEffect(() => {
       }
       const questionsData = await questionsResponse.json();
       setQuestions(questionsData.questions);
+      setTimer(quizData.time * 60); // Convert minutes to seconds
+
     } catch (error) {
       console.error('Error fetching quiz details and questions:', error);
       // Set error state
@@ -118,9 +120,18 @@ useEffect(() => {
 }, []);
   // Timer logic
   useEffect(() => {
-   
+    // Retrieve the timer value from local storage
+    const storedTimer = localStorage.getItem("timer");
+    // If a stored timer value exists and is a valid number, set it as the timer value
+    if (storedTimer && !isNaN(storedTimer)) {
+      setTimer(parseInt(storedTimer));
+    } else {
+      // Otherwise, set the initial timer value (e.g., 15 minutes)
+      setTimer((quizDetails && quizDetails.time) ? (quizDetails.time * 60) : 900); // Convert minutes to seconds
+    }
+  
     // Start the timer when the component mounts
-    if (isTimerRunning) {
+    if (isTimerRunning && timer >= 0) {
       const intervalId = setInterval(() => {
         setTimer((prevTimer) => {
           const newTimer = prevTimer - 1;
@@ -128,7 +139,7 @@ useEffect(() => {
           return newTimer;
         });
       }, 1000);
-
+  
       // Redirect to /Result page when timer reaches 0
       if (timer === 0) {
         handleFinish(); // Call handleFinish function
@@ -140,8 +151,8 @@ useEffect(() => {
       // Clear interval when component unmounts
       return () => clearInterval(intervalId);
     }
-  }, [isTimerRunning, timer, navigate]);
-
+  }, [isTimerRunning, timer, quizDetails]);
+  
   // Save selected options to local storage whenever selectedOptions state changes
   useEffect(() => {
     localStorage.setItem("selectedOptions", JSON.stringify(selectedOptions));

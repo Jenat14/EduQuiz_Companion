@@ -12,7 +12,14 @@ const Facultydash = () => {
   const id = localStorage.getItem('Id');
   const role = id && id.startsWith('F') ? 'faculty' : 'student';
   localStorage.setItem("role", role);
-
+  const [subjects, setSubjects] = useState([
+    { id: 'S-OS-001', name: 'Operating Systems', image: img2 },
+    { id: 'S-DS-002', name: 'Data Structures', image: img3 },
+    { id: 'S-DMS-003', name: 'Database Management System', image: img4 },
+    { id: 'S-COA-004', name: 'Computer Organization And Architecture', image: img5 },
+    { id: 'S-FLAT-005', name: 'Formal Languages And Automata Theory', image: img6 }
+  ]);
+  
   const [showForm, setShowForm] = useState(false);
   const [newSubject, setNewSubject] = useState({ id: '', name: '', image: '' });
 
@@ -23,27 +30,33 @@ const Facultydash = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setNewSubject({ ...newSubject, [name]: value });
+    console.log("wo")
+    console.log(newSubject)
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add the new subject to the subjects array
-    subjects.push(newSubject);
-    // You might want to handle saving this data permanently here (e.g., API call or saving to localStorage)
+    
+    // Create a copy of the subjects array
+    const updatedSubjects = [...subjects];
+    
+    // Add the new subject to the copy of the subjects array
+    updatedSubjects.push(newSubject);
+    
+    // Update the subjects state with the new array
+    setSubjects(updatedSubjects);
+    
     // Clear the form and hide it
     setNewSubject({ id: '', name: '', image: '' });
     setShowForm(false);
-  };
+};
 
+  
+  
+console.log(subjects)
 
   // Define an array of objects to store subject details
-  const subjects = [
-    { id: 'S-OS-001', name: 'Operating Systems', image: img2 },
-    { id: 'S-DS-002', name: 'Data Structures', image: img3 },
-    { id: 'S-DMS-003', name: 'Database Management System', image: img4 },
-    { id: 'S-COA-004', name: 'Computer Organization And Architecture', image: img5 },
-    { id: 'S-FLAT-005', name: 'Formal Languages And Automata Theory', image: img6 }
-  ];
+  
 
   return (
     <div style={{ marginTop: "100px" }}>
@@ -62,17 +75,17 @@ const Facultydash = () => {
       <h3 style={{color:"#76ABAE",paddingBottom:"20px"}}>Add New Subject</h3>
       <div className="mb-3">
         <label htmlFor="subjectName" className="form-label">Enter Subject Name</label>
-        <input type="text" className="form-control" id="subjectName" aria-describedby="subjectNameHelp" />
+        <input type="text" className="form-control" id="name"  name="name"  aria-describedby="subjectNameHelp" onChange={handleInputChange} />
       </div>
       <div className="mb-3">
         <label htmlFor="subjectName" className="form-label">Enter Subject Id</label>
-        <input type="text" className="form-control" id="subjectName" aria-describedby="subjectNameHelp" />
+        <input type="text" className="form-control" id="id"  name="id" aria-describedby="subjectNameHelp" onChange={handleInputChange} />
       </div>
       <div className="mb-3">
         <label htmlFor="formFile" className="form-label">Add an Image</label>
-        <input className="form-control" type="file" id="formFile" />
+        <input className="form-control" type="file" id="formFile" onChange={handleInputChange} />
       </div>
-      <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#76ABAE", color: "white", border: "none" }}>Add Subject</button>
+      <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#76ABAE", color: "white", border: "none" }} onClick={(event) => handleSubmit(event)}>Add Subject</button>
     </div>
   </div>
 )}

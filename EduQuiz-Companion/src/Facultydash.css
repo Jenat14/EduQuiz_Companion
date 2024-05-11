@@ -1,14 +1,14 @@
 .card-container-f {
   display: flex;
   flex-wrap: wrap; /* Allow cards to wrap to the next row */
-  justify-content: space-between;
   padding-left: 200px; /* Adjust padding as needed */
   padding-right: 200px; /* Adjust padding as needed */
 }
 
 .card-f {
-  width: calc(30% - 20px); /* Adjust width to fit three cards in a row */
+  width: calc(33% ); /* Adjust width to fit three cards in a row */
   margin-bottom: 20px;
+  padding: 3%;
 }
 .container-f{
   display: flex;
@@ -65,4 +65,7 @@
 
 .card-button-f:hover {
   background-color: grey;
+}
+.card-f:nth-child(5) {
+  order: -1;
 }

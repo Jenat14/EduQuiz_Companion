@@ -82,7 +82,6 @@
 
 /* Chatbot interface styles */
 .chatbot-interface {
-  /* Your chat interface styles go here */
   position: fixed;
   bottom: 100px; /* Adjust the distance from the bottom */
   right: 20px;
@@ -92,4 +91,84 @@
   border-radius: 10px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); /* Improved shadow effect */
   z-index: 1000; /* Adjust z-index as needed */
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y:auto; /* Auto scrolling if necessary */
+  scroll-behavior: auto;
+  padding: 15px;
+  display: flex;
+  flex-direction: column; /* Stack messages vertically */
+}
+.sent-message {
+  align-self: flex-start; 
+
+}
+
+.received-message {
+  align-self: flex-end; /* Align sent messages to the right */
+  /* Align received messages to the left */
+}
+.message {
+  background-color: #76ABAE; /* Background color of sent messages */
+  color: white; /* Text color of sent messages */
+  border-radius: 20px; /* Rounded corners to create an oval shape */
+  padding: 10px 15px; /* Padding around the message content */
+  margin-bottom: 10px; /* Spacing between messages */
+  max-width: 70%; /* Limit maximum width of the message */
+  word-wrap: break-word; /* Wrap long words */
+}
+.chat-input {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #EEEEEE;
+  margin-top: auto; /* Push the chat-input to the bottom */
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+  background-color: #EEEEEE;
+
+}
+
+.chat-input img {
+  cursor: pointer;
+}
+/* Styles for the AssistComponent */
+
+.assist-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.icon-container {
+  width: 40px;
+  height: 40px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.text {
+  margin: 0;
+  font-family:monospace;
 }

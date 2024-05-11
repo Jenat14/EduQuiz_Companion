@@ -249,7 +249,12 @@ const handleKeyPress = (e) => {
             </div>
             {CisOpen && (
                <div className="chatbot-interface">
-                 
+                 <div className="assist-container">
+            <div className="icon-container">
+                <img src={robot} alt="Icon" className="icon" />
+            </div>
+            <h3 className="text">ChatBot</h3>
+        </div>
                <div ref={chatMessagesRef} className="chat-messages ">
                  {messages.map((message, index) => (
                    <div key={index} className={message.sender === 'student' ? 'message sent-message' : 'message received-message'}>

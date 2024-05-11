@@ -28,10 +28,17 @@ const Facultydash = () => {
   };
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setNewSubject({ ...newSubject, [name]: value });
-    console.log("wo")
-    console.log(newSubject)
+    const { name, value, files } = event.target;
+    if (name === 'formFile') {
+      const reader = new FileReader();
+      const file = files[0];
+      reader.onloadend = () => {
+        setNewSubject({ ...newSubject, image: reader.result });
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setNewSubject({ ...newSubject, [name]: value });
+    }
   };
 
   const handleSubmit = (event) => {
@@ -49,15 +56,8 @@ const Facultydash = () => {
     // Clear the form and hide it
     setNewSubject({ id: '', name: '', image: '' });
     setShowForm(false);
-};
-
-  
-  
-console.log(subjects)
-
-  // Define an array of objects to store subject details
-  
-
+  };
+ console.log(subjects)
   return (
     <div style={{ marginTop: "100px" }}>
       {!showForm && (
@@ -69,27 +69,26 @@ console.log(subjects)
 
       {/* Display the form if showForm is true */}
       {showForm && (
-  <div className="container d-flex justify-content-center">
-    <div className="form-floating" style={{backgroundColor:"#EEEEEE",padding:"20px",width:"60%"}}>
-      <button type="button" className="btn-close" aria-label="Close" onClick={toggleForm} style={{ position: "absolute", top: "10px", right: "10px", fontSize: "1.5rem" }}></button>
-      <h3 style={{color:"#76ABAE",paddingBottom:"20px"}}>Add New Subject</h3>
-      <div className="mb-3">
-        <label htmlFor="subjectName" className="form-label">Enter Subject Name</label>
-        <input type="text" className="form-control" id="name"  name="name"  aria-describedby="subjectNameHelp" onChange={handleInputChange} />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="subjectName" className="form-label">Enter Subject Id</label>
-        <input type="text" className="form-control" id="id"  name="id" aria-describedby="subjectNameHelp" onChange={handleInputChange} />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="formFile" className="form-label">Add an Image</label>
-        <input className="form-control" type="file" id="formFile" onChange={handleInputChange} />
-      </div>
-      <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#76ABAE", color: "white", border: "none" }} onClick={(event) => handleSubmit(event)}>Add Subject</button>
-    </div>
-  </div>
-)}
-
+        <div className="container d-flex justify-content-center">
+          <div className="form-floating" style={{backgroundColor:"#EEEEEE",padding:"20px",width:"60%"}}>
+            <button type="button" className="btn-close" aria-label="Close" onClick={toggleForm} style={{ position: "absolute", top: "10px", right: "10px", fontSize: "1.5rem" }}></button>
+            <h3 style={{color:"#76ABAE",paddingBottom:"20px"}}>Add New Subject</h3>
+            <div className="mb-3">
+              <label htmlFor="subjectName" className="form-label">Enter Subject Name</label>
+              <input type="text" className="form-control" id="name"  name="name"  aria-describedby="subjectNameHelp" onChange={handleInputChange} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="subjectName" className="form-label">Enter Subject Id</label>
+              <input type="text" className="form-control" id="id"  name="id" aria-describedby="subjectNameHelp" onChange={handleInputChange} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="formFile" className="form-label">Add an Image</label>
+              <input className="form-control" type="file" id="formFile" name="formFile" onChange={handleInputChange} />
+            </div>
+            <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#76ABAE", color: "white", border: "none" }} onClick={(event) => handleSubmit(event)}>Add Subject</button>
+          </div>
+        </div>
+      )}
 
       {!showForm && (
         <div className="card-container-f">

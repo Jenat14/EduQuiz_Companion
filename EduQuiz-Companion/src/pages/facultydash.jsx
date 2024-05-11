@@ -1,13 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../Facultydash.css"; 
-import img2 from '../assets/os.jpeg'; 
-import img3 from '../assets/dsa.jpg';
-import img4 from '../assets/dbms.png';
-import img5 from '../assets/coa.webp';
-import img6 from '../assets/flat.jpg';
-
-
 const Facultydash = () => {
   const [subjects, setSubjects] = useState([]);
   const id = localStorage.getItem('Id');
@@ -50,8 +43,6 @@ const Facultydash = () => {
     } else {
       setNewSubject({ ...newSubject, [name]: value });
     }
-  
-    // Update the ID when the subject name changes
     if (name === 'Name') {
       setNewSubject((prevSubject) => ({
         ...prevSubject,
@@ -60,10 +51,9 @@ const Facultydash = () => {
       }));
     }
   };
-  
   const generateSubjectId = () => {
     const { Name } = newSubject;
-  if (!Name) return ''; // Ensure subject name is defined
+  if (!Name) return ''; 
 
   const words = Name.toUpperCase().split(' ');
   const initials = words.map(word => word.charAt(0)).join('');

@@ -13,7 +13,7 @@ function Subject() {
         }
       }, []);
       const fetchSubjectName = (id) => {
-        fetch(`http://localhost:3000/subject?id=${id}`)
+        fetch(`http://localhost:3000/subject/name?id=${id}`)
           .then((response) => {
             if (!response.ok) {
               throw new Error("Failed to fetch subject");

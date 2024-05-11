@@ -51,6 +51,14 @@ const Facultydash = () => {
       setNewSubject({ ...newSubject, [name]: value });
     }
   };
+  const generateSubjectId = () => {
+    const subjectName = document.getElementById('Name').value;
+    const words = subjectName.toUpperCase().split(' ');
+    const initials = words.map(word => word.charAt(0)).join('');
+    const randomNumber = Math.floor(Math.random() * 999) + 1;
+    const subjectId = `S-${initials}-${randomNumber}`;
+    return subjectId;
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -92,8 +100,8 @@ const Facultydash = () => {
               <input type="text" className="form-control" id="Name"  name="Name"  aria-describedby="subjectNameHelp" onChange={handleInputChange} />
             </div>
             <div className="mb-3">
-              <label htmlFor="subjectName" className="form-label">Enter Subject Id</label>
-              <input type="text" className="form-control" id="id"  name="id" aria-describedby="subjectNameHelp" onChange={handleInputChange} />
+              <label htmlFor="subjectName" className="form-label">Your Subject Id</label>
+              <input type="text" className="form-control" id="id"  name="id" aria-describedby="subjectNameHelp"value={generateSubjectId()} onChange={handleInputChange} />
             </div>
             <div className="mb-3">
               <label htmlFor="formFile" className="form-label">Add an Image</label>

@@ -5,10 +5,9 @@ const router = express.Router();
 // Endpoint to handle chat messages
 router.post('/', async (req, res) => {
     try {
-        console.log('Request Body:', req.body);
-
         // Extract message from request body
-        const { message } =req.body;
+        const { message } = req.body;
+        console.log('Request Body:', req.body);
 
         // Check if message is provided
         if (!message) {

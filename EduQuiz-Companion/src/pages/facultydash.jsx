@@ -52,12 +52,14 @@ const Facultydash = () => {
     }
   };
   const generateSubjectId = () => {
-    const subjectName = document.getElementById('Name').value;
-    const words = subjectName.toUpperCase().split(' ');
-    const initials = words.map(word => word.charAt(0)).join('');
-    const randomNumber = Math.floor(Math.random() * 999) + 1;
-    const subjectId = `S-${initials}-${randomNumber}`;
-    return subjectId;
+    const { Name } = newSubject;
+  if (!Name) return ''; // Ensure subject name is defined
+
+  const words = Name.toUpperCase().split(' ');
+  const initials = words.map(word => word.charAt(0)).join('');
+  const randomNumber = Math.floor(Math.random() * 999) + 1;
+  const subjectId = `S-${initials}-${randomNumber}`;
+  return subjectId;
   }
 
   const handleSubmit = async (event) => {

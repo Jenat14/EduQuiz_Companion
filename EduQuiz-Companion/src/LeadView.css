@@ -114,10 +114,11 @@
 }
 .message {
   background-color: #76ABAE; /* Background color of sent messages */
+  font-size: small;
   color: white; /* Text color of sent messages */
   border-radius: 20px; /* Rounded corners to create an oval shape */
-  padding: 10px 15px; /* Padding around the message content */
-  margin-bottom: 10px; /* Spacing between messages */
+  padding: 5px 10px; /* Padding around the message content */
+  margin-bottom: 5px; /* Spacing between messages */
   max-width: 70%; /* Limit maximum width of the message */
   word-wrap: break-word; /* Wrap long words */
 }

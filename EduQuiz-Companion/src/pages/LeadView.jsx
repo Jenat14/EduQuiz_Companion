@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import icon from "../assets/message-circle.svg";
+import send from "../assets/send.svg";
+import robot from "../assets/robot.png";
 import "../LeadView.css"; // Import CSS file for custom styling
 
 const timeStyle = {
@@ -57,11 +59,25 @@ if (data) {
   const role = id && id.startsWith('F') ? 'faculty' : 'student';
   const [CisOpen, setCIsOpen] = useState(false);
   localStorage.setItem("role",role)
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
+  const chatMessagesRef = useRef(null);
+
+  // Scroll to the bottom of the chat messages container
+  const scrollToBottom = () => {
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom(); // Scroll to bottom when messages change
+  }, [messages]);
   const toggleChatbot = () => {
     setCIsOpen(!CisOpen);
     // Additional logic to open/close chat interface
   };
-  useEffect(() => {
+useEffect(() => {
     const fetchQuizDetailsAndQuestions = async () => {
       try {
         const searchParams = new URLSearchParams(window.location.search);
@@ -133,6 +149,19 @@ if (data) {
     </div>
   </div>
  ) }
+ const handleMessageSend = () => {
+  if (newMessage.trim() === '') {
+    return; // Don't send empty messages
+  }
+  const updatedMessages = [...messages, newMessage];
+  setMessages(updatedMessages);
+  setNewMessage(''); // Clear the input box after sending the message
+};
+const handleKeyPress = (e) => {
+  if (e.key === 'Enter') {
+    handleMessageSend();
+  }
+};
 
   return (
     <>
@@ -219,9 +248,27 @@ if (data) {
               <img src={icon} alt="Chatbot" />
             </div>
             {CisOpen && (
-              <div className="chatbot-interface">
-                {/* Your chat interface component goes here */}
-              </div>
+               <div className="chatbot-interface">
+                 
+               <div ref={chatMessagesRef} className="chat-messages ">
+                 {messages.map((message, index) => (
+                   <div key={index} className={message.sender === 'student' ? 'message sent-message' : 'message received-message'}>
+                     {message}
+                   </div>
+                 ))}
+               </div>
+               
+               <div className="chat-input">
+                 <input
+                   type="text"
+                   placeholder="Type your message..."
+                   value={newMessage}
+                   onChange={(e) => setNewMessage(e.target.value)}
+                   onKeyPress={handleKeyPress}
+                 />
+                  <img src={send} onClick={handleMessageSend}/>
+               </div>
+             </div>
             )}
           </div>
         )}

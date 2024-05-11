@@ -13,6 +13,7 @@ const quizDetailsRoutes =require('./routes/quizdetailsRoutes');
 const leaderboardRoutes =require('./routes/leaderboardRoutes');
 const deleteRoutes =require('./routes/deleteRoutes');
 const chatgptRoutes =require('./routes/chatgptRoutes');
+const changePasswordRoutes= require('./routes/changePasswordRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -34,6 +35,7 @@ app.use('/quizDetailsRoutes', quizDetailsRoutes);
 app.use('/leaderboardRoutes', leaderboardRoutes);
 app.use('/delete', deleteRoutes);
 app.use('/chatgpt', chatgptRoutes);
+app.use('/changePassword',changePasswordRoutes)
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello hi, Express.js Server!</h1>');

@@ -50,7 +50,17 @@ const Facultydash = () => {
     } else {
       setNewSubject({ ...newSubject, [name]: value });
     }
+  
+    // Update the ID when the subject name changes
+    if (name === 'Name') {
+      setNewSubject((prevSubject) => ({
+        ...prevSubject,
+        [name]: value,
+        id: generateSubjectId(),
+      }));
+    }
   };
+  
   const generateSubjectId = () => {
     const { Name } = newSubject;
   if (!Name) return ''; // Ensure subject name is defined
@@ -103,7 +113,7 @@ const Facultydash = () => {
             </div>
             <div className="mb-3">
               <label htmlFor="subjectName" className="form-label">Your Subject Id</label>
-              <input type="text" className="form-control" id="id"  name="id" aria-describedby="subjectNameHelp"value={generateSubjectId()} onChange={handleInputChange} />
+              <input type="text" className="form-control" id="id"  name="id" aria-describedby="subjectNameHelp" value={generateSubjectId()} readOnly/>
             </div>
             <div className="mb-3">
               <label htmlFor="formFile" className="form-label">Add an Image</label>

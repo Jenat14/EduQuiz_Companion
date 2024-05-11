@@ -34,5 +34,22 @@ router.post('/add', async (req, res) => {
         res.status(500).json({ error: 'Failed to create subject entry', message: error.message });
     }
 });
+router.get('/subjects', async (req, res) => {
+    try {
+        const snapshot = await db.collection('Subject').get();
+        const subjectsList = [];
+
+        snapshot.forEach(doc => {
+            subjectsList.push({
+                id: doc.id,
+                data: doc.data()
+              });
+        });
+
+        res.status(200).json(subjectsList);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to retrieve student data', message: error.message });
+    }
+});
 
 module.exports = router;

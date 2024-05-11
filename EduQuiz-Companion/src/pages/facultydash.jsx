@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "../Facultydash.css"; // Import your CSS file here
-import img2 from '../assets/os.jpeg'; // Import your image here
+import "../Facultydash.css"; 
+import img2 from '../assets/os.jpeg'; 
 import img3 from '../assets/dsa.jpg';
 import img4 from '../assets/dbms.png';
 import img5 from '../assets/coa.webp';
@@ -16,12 +16,12 @@ const Facultydash = () => {
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
-        const response = await fetch('http://localhost:3000/subject/subjects'); // Fetch data from backend API
+        const response = await fetch('http://localhost:3000/subject/subjects'); 
         if (!response.ok) {
           throw new Error('Failed to fetch subjects');
         }
-        const data = await response.json(); // Extract JSON from the response
-        setSubjects(data); // Set fetched subjects to state
+        const data = await response.json();
+        setSubjects(data); 
       } catch (error) {
         console.error('Error fetching subjects:', error);
       }
@@ -32,7 +32,7 @@ const Facultydash = () => {
  
   
   const [showForm, setShowForm] = useState(false);
-  const [newSubject, setNewSubject] = useState({ id: '', name: '', image: '' });
+  const [newSubject, setNewSubject] = useState({ id: '', Name: '', imageUrl: 'https://firebasestorage.googleapis.com/v0/b/eduquiz-companion.appspot.com/o/subimage.jpeg?alt=media&token=442d98be-baeb-43df-8b09-f2031a99fceb' });
 
   const toggleForm = () => {
     setShowForm(!showForm);
@@ -52,23 +52,28 @@ const Facultydash = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     
-    // Create a copy of the subjects array
-    const updatedSubjects = [...subjects];
-    
-    // Add the new subject to the copy of the subjects array
-    updatedSubjects.push(newSubject);
-    
-    // Update the subjects state with the new array
-    setSubjects(updatedSubjects);
-    
-    // Clear the form and hide it
-    setNewSubject({ id: '', name: '', image: '' });
-    setShowForm(false);
+    try {
+      const response = await fetch('http://localhost:3000/subject/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newSubject),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to add subject');
+      }
+      setNewSubject({ id: '', Name: '', imageUrl: 'https://firebasestorage.googleapis.com/v0/b/eduquiz-companion.appspot.com/o/subimage.jpeg?alt=media&token=442d98be-baeb-43df-8b09-f2031a99fceb' });
+      setShowForm(false);
+    } catch (error) {
+      console.error('Error adding subject:', error);
+    }
   };
- //console.log(subjects)
+  
   return (
     <div style={{ marginTop: "100px" }}>
       {!showForm && (
@@ -77,8 +82,6 @@ const Facultydash = () => {
           <button className='top-right-button' onClick={toggleForm}>Add New Subject</button>
         </div>
       )}
-
-      {/* Display the form if showForm is true */}
       {showForm && (
         <div className="container d-flex justify-content-center">
           <div className="form-floating" style={{backgroundColor:"#EEEEEE",padding:"20px",width:"60%"}}>
@@ -86,7 +89,7 @@ const Facultydash = () => {
             <h3 style={{color:"#76ABAE",paddingBottom:"20px"}}>Add New Subject</h3>
             <div className="mb-3">
               <label htmlFor="subjectName" className="form-label">Enter Subject Name</label>
-              <input type="text" className="form-control" id="name"  name="name"  aria-describedby="subjectNameHelp" onChange={handleInputChange} />
+              <input type="text" className="form-control" id="Name"  name="Name"  aria-describedby="subjectNameHelp" onChange={handleInputChange} />
             </div>
             <div className="mb-3">
               <label htmlFor="subjectName" className="form-label">Enter Subject Id</label>
@@ -103,7 +106,6 @@ const Facultydash = () => {
 
       {!showForm && (
         <div className="card-container-f">
-        {/* Map over the subjects array to generate cards */}
         {subjects.map((subject) => (
           <div key={subject.id} className="card-f">
             <Link to={{ pathname: "/Subject", search: `?subjectId=${subject.id}` }} style={{ textDecoration: "none" }}>

@@ -3,14 +3,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ffffff; /* Set background color for the login container */
+  background-color: #ffffff; 
 }
 
 .left-side {
   flex: 1;
     height:fit-content;
-    max-width: 50%; /* Limit maximum width to 50% of the viewport width */
-    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+    max-width: 50%;
+    box-sizing: border-box;
   }
 
 .right-side {
@@ -26,8 +26,8 @@
 }
 
 .logo-image {
-  width: 50vw; /* Ensure the logo image fills the container */
-  height: 100vh; /* Set height to 100% of the viewport height */
+  width: 50vw; 
+  height: 100vh; 
   max-width: 100%;
 }
 

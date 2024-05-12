@@ -4,7 +4,7 @@ const { db } = require('../firebase');
 
 router.get('/name', async (req, res) => {
     try {
-        const id = req.query.id.toString(); // Retrieve subject ID from query parameters
+        const id = req.query.id.toString(); 
         if (!id  || typeof id !== 'string') {
             return res.status(400).json({ error: 'Subject ID is required' });
         }

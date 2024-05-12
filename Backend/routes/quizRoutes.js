@@ -6,8 +6,6 @@ router.post('/', async (req, res) => {
     try {
       
       const { name, level, time, numberOfQuestions,reattempt,facultyId, subjectId, totalMarks } = req.body;
-      
-      // Create new quiz document
       const newQuizRef = await db.collection('quizzes').add({
         name,
         level,

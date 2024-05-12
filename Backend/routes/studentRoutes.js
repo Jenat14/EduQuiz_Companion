@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router(); // Create a router object
+const router = express.Router();
 const { db } = require('../firebase');
 
 router.get('/student', async (req, res) => {
@@ -42,4 +42,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-module.exports = router; // Export the router object
+module.exports = router;

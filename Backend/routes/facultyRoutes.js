@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
         return res.status(404).json({ error: 'User not found' });
       }
       const userData = userSnapshot.data();
-      if (userData.Password !== password) {
+      if (userData.password !== password) {
         return res.status(401).json({ error: 'Invalid password' });
       }
       res.json({ message: 'Login successful', user: userData });

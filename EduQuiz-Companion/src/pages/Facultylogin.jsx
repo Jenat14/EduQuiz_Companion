@@ -38,12 +38,6 @@ const Facultylogin = () => {
       }, 3000);
     }
   };
-
-  const handleForgotPassword = () => {
-    // Handle forgot password logic here
-    console.log('Forgot password...');
-  };
-
   return (
     <div className="login-container">
       <div className="left-side">
@@ -65,9 +59,6 @@ const Facultylogin = () => {
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
           <button type="submit" onClick={handleLogin} style={{marginTop:"30px"}}>Login</button>
         </form>
-        <div className="forgot-password-link" onClick={handleForgotPassword}>
-          <a href="#">Forgot password?</a>
-        </div>
       </div>
     </div>
   );

@@ -36,9 +36,6 @@ const LoginStudent = () => {
     }
   };
 
-  const handleForgotPassword = () => {
-    console.log("Forgot password...");
-  };
 
   return (
     <div className="login-container" styles={{ height: "100vh" }}>
@@ -77,9 +74,6 @@ const LoginStudent = () => {
             Login
           </button>
         </form>
-        <div className="forgot-password-link" onClick={handleForgotPassword}>
-          <a href="#">Forgot password?</a>
-        </div>
       </div>
     </div>
   );

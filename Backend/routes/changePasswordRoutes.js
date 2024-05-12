@@ -3,10 +3,18 @@ const router = express.Router();
 const { db } = require('../firebase');
 
 router.post('/', async (req, res) => {
-    const { id, current_password, new_password } = req.body;
+    const { id,userRole, current_password, new_password } = req.body;
 
     try {
-        const studentRef = db.collection('Student').doc(id);
+        let collectionName;
+        if (userRole === 'student') {
+            collectionName = 'Student';
+        } else if (userRole === 'faculty') {
+            collectionName = 'Faculty';
+        } else {
+            return res.status(400).json({ error: 'Invalid user role' });
+        }
+        const studentRef = db.collection(collectionName).doc(id);
         const studentDoc = await studentRef.get();
         if (!studentDoc.exists) {
             return res.status(404).json({ error: 'Student not found' });

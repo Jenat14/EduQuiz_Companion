@@ -2,15 +2,22 @@ import "../styles.css";
 import Home1 from "../assets/Home1.jpg";
 import Home2 from "../assets/Home2.jpg";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.png";
 function HomePage() {
   return (
-    <> 
+    <>
       <header>
         <nav className="navbar navbar-expand-lg  bg-light  fixed-top">
           <div className="container-fluid">
-            <a className="navbar-brand" style={{fontWeight:"700",color:"#555555"}}>
-              <img src={logo} style={{height:"30px", width:"30px",marginTop:"0px"}}></img> EduQuiz.
+            <a
+              className="navbar-brand"
+              style={{ fontWeight: "700", color: "#555555" }}
+            >
+              <img
+                src={logo}
+                style={{ height: "30px", width: "30px", marginTop: "0px" }}
+              ></img>{" "}
+              EduQuiz.
             </a>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -40,9 +47,9 @@ function HomePage() {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                  <Link to="/LoginStudent" className="dropdown-item">
-            Student Login
-          </Link>
+                    <Link to="/LoginStudent" className="dropdown-item">
+                      Student Login
+                    </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="/Facultylogin">
@@ -56,19 +63,31 @@ function HomePage() {
         </nav>
       </header>
       <body>
+        {/*Home section*/}
         <div id="home" className="section full-screen">
           <div className="home-row">
-            <h1 style={{fontStyle:"Bold",color:"#76ABAE"}}>
-              EDUQUIZ COMPANION<br />
-              </h1>
-              <h5 style={{align:'centre',color:"#76ABAE"}}>"Quiz, Learn, Excel: EduQuiz Companion - Your Gateway to Academic Excellence."</h5>
-            
+            <h1 style={{ fontStyle: "Bold", color: "#76ABAE" }}>
+              EDUQUIZ COMPANION
+              <br />
+            </h1>
+            <h5 style={{ align: "centre", color: "#76ABAE" }}>
+              "Quiz, Learn, Excel: EduQuiz Companion - Your Gateway to Academic
+              Excellence."
+            </h5>
+
             <div className="textbox">
-            <p>EduQuiz Companion is a dynamic platform  specifically crafted for BTech Computer Science and Engineering students. 
-              Dive into three challenging levels of quizzes across five core subjects, empowering students to enhance their understanding.
-                With features like personalized quiz history, adaptive difficulty levels, and detailed performance insights, both students and faculty can embark 
-                on a journey of interactive learning and assessment.</p>
-            </div><a href="#mission" className="btn-start">
+              <p>
+                EduQuiz Companion is a dynamic platform specifically crafted for
+                BTech Computer Science and Engineering students. Dive into three
+                challenging levels of quizzes across five core subjects,
+                empowering students to enhance their understanding. With
+                features like personalized quiz history, adaptive difficulty
+                levels, and detailed performance insights, both students and
+                faculty can embark on a journey of interactive learning and
+                assessment.
+              </p>
+            </div>
+            <a href="#mission" className="btn-start">
               Get Started
             </a>
           </div>
@@ -76,62 +95,78 @@ function HomePage() {
             <img src={Home1} className="img-fluid" alt="" />
           </div>
         </div>
+        {/*Mission section*/}
         <div id="mission" className="section half-screen">
-
           <div className="img">
-            <img src={Home2} height="200" width="300" className="img-fluid" alt=""/>
+            <img
+              src={Home2}
+              height="200"
+              width="300"
+              className="img-fluid"
+              alt=""
+            />
           </div>
-          <div className="col-md-7 pt-5" >
-            <h2 style={{fontStyle:"Bold",color:"#76ABAE"}}>MISSION</h2>
+          <div className="col-md-7 pt-5">
+            <h2 style={{ fontStyle: "Bold", color: "#76ABAE" }}>MISSION</h2>
             <div className="textbox">
-            <p>Our mission is to revolutionize learning in BTech Computer Science and Engineering by providing a dynamic and engaging platform for comprehensive subject assessment. 
-              Through EduQuiz Companion, we aim to empower students with personalized learning experiences, fostering deeper understanding and mastery of core concepts.
-              By leveraging innovative technology,we strive to bridge the gap between traditional education and modern interactive learning methods, ensuring academic excellence for all. </p>
-          </div></div>
+              <p>
+                Our mission is to revolutionize learning in BTech Computer
+                Science and Engineering by providing a dynamic and engaging
+                platform for comprehensive subject assessment. Through EduQuiz
+                Companion, we aim to empower students with personalized learning
+                experiences, fostering deeper understanding and mastery of core
+                concepts. By leveraging innovative technology,we strive to
+                bridge the gap between traditional education and modern
+                interactive learning methods, ensuring academic excellence for
+                all.{" "}
+              </p>
+            </div>
+          </div>
         </div>
+        {/*Contact section*/}
         <div id="contact" className="section half-screen">
-  <div className="row">
-    <div className="col">
-      <h3>CONTACT US</h3>
-      <p>Write to us about your queries!</p>
-    </div>
-  </div>
+          <div className="row">
+            <div className="col">
+              <h3>CONTACT US</h3>
+              <p>Write to us about your queries!</p>
+            </div>
+          </div>
 
-  <div className="row">
-    <div className="col">
-      <div className="input-group">
-      <input
-  type="text"
-  className="form-control"
-  id="queriesInput"
-  placeholder="Enter your Queries"
-  autoComplete="off" 
-
-/>
-        <div className="input-group-append">
-  <button
-    className="btn btn-outline-secondary"
-    type="button"
-    id="button-addon2"
-    onClick={() => {
-      const queries = document.getElementById("queriesInput").value;
-      const encodedQueries = encodeURIComponent(queries);
-      window.location.href = `mailto:jenat.csa2125@saintgits.org?subject=Queries&body=${encodedQueries}`;
-      queriesInput.value = "";
-    }}
-  >
-    Send
-  </button>
-</div>
-
-      </div>
-    </div>
-  </div>
-</div>
-
+          <div className="row">
+            <div className="col">
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="queriesInput"
+                  placeholder="Enter your Queries"
+                  autoComplete="off"
+                />
+                <div className="input-group-append">
+                  {/*navigation to mail with the queries*/}
+                  <button
+                    className="btn btn-outline-secondary"
+                    type="button"
+                    id="button-addon2"
+                    onClick={() => {
+                      const queries =
+                        document.getElementById("queriesInput").value;
+                      const encodedQueries = encodeURIComponent(queries);
+                      window.location.href = `mailto:jenat.csa2125@saintgits.org?subject=Queries&body=${encodedQueries}`;
+                      queriesInput.value = "";
+                    }}
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*Footer section*/}
         <div className="footer">
           <div className="container footer-bottom clearfix">
-            <div className="copyright" style={{paddingRight:"670px"}}>
+            <div className="copyright" style={{ paddingRight: "670px" }}>
               &copy; 2024{" "}
               <strong>
                 <span>EduQuiz Companion</span>

@@ -1,54 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Question.css"; // Import CSS file for custom styling
-
+import "../Question.css"; 
 const timeStyle = {
   display: 'flex',
   justifyContent: 'space-between',
   borderRadius: '5px',
   padding: '20px',
   paddingLeft:'0px',
-  width: '80rem', // Adjust width as needed
-  margin: '0 auto', // Center the container
+  width: '80rem', 
+  margin: '0 auto', 
 };
-
 const rightAlign = {
   textAlign: 'right',
 };
 const labelStyle = {
   display: 'flex',
 };
-
 const inputStyle = {
   width:'15px',
-  margin: '5px', // Adjust as needed
+  margin: '5px', 
 };
-
 const paragraphStyle = {
-  margin: '5px', // Remove default margins
+  margin: '5px', 
 };
-
 const Question = () => {
   const [quizDetails, setQuizDetails] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  // State for timer
-  const [timer, setTimer] = useState(localStorage.getItem("timer")||900); // 15 minutes in seconds
+  const [timer, setTimer] = useState(localStorage.getItem("timer")||900); 
   const [isTimerRunning, setIsTimerRunning] = useState(true);
   const [selectedOptions, setSelectedOptions] = useState(JSON.parse(localStorage.getItem("selectedOptions")) || {});
-
-  // Convert time remaining to HH:MM:SS format
   const formatTime = (time) => {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
     return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
-
-  // Fetch quiz details and questions
-  // Fetch quiz details and questions
 useEffect(() => {
   const fetchQuizDetailsAndQuestions = async () => {
     try {
@@ -62,7 +50,6 @@ useEffect(() => {
       const decodedQuizData = decodeURIComponent(quizParam);
       const parsedQuizData = JSON.parse(decodedQuizData);
       localStorage.setItem("quizname",parsedQuizData);
-      // Fetch quiz details
       const id = localStorage.getItem("subId");
       const level = localStorage.getItem("level");
       console.log(localStorage.getItem("subId"));
@@ -72,12 +59,10 @@ useEffect(() => {
         throw new Error('Failed to fetch quiz details');
       }
       const quizData = await quizResponse.json();
-      // Set quiz details state
       setQuizDetails(quizData);
       
       localStorage.setItem("quizid",quizData.id);
       localStorage.setItem("reattempt",quizData.reattempt);
-      // Fetch questions
       const questionsResponse = await fetch('http://localhost:3000/quizdata/questions', {
         method: 'POST',
         headers: {
@@ -91,11 +76,10 @@ useEffect(() => {
       }
       const questionsData = await questionsResponse.json();
       setQuestions(questionsData.questions);
-      setTimer(quizData.time * 60); // Convert minutes to seconds
+      setTimer(quizData.time * 60); 
 
     } catch (error) {
       console.error('Error fetching quiz details and questions:', error);
-      // Set error state
       setError('Failed to fetch quiz details and questions');
     }
 
@@ -121,77 +105,56 @@ useEffect(() => {
 useEffect(() => {
   const handleBeforeUnload = (event) => {
     event.preventDefault();
-    event.returnValue = ''; // For Chrome
-    return ''; // For other browsers
+    event.returnValue = ''; 
+    return ''; 
   };
-
   const showAlertOnUnload = () => {
     window.addEventListener('beforeunload', handleBeforeUnload);
   };
-
   const cleanup = () => {
     window.removeEventListener('beforeunload', handleBeforeUnload);
   };
-
   showAlertOnUnload();
-
   return cleanup;
 }, []);
-
-// Alert message when attempting to change tabs
 window.onblur = () => {
   if (isTimerRunning) {
     alert('Do not change tab while attending the quiz');
   }
 
 };
-
-  // Timer logic
   useEffect(() => {
-    // Retrieve the timer value from local storage
     const storedTimer = localStorage.getItem("timer");
-    // If a stored timer value exists and is a valid number, set it as the timer value
     if (storedTimer && !isNaN(storedTimer)) {
       setTimer(parseInt(storedTimer));
     } else {
-      // Otherwise, set the initial timer value (e.g., 15 minutes)
-      setTimer((quizDetails && quizDetails.time) ? (quizDetails.time * 60) : 900); // Convert minutes to seconds
+      setTimer((quizDetails && quizDetails.time) ? (quizDetails.time * 60) : 900); 
     }
-  
-    // Start the timer when the component mounts
     if (isTimerRunning && timer >= 0) {
       const intervalId = setInterval(() => {
         setTimer((prevTimer) => {
           const newTimer = prevTimer - 1;
-          localStorage.setItem("timer", newTimer); // Save timer value to localStorage
+          localStorage.setItem("timer", newTimer); 
           return newTimer;
         });
       }, 1000);
-  
-      // Redirect to /Result page when timer reaches 0
       if (timer === 0) {
-        handleFinish(); // Call handleFinish function
-        setIsTimerRunning(false); // Stop the timer
-        localStorage.removeItem("timer"); // Clear the timer value from localStorage
-        clearInterval(intervalId); // Clear the interval
+        handleFinish(); 
+        setIsTimerRunning(false); 
+        localStorage.removeItem("timer"); 
+        clearInterval(intervalId); 
       }
-  
-      // Clear interval when component unmounts
       return () => clearInterval(intervalId);
     }
   }, [isTimerRunning, timer, quizDetails]);
-  
-  // Save selected options to local storage whenever selectedOptions state changes
   useEffect(() => {
     localStorage.setItem("selectedOptions", JSON.stringify(selectedOptions));
-  
     return () => {
-      localStorage.removeItem("selectedOptions"); // Clear selectedOptions when component unmounts
+      localStorage.removeItem("selectedOptions"); 
     };
   }, [selectedOptions]);
 
   const handleOptionChange = (questionIndex, optionIndex) => {
-    // Update selectedOptions state
     setSelectedOptions(prevState => ({
       ...prevState,
       [questionIndex]: optionIndex
@@ -204,11 +167,10 @@ window.onblur = () => {
   };
 
   const handleFinish = async () => {
-    setIsTimerRunning(false); // Stop the timer when Finish button is clicked
-    const totalTime = quizDetails.time*60; // Get the total time allocated for the quiz
-    const timeTaken = totalTime - timer; // Calculate the time taken by subtracting remaining time from total time
-  
-    localStorage.removeItem("timer"); // Clear the timer value from localStorage
+    setIsTimerRunning(false); 
+    const totalTime = quizDetails.time*60; 
+    const timeTaken = totalTime - timer; 
+    localStorage.removeItem("timer"); 
     let score = 0;
     let correctAnswers = 0;
     let incorrectAnswers = 0;
@@ -219,7 +181,6 @@ window.onblur = () => {
       if (selectedOptionIndex !== undefined && selectedOptionIndex !== null) {
         attemptedQuestions++;
         if (question[`option${selectedOptionIndex + 1}`] === question.correctAnswer) {
-          // If correct, add the mark to the total marks
           correctAnswers++;
           score += question.mark;
         } else {
@@ -227,11 +188,7 @@ window.onblur = () => {
         }
       }
     });
-  
-    // Calculate timestamp
     const timestamp = new Date().toISOString();
-  
-    // Prepare data for the fetch request
     const data = {
       studentId: localStorage.getItem("Id"),
       quizId: localStorage.getItem("quizid"),
@@ -239,9 +196,7 @@ window.onblur = () => {
       timestamp,
       timeTaken,
     };
-  
     try {
-      // Make the fetch request
       const response = await fetch('http://localhost:3000/resultUpdatedRoutes', {
         method: 'POST',
         headers: {
@@ -249,8 +204,6 @@ window.onblur = () => {
         },
         body: JSON.stringify(data),
       });
-  
-      // Check if request was successful
       if (response.ok) {
         console.log('Result created successfully');
       } else {
@@ -259,8 +212,6 @@ window.onblur = () => {
     } catch (error) {
       console.error('Error creating result:', error.message);
     }
-  
-    // Redirect to the result page or perform any other actions as needed
     navigate("/Result", {
       state: {
         score,
@@ -305,7 +256,7 @@ window.onblur = () => {
               </div>
               <div className="level-info">
                 <h3>Level:  {quizDetails.level}</h3>
-                <h3>Time left: {formatTime(timer)}</h3> {/* Display time left */}
+                <h3>Time left: {formatTime(timer)}</h3> 
               </div>
             </div>
           </div>
@@ -321,7 +272,6 @@ window.onblur = () => {
         {/* Main Quiz Section */}
         <div className="main-content py-4">
           <div className="container">
-            {/* Map through questionsData array to render questions and options */}
             {questions.map((questionObj, index) => (
   <div key={index} className="quiz-box" style={{backgroundColor:"#F7FCFC", borderColor:"#76ABAE"}}>
     <div className="row">

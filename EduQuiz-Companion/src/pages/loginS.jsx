@@ -22,22 +22,15 @@ const LoginStudent = () => {
         const errorData = await response.json();
         throw new Error(errorData.error);
       }
-  
-      // Login successful, handle the response data
       const userData = await response.json();
       console.log('Login successful:', userData);
-  
-      // Store the user's name in local storage
       localStorage.setItem('userName', userData.user.Name);
       localStorage.setItem('Id', username)
       console.log(localStorage.getItem('Id'))
-      
-      // Redirect to the dashboard or whatever page you want
       window.location.href = "/cardpage";
   
     } catch (error) {
       setErrorMessage(error.message);
-      // Clear error message after 3 seconds
       setTimeout(() => {
         setErrorMessage('');
       }, 3000);
@@ -45,7 +38,6 @@ const LoginStudent = () => {
   };
 
   const handleForgotPassword = () => {
-    // Handle forgot password logic here
     console.log('Forgot password...');
   };
 

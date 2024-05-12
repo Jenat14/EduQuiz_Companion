@@ -37,7 +37,7 @@ function Leaderboard() {
   const role = id && id.startsWith('F') ? 'faculty' : 'student';
   localStorage.setItem("role", role);
 
-  const [loading, setLoading] = useState(true); // State to track loading status
+  const [loading, setLoading] = useState(true);
   const [leaderboardData, setLeaderboardData] = useState({
     leaderboard: [],
     statistics: {}
@@ -53,7 +53,7 @@ function Leaderboard() {
         }
         const data = await response.json();
         setLeaderboardData(data);
-        setLoading(false); // Update loading state when data is fetched
+        setLoading(false); 
       } catch (error) {
         console.error('Error fetching leaderboard:', error);
       }
@@ -66,7 +66,7 @@ function Leaderboard() {
 
   return (
     <div style={styles.container}>
-      {loading ? ( // Conditional rendering based on loading state
+      {loading ? ( 
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
         <div className="text-center" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div style={{ display: "flex", alignItems: "center" }}>

@@ -6,7 +6,7 @@ function StudentSub() {
   const [subname, setSubname] = useState("");
   const [activeLevel, setActiveLevel] = useState(null);
   const [quizResults, setQuizResults] = useState([]);
-  const [loading, setLoading] = useState(true); // State variable to track loading state
+  const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null);
   const location = useLocation();
 
@@ -34,7 +34,7 @@ function StudentSub() {
   }, []);
 
   const fetchSubjectName = (id) => {
-    setLoading(true); // Set loading state to true when fetching data
+    setLoading(true); 
     fetch(`http://localhost:3000/subject/name?id=${id}`)
       .then((response) => {
         if (!response.ok) {
@@ -45,12 +45,12 @@ function StudentSub() {
       .then((data) => {
         setSubname(data.name);
         localStorage.setItem("subjectname", data.name);
-        setLoading(false); // Set loading state to false when data fetching is complete
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching subject:", error);
         setError('Failed to fetch subject');
-        setLoading(false); // Set loading state to false in case of error
+        setLoading(false); 
       });
   };
 
@@ -62,7 +62,7 @@ function StudentSub() {
   };
 
   const fetchQuizResults = (level) => {
-    setLoading(true); // Set loading state to true when fetching data
+    setLoading(true); 
     setQuizResults([]);
     const subjectId = new URLSearchParams(window.location.search).get("subjectId");
     localStorage.setItem("subId", subjectId);
@@ -83,12 +83,12 @@ function StudentSub() {
       })
       .then((data) => {
         setQuizResults(data.quizResults);
-        setLoading(false); // Set loading state to false when data fetching is complete
+        setLoading(false); 
       })
       .catch((error) => {
         console.error("Error fetching quiz names:", error);
         setError("Failed to fetch quiz names");
-        setLoading(false); // Set loading state to false in case of error
+        setLoading(false); 
       });
   };
 
@@ -147,7 +147,7 @@ function StudentSub() {
          </div>
          <p style={{ color: "#222831", marginTop: "1rem",fontFamily:"monospace" }}>Loading...</p>
        </div>
-     </div> // Display loading message while data is being fetched
+     </div> 
       ) : (
           <>
           {quizResults.length > 0 && activeLevel && (

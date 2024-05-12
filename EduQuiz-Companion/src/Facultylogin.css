@@ -39,9 +39,9 @@ input {
   width: 100%;
   padding: 20px;
   font-size: 16px;
-  border: none; /* Remove default border */
-  border-bottom: 1px solid #000000; /* Add bottom border only */
-  outline: none; /* Remove focus outline */
+  border: none; 
+  border-bottom: 1px solid #000000; 
+  outline: none; 
   
 }
 
@@ -57,7 +57,7 @@ button {
 }
 
 button:hover {
-  background-color: #5c898c; /* Darker background color on hover */
+  background-color: #5c898c; 
 }
 
 .forgot-password-link {

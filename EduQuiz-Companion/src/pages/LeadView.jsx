@@ -4,49 +4,39 @@ import { useLocation } from 'react-router-dom';
 import icon from "../assets/message-circle.svg";
 import send from "../assets/send.svg";
 import robot from "../assets/robot.png";
-import "../LeadView.css"; // Import CSS file for custom styling
-
+import "../LeadView.css"; 
 const timeStyle = {
   display: 'flex',
   justifyContent: 'space-between',
   borderRadius: '5px',
   padding: '20px',
   paddingLeft:'0px',
-  width: '80rem', // Adjust width as needed
-  margin: '0 auto', // Center the container
+  width: '80rem', 
+  margin: '0 auto', 
 };
-
 const rightAlign = {
   textAlign: 'right',
 };
 const labelStyle = {
   display: 'flex',
 };
-
 const inputStyle = {
   width:'15px',
-  margin: '5px', // Adjust as needed
+  margin: '5px', 
 };
-
 const paragraphStyle = {
-  margin: '5px', // Remove default margins
+  margin: '5px', 
 };
-
-const LeadView = () => { // Receive role as a prop
+const LeadView = () => {
   const location = useLocation();
   const data = location.state;
 
 let selectedOptions = {}; 
-
-// Check if location.state exists
 if (data) {
-  const selectedOptionsString = data.selectedOptions; // Extract the JSON string
-  
-  // Check if selectedOptionsString is not null
+  const selectedOptionsString = data.selectedOptions; 
   if (selectedOptionsString) {
     selectedOptions = JSON.parse(selectedOptionsString);
   } else {
-    // If selectedOptionsString is null
     console.log("selectedOptionsString is null");
   }
 } else {
@@ -62,20 +52,16 @@ if (data) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const chatMessagesRef = useRef(null);
-
-  // Scroll to the bottom of the chat messages container
   const scrollToBottom = () => {
     if (chatMessagesRef.current) {
       chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
     }
   };
-
-  useEffect(() => {
-    scrollToBottom(); // Scroll to bottom when messages change
+useEffect(() => {
+    scrollToBottom();
   }, [messages]);
   const toggleChatbot = () => {
     setCIsOpen(!CisOpen);
-    // Additional logic to open/close chat interface
   };
 useEffect(() => {
     const fetchQuizDetailsAndQuestions = async () => {
@@ -92,8 +78,6 @@ useEffect(() => {
         } catch (error) {
           throw new Error('Invalid quiz parameter format');
         }
-  
-      // Fetch quiz details
       const id = localStorage.getItem("subId");
       const level = localStorage.getItem("level");
       console.log(localStorage.getItem("subId"));
@@ -103,12 +87,10 @@ useEffect(() => {
         throw new Error('Failed to fetch quiz details');
       }
       const quizData = await quizResponse.json();
-      // Set quiz details state
       setQuizDetails(quizData);
       
       localStorage.setItem("quizid",quizData.id);
       localStorage.setItem("reattempt",quizData.reattempt);
-      // Fetch questions
       const questionsResponse = await fetch('http://localhost:3000/quizdata/questions', {
         method: 'POST',
         headers: {
@@ -151,11 +133,11 @@ useEffect(() => {
  ) }
  const handleMessageSend = () => {
   if (newMessage.trim() === '') {
-    return; // Don't send empty messages
+    return; 
   }
   const updatedMessages = [...messages, newMessage];
   setMessages(updatedMessages);
-  setNewMessage(''); // Clear the input box after sending the message
+  setNewMessage(''); 
 };
 const handleKeyPress = (e) => {
   if (e.key === 'Enter') {
@@ -222,7 +204,6 @@ const handleKeyPress = (e) => {
                 checked={selectedOptionIndex === optionIndex}
                 className={selectedOptionIndex === optionIndex ? (questionObj.correctAnswer === questionObj[optionKey] ? "correct-answer" : "wrong-answer") : ""}
               />
-              {/* Check if optionIndex matches selectedOptionIndex */}
               <p style={paragraphStyle}>
                 {questionObj[optionKey]}
                 {selectedOptionIndex === optionIndex ?  (questionObj.correctAnswer === questionObj[optionKey] ? " " : "  ❌") : ""}

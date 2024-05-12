@@ -1,11 +1,6 @@
 import React , { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "../Facultydash.css"; // Import your CSS file here
-import img2 from '../assets/os.jpeg'; // Import your image here
-import img3 from '../assets/dsa.jpg';
-import img4 from '../assets/dbms.png';
-import img5 from '../assets/coa.webp';
-import img6 from '../assets/flat.jpg';
+import "../Facultydash.css"; 
 
 const Facultydash = () => {
   const [subjects, setSubjects] = useState([]);

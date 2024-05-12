@@ -3,18 +3,15 @@ import { Link } from 'react-router-dom';
 
 function LevelPage() {
     const [quizNames, setQuizNames] = useState([]);
-    const [counter, setCounter] = useState(0); // Initialize counter variable
+    const [counter, setCounter] = useState(0); 
     const level = new URLSearchParams(window.location.search).get("level");
 
     useEffect(() => {
         if (level) {
           localStorage.setItem('level', level);
         }
-
-        // Function to fetch quizzes
         const fetchQuizzes = async (subjectId, level) => {
             try {
-                // Make a POST request to the backend endpoint
                 const response = await fetch('http://localhost:3000/quizName', {
                     method: 'POST',
                     headers: {
@@ -22,21 +19,15 @@ function LevelPage() {
                     },
                     body: JSON.stringify({ subjectId, level }),
                 });
-
-                // Check if the response is OK (status code 200)
                 if (!response.ok) {
                     throw new Error('Failed to fetch quizzes');
                 }
-
-                // Parse the JSON response
                 const data = await response.json();
                 const sortedQuizNames = data.quizNames.sort((a, b) => a.localeCompare(b));
-                // Set the quiz names in the state
                 setQuizNames(sortedQuizNames);
                 setCounter(sortedQuizNames.length);
             } catch (error) {
                 console.error('Error fetching quizzes:', error);
-                // Handle errors
             }
         };
         const subjectId = localStorage.getItem("subId");
@@ -61,7 +52,6 @@ function LevelPage() {
                     </Link>
                 </div>
             </div>
-            {/*correct here*/}
             <div style={{ padding: "5%" }}>
                 {quizNames.map((quiz, index) => (
                     <Link to={{

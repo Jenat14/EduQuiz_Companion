@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import * as XLSX from "xlsx"; // Import xlsx library
+import * as XLSX from "xlsx"; 
 
 const PageLayout = () => {
   const quizName = `quiz ${localStorage.getItem("quiznum")}`;
@@ -25,8 +25,6 @@ const PageLayout = () => {
       "application/vnd.ms-excel",
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     ];
-
-    // Check if the selected file is of the accepted types
     if (selectedFile && acceptedFileTypes.includes(selectedFile.type)) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -36,8 +34,7 @@ const PageLayout = () => {
         const sheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
         const filteredData = jsonData.slice(3).filter((row) => row[0]);
-        const quizData = jsonData[1]; // Assuming quizData is in the second row of jsonData
-
+        const quizData = jsonData[1]; 
         setJsonData(filteredData);
         setQuizData(quizData);
         setIsUploadComplete(true);
@@ -45,12 +42,10 @@ const PageLayout = () => {
       };
       reader.readAsArrayBuffer(selectedFile);
     } else {
-      // Alert user about the invalid file type
       window.alert("Please upload a valid Excel file (xls or xlsx).");
     }
   };
   const handleSwitchChange = () => {
-    // Set value to true if isSwitchOn is false, and false if isSwitchOn is true
     const value = !isSwitchOn;
     setIsSwitchOn(value);
 
@@ -78,7 +73,6 @@ const PageLayout = () => {
         return;
       }
       const { quizId } = await quizResponse.json();
-        // Iterate over each item in mappedData and make a POST request for each item
         for (const item of jsonData) {
             const mappedData = {
                 quizId: quizId,
@@ -92,26 +86,20 @@ const PageLayout = () => {
                 mark: item[7],
             };
             const jsonString = JSON.stringify(mappedData);
-            // Make POST request to backend for each item
             const response = await fetch("http://localhost:3000/question", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-               // body: JSON.stringify(mappedData),
                body:jsonString,
             });
 
             if (!response.ok) {
-                // If the response is not okay, throw an error
                 window.alert(`Failed to upload question ${mappedData.questionNumber}`);
             }
         }
-
-        // If all POST requests are successful, show success message
         window.alert("Questions uploaded successfully.");
     } catch (error) {
-        // If an error occurs during any POST request, show error message
         console.error("Error uploading questions:", error);
         window.alert("Failed to upload questions. Please try again later.");
     }
@@ -120,10 +108,9 @@ const PageLayout = () => {
 const questionsData = jsonData ? jsonData.map((item, index) => ({
   question: item[1],
   options: [item[2], item[3], item[4], item[5]],
-  marks: parseInt(item[7]), // Assuming the mark is stored as a string and needs to be converted to a number
-  correctAnswer: item[6], // Assuming the correct answer index is stored as a string and needs to be converted to a number
+  marks: parseInt(item[7]), 
+  correctAnswer: item[6], 
 })) : [];
-// Fetch all items from local storage
 const fetchAllItemsFromLocalStorage = () => {
   const allItems = {};
   for (let i = 0; i < localStorage.length; i++) {
@@ -133,8 +120,6 @@ const fetchAllItemsFromLocalStorage = () => {
   }
   return allItems;
 };
-
-// Usage example
 const allItems = fetchAllItemsFromLocalStorage();
 console.log(allItems);
 
@@ -195,7 +180,6 @@ console.log(allItems);
   </div>
         <div className="main-content py-4">
           <div className="container">
-            {/* Map through questionsData array to render questions and options */}
             { questionsData.map((questionObj, index) => (
               <div key={ index } className="quiz-box" style={{backgroundColor:"#F7FCFC",borderColor:"#76ABAE"}}>
                 <div className="row">

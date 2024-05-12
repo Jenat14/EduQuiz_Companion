@@ -1,12 +1,12 @@
 .card-container-f {
   display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap to the next row */
-  padding-left: 200px; /* Adjust padding as needed */
-  padding-right: 200px; /* Adjust padding as needed */
+  flex-wrap: wrap; 
+  padding-left: 200px;
+  padding-right: 200px; 
 }
 
 .card-f {
-  width: calc(33% ); /* Adjust width to fit three cards in a row */
+  width: calc(33% ); 
   margin-bottom: 20px;
   padding: 3%;
 }
@@ -24,14 +24,14 @@
   right: 10px;
   width: 200px;
   height: 56px;
-  background-color: #76ABAE; /* Set the background color */
-  color: white; /* Set the text color */
+  background-color: #76ABAE; 
+  color: white;
   border: none;
   border-radius: 25px;
   padding: 5px 10px;
   cursor: pointer;
   
-  margin-left: auto; /* Set the width to auto to fit content */
+  margin-left: auto; 
 }
 .top-right-button:hover {
   background-color: grey;

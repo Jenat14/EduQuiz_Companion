@@ -3,14 +3,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ffffff; /* Set background color for the login container */
+  background-color: #ffffff; 
 }
 
 .left-side {
   flex: 1;
     height:fit-content;
-    max-width: 50%; /* Limit maximum width to 50% of the viewport width */
-    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+    max-width: 50%; 
+    box-sizing: border-box; 
   }
 
 .right-side {
@@ -26,8 +26,8 @@
 }
 
 .logo-image {
-  width: 50vw; /* Ensure the logo image fills the container */
-  height: 100vh; /* Set height to 100% of the viewport height */
+  width: 50vw; 
+  height: 100vh; 
   max-width: 100%;
 }
 
@@ -39,9 +39,9 @@ input {
   width: 100%;
   padding: 20px;
   font-size: 16px;
-  border: none; /* Remove default border */
-  border-bottom: 1px solid #000000; /* Add bottom border only */
-  outline: none; /* Remove focus outline */
+  border: none; 
+  border-bottom: 1px solid #000000; 
+  outline: none; 
   
 }
 
@@ -57,7 +57,7 @@ button {
 }
 
 button:hover {
-  background-color: #5c898c; /* Darker background color on hover */
+  background-color: #5c898c; 
 }
 
 .forgot-password-link {

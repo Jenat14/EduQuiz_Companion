@@ -9,7 +9,7 @@ const Result = ({ data }) => {
   const selectedOptions = localStorage.getItem('selectedOptions');
   console.log(selectedOptions)
   const location = useLocation();
-  const navigate = useNavigate(); // Access the navigate function
+  const navigate = useNavigate(); 
   const { score, correctAnswers, incorrectAnswers, attemptedQuestions, finishTimestamp } = location.state;
   const chartData = {
     labels: ['Score', 'Correct Answers', 'Incorrect Answers', 'Attempted Questions'],
@@ -60,20 +60,12 @@ const Result = ({ data }) => {
       };
     }
   }, [chartData, attemptedQuestions]);
-
-  // Prevent user from navigating back
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      // Cancel the event
       event.preventDefault();
-      // Chrome requires returnValue to be set
       event.returnValue = '';
     };
-
-    // Add event listener when component mounts
     window.addEventListener('beforeunload', handleBeforeUnload);
-
-    // Remove event listener when component unmounts
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };

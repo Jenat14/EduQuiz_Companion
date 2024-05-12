@@ -67,14 +67,35 @@ function NavBar(){
   };
 
   const handleUpdatePassword = () => {
-    // Implement password update logic here
-    console.log('Updating password...');
-    setIsModalOpen(false);
-    window.alert('Password updated successfully!');
-    setCurrentPassword('');
-    setNewPassword('');
-    setConfirmPassword('');
-    setIsPasswordMatch(false);
+    // Make API call to update password
+    fetch('http://localhost:3000/changePassword', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: localStorage.getItem('Id'),
+        current_password: currentPassword,
+        new_password: newPassword
+      }),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to update password');
+      }
+      // Password changed successfully
+      window.alert('Password updated successfully!');
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+      setIsPasswordMatch(false);
+      // Close the modal after successful password update
+      setIsModalOpen(false);
+    })
+    .catch(error => {
+      // Handle error
+      setErrorMessage('Error updating password: ' + error.message);
+    });
   };
   
   const handleModalClose = () => {

@@ -11,6 +11,8 @@ function NavBar(){
   const [isPasswordMatch, setIsPasswordMatch] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userName, setUserName] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     // Retrieve the user's name from local storage
@@ -79,23 +81,31 @@ function NavBar(){
         new_password: newPassword
       }),
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to update password');
-      }
-      // Password changed successfully
-      window.alert('Password updated successfully!');
-      setCurrentPassword('');
-      setNewPassword('');
-      setConfirmPassword('');
-      setIsPasswordMatch(false);
-      // Close the modal after successful password update
-      setIsModalOpen(false);
-    })
-    .catch(error => {
-      // Handle error
-      setErrorMessage('Error updating password: ' + error.message);
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to update password');
+        }
+        // Password changed successfully
+        setSuccessMessage('Password updated successfully!');
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setIsPasswordMatch(false);
+        // Hide success message after 3 seconds
+        setTimeout(() => {
+          setSuccessMessage('');
+          setIsModalOpen(false); // Close the modal after successful password update
+        }, 3000);
+      })
+      .catch(error => {
+        // Handle error
+        setErrorMessage('Error updating password: ' + error.message);
+        // Hide error message after 3 seconds
+        setTimeout(() => {
+          setErrorMessage('');
+          setIsModalOpen(false);
+        }, 3000);
+      });
   };
   
   const handleModalClose = () => {
@@ -150,10 +160,20 @@ function NavBar(){
       <div className="modal-content">
         <div className="modal-header">
           <h1 className="modal-title fs-5" id="exampleModalLabel">Change Password</h1>
-          <button button type="button" className="btn-close" onClick={handleModalClose} data-bs-dismiss="modal"></button>
+          <button button type="button" className="btn-close"  data-bs-dismiss="modal"></button>
 
         </div>
         <div className="modal-body">
+              {successMessage && (
+                <div className="alert alert-success" role="alert">
+                  {successMessage}
+                </div>
+              )}
+              {errorMessage && (
+                <div className="alert alert-danger" role="alert">
+                  {errorMessage}
+                </div>
+              )}
           <div className="mb-3">
             <label htmlFor="currentPassword" className="form-label">Current Password</label>
             <input type="password" className="form-control" id="currentPassword" value={currentPassword} onChange={handleCurrentPasswordChange} />
@@ -169,7 +189,7 @@ function NavBar(){
         </div>
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" onClick={handleModalClose} data-bs-dismiss="modal">Close</button>
-          <button type="button" className="btn btn-primary" style={{ backgroundColor: "#76ABAE", border: "none" }} data-bs-dismiss="modal"  onClick={handleUpdatePassword} disabled={isUpdateButtonDisabled()}>
+          <button type="button" className="btn btn-primary" style={{ backgroundColor: "#76ABAE", border: "none" }}  onClick={handleUpdatePassword} disabled={isUpdateButtonDisabled()}>
             Update Password
           </button>
         </div>

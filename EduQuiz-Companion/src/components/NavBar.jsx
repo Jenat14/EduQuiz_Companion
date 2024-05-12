@@ -69,6 +69,7 @@ function NavBar(){
       },
       body: JSON.stringify({
         id: localStorage.getItem('Id'),
+        userRole: localStorage.getItem("role"),
         current_password: currentPassword,
         new_password: newPassword
       }),

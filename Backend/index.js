@@ -10,7 +10,6 @@ const quizNamesRoutes = require('./routes/quizNamesRoutes');
 const resultUpdatedRoutes = require('./routes/resultupdatedRoutes');
 const quizDetailsRoutes =require('./routes/quizdetailsRoutes');
 const leaderboardRoutes =require('./routes/leaderboardRoutes');
-const deleteRoutes =require('./routes/deleteRoutes');
 const chatbotRoutes =require('./routes/chatbotRoutes');
 const changePasswordRoutes= require('./routes/changePasswordRoutes');
 
@@ -30,7 +29,6 @@ app.use('/quizName', quizNamesRoutes);
 app.use('/resultUpdatedRoutes', resultUpdatedRoutes);
 app.use('/quizDetailsRoutes', quizDetailsRoutes);
 app.use('/leaderboardRoutes', leaderboardRoutes);
-app.use('/delete', deleteRoutes);
 app.use('/chatbot', chatbotRoutes);
 app.use('/changePassword',changePasswordRoutes)
 

@@ -15,38 +15,31 @@ function NavBar(){
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    // Retrieve the user's name from local storage
     const storedUserName = localStorage.getItem('userName');
     if (storedUserName) {
       setUserName(storedUserName);
     }
   }, []);
   const handleLogout = () => {
-    // Clear all data stored in local storage
     localStorage.clear();
-    // Redirect to the logout page or wherever you want
     window.location.href = "/";
   };
   const getHomeRoute = () => {
-    // Get the current location pathname
     const path = window.location.pathname;
-    
-    // Define the home routes for different interfaces
     const studentHomeRoute = "/CardPage";
     const facultyHomeRoute = "/facultydash";
-  const role=localStorage.getItem("role");
-    // Check if the current location matches any of the specified pages
+    const role=localStorage.getItem("role");
     if (path === "/StudentSub" || path === "/Result") {
-      return studentHomeRoute; // If student interface, return student home route
+      return studentHomeRoute; 
     } else if (path === "/Facultydash" || path === "/Subject" || path === "/LevelPage" || path === "/LeadView" || path === "/Leaderboard" || path === "/PageLayout") {
       if (path === "/LeadView" && role=="student") {
-        return studentHomeRoute; // If LeadView in student interface, return student home route
+        return studentHomeRoute; 
       } else if (path === "/LeadView" && role=="faculty") {
-        return facultyHomeRoute; // If LeadView in faculty interface, return faculty home route
+        return facultyHomeRoute; 
       }else if (path === "/Leaderboard" && role=="student") {
-        return studentHomeRoute; // If LeadView in faculty interface, return faculty home route
+        return studentHomeRoute;
       } else {
-        return facultyHomeRoute; // If LeadView is not in either interface, default to faculty home route
+        return facultyHomeRoute; 
       }
     } 
   };
@@ -69,7 +62,6 @@ function NavBar(){
   };
 
   const handleUpdatePassword = () => {
-    // Make API call to update password
     fetch('http://localhost:3000/changePassword', {
       method: 'POST',
       headers: {
@@ -85,25 +77,20 @@ function NavBar(){
         if (!response.ok) {
           throw new Error('Failed to update password');
         }
-        // Password changed successfully
         setSuccessMessage('Password updated successfully!');
         setCurrentPassword('');
         setNewPassword('');
         setConfirmPassword('');
         setIsPasswordMatch(false);
-        // Hide success message after 3 seconds
         setTimeout(() => {
           setSuccessMessage('');
-          setIsModalOpen(false); // Close the modal after successful password update
+          setIsModalOpen(false); 
         }, 3000);
       })
       .catch(error => {
-        // Handle error
         setErrorMessage('Error updating password: ' + error.message);
-        // Hide error message after 3 seconds
         setTimeout(() => {
           setErrorMessage('');
-          setIsModalOpen(false);
         }, 3000);
       });
   };

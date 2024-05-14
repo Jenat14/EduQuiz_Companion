@@ -11,7 +11,7 @@ npm install bootstrap@5.3.3
 npm install chart.js
 npm install firebase
 npm install xlsx
-
+npm i dotenv @google/generative-ai
 
 Backend
 npm init

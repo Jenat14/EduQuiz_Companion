@@ -49,11 +49,9 @@ const Facultylogin = () => {
         </b>
         <form >
           <div className="form-group">
-            <label htmlFor="username">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)}  />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)}  />
           </div>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

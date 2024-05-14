@@ -120,7 +120,7 @@ function StudentSub() {
             type="button"
             className={`btn btn-lg ${activeLevel === "level1" ? "active" : ""}`}
             style={{
-              backgroundColor: activeLevel === "1" ? "#222831" : "#76ABAE",
+              backgroundColor: activeLevel === "1" ? "#212529" : "#76ABAE",
             }}
             onClick={() => handleLevelClick("1")}
           >
@@ -130,7 +130,7 @@ function StudentSub() {
             type="button"
             className={`btn btn-lg ${activeLevel === "level2" ? "active" : ""}`}
             style={{
-              backgroundColor: activeLevel === "2" ? "#222831" : "#76ABAE",
+              backgroundColor: activeLevel === "2" ? "#212529" : "#76ABAE",
             }}
             onClick={() => handleLevelClick("2")}
           >
@@ -140,7 +140,7 @@ function StudentSub() {
             type="button"
             className={`btn btn-lg ${activeLevel === "level3" ? "active" : ""}`}
             style={{
-              backgroundColor: activeLevel === "3" ? "#222831" : "#76ABAE",
+              backgroundColor: activeLevel === "3" ? "#212529" : "#76ABAE",
             }}
             onClick={() => handleLevelClick("3")}
           >
@@ -236,7 +236,7 @@ function StudentSub() {
                       <h5
                         className="card-title"
                         style={{
-                          color: "#222831",
+                          color: "#212529",
                           position: "absolute",
                           left: "6px",
                           top: "0px",

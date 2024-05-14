@@ -34,7 +34,7 @@ const Result = ({ data }) => {
           incorrectAnswers,
           attemptedQuestions,
         ],
-        backgroundColor: ["#4A9094", "#76ABAE", "#222831", "#60BCC1"],
+        backgroundColor: ["#4A9094", "#76ABAE", "#212529", "#60BCC1"],
       },
     ],
   };

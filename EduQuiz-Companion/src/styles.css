@@ -51,7 +51,7 @@
       max-width: fit-content;
     }
     #home .btn-start:hover{
-      background-color: #222831;
+      background-color: #212529;
     }
     #home{
       margin: auto;
@@ -92,7 +92,7 @@
     width: 500px;
   }
   #contact .btn{
-    background-color: #222831;
+    background-color: #212529;
     color: #fff;
     width:fit-content;
   }

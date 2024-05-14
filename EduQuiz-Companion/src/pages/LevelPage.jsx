@@ -38,13 +38,11 @@ function LevelPage() {
     }
   }, [level]);
   localStorage.setItem("quiznum", counter + 1);
-  console.log(localStorage.getItem("quiznum"));
-
   return (
     <div style={{ marginTop: "70px", padding: "5%" }}>
       <div className="row">
         <div className="col-md-6 ">
-          <h2 style={{ margin: 0, color: "#222831" }}>LEVEL {level}</h2>
+          <h2 style={{ margin: 0, color: "#212529" }}>LEVEL {level}</h2>
         </div>
         <div className="col-md-6 d-grid d-md-flex justify-content-md-end">
           <Link to="/PageLayout">
@@ -54,7 +52,7 @@ function LevelPage() {
                 borderRadius: "25px",
                 backgroundColor: "#76ABAE",
                 border: "1px solid #76ABAE",
-                color: "#FFFDFD",
+                color: "#FFFFFF",
                 width: "200px",
               }}
             >
@@ -82,7 +80,7 @@ function LevelPage() {
               }}
             >
               <div className="card-body d-flex align-items-center justify-content-center">
-                <h5 className="card-title" style={{ color: "#222831" }}>
+                <h5 className="card-title" style={{ color: "#212529" }}>
                   {quiz}
                 </h5>
               </div>

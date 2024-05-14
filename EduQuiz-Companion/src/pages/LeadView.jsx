@@ -396,7 +396,7 @@ const LeadView = () => {
                   <div className="icon-container">
                     <img src={robot} alt="Icon" className="icon" />
                   </div>
-                  <h3 className="text">ChatBot</h3>
+                  <h3 className="text">EduBot</h3>
                 </div>
                 <div ref={chatMessagesRef} className="chat-messages ">
                   {messages.map((message, index) => (

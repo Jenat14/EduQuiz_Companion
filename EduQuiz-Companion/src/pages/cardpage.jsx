@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../Facultydash.css";
 
-const Facultydash = () => {
+const Cardpage = () => {
   const [subjects, setSubjects] = useState([]);
   const id = localStorage.getItem("Id");
   const role = id && id.startsWith("F") ? "faculty" : "student";
@@ -61,4 +61,4 @@ const Facultydash = () => {
   );
 };
 
-export default Facultydash;
+export default Cardpage;

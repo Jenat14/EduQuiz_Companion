@@ -143,17 +143,6 @@ const Facultydash = () => {
                 readOnly
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="formFile" className="form-label">
-                Add an Image
-              </label>
-              <input
-                className="form-control"
-                type="file"
-                id="formFile"
-                name="formFile"
-              />
-            </div>
             <button
               type="submit"
               className="btn btn-primary"

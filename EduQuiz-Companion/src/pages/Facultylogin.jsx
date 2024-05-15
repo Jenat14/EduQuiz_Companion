@@ -46,10 +46,10 @@ const Facultylogin = () => {
         <h1 className="xyz">Login to Your Faculty Account</h1>
         </b>
         <form >
-          <div className="form-group">
+          <div className="form-group"style={{ marginBottom: "30px" }}>
             <input type="text" id="username" name="username" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)}  />
           </div>
-          <div className="form-group">
+          <div className="form-group" style={{ marginBottom: "30px" }}>
             <input type="password" id="password" name="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)}  />
           </div>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

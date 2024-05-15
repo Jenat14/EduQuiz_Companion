@@ -25,10 +25,8 @@ const Facultylogin = () => {
       }
 
       const userData = await response.json();
-      console.log('Login successful:', userData);
       localStorage.setItem('userName', userData.user.Name);
-      localStorage.setItem('Id', username)
-      console.log(localStorage.getItem('Id'))
+      localStorage.setItem('Id', username);
       window.location.href = "/Facultydash";
 
     } catch (error) {

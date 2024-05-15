@@ -31,7 +31,7 @@ const inputStyle = {
 const paragraphStyle = {
   margin: "5px",
 };
-//mapping seected options
+//mapping selected options
 const LeadView = () => {
   const location = useLocation();
   const data = location.state;

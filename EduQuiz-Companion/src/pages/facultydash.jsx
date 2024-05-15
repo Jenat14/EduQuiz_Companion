@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../Facultydash.css";
+
 const Facultydash = () => {
   const [subjects, setSubjects] = useState([]);
   const id = localStorage.getItem("Id");
   const role = id && id.startsWith("F") ? "faculty" : "student";
   localStorage.setItem("role", role);
+  const [showForm, setShowForm] = useState(false);
+  const [newSubject, setNewSubject] = useState({
+    id: "",
+    Name: "",
+    imageUrl:
+      "https://firebasestorage.googleapis.com/v0/b/eduquiz-companion.appspot.com/o/subimage.jpeg?alt=media&token=442d98be-baeb-43df-8b09-f2031a99fceb",
+  });
+
   useEffect(() => {
     const fetchSubjects = async () => {
       try {
@@ -23,43 +32,14 @@ const Facultydash = () => {
     fetchSubjects();
   }, []);
 
-  const [showForm, setShowForm] = useState(false);
-  const [newSubject, setNewSubject] = useState({
-    id: "",
-    Name: "",
-    imageUrl:
-      "https://firebasestorage.googleapis.com/v0/b/eduquiz-companion.appspot.com/o/subimage.jpeg?alt=media&token=442d98be-baeb-43df-8b09-f2031a99fceb",
-  });
-
   const toggleForm = () => {
     setShowForm(!showForm);
   };
 
-  const handleInputChange = (event) => {
-    const { name, value, files } = event.target;
-    if (name === "formFile") {
-      const reader = new FileReader();
-      const file = files[0];
-      reader.onloadend = () => {
-        setNewSubject({ ...newSubject, image: reader.result });
-      };
-      reader.readAsDataURL(file);
-    } else {
-      setNewSubject({ ...newSubject, [name]: value });
-    }
-    if (name === "Name") {
-      setNewSubject((prevSubject) => ({
-        ...prevSubject,
-        [name]: value,
-        id: generateSubjectId(),
-      }));
-    }
-  };
-  const generateSubjectId = () => {
-    const { Name } = newSubject;
-    if (!Name) return "";
+  const generateSubjectId = (name) => {
+    if (!name) return "";
 
-    const words = Name.toUpperCase().split(" ");
+    const words = name.toUpperCase().split(" ");
     const initials = words.map((word) => word.charAt(0)).join("");
     const randomNumber = Math.floor(Math.random() * 999) + 1;
     const subjectId = `S-${initials}-${randomNumber}`;
@@ -70,17 +50,20 @@ const Facultydash = () => {
     event.preventDefault();
 
     try {
+      const subjectId = generateSubjectId(newSubject.Name);
+
       const response = await fetch("http://localhost:3000/subject/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newSubject),
+        body: JSON.stringify({ ...newSubject, id: subjectId }),
       });
 
       if (!response.ok) {
         throw new Error("Failed to add subject");
       }
+
       setNewSubject({
         id: "",
         Name: "",
@@ -140,7 +123,10 @@ const Facultydash = () => {
                 id="Name"
                 name="Name"
                 aria-describedby="subjectNameHelp"
-                onChange={handleInputChange}
+                value={newSubject.Name}
+                onChange={(e) =>
+                  setNewSubject({ ...newSubject, Name: e.target.value })
+                }
               />
             </div>
             <div className="mb-3">
@@ -153,7 +139,7 @@ const Facultydash = () => {
                 id="id"
                 name="id"
                 aria-describedby="subjectNameHelp"
-                value={generateSubjectId()}
+                value={generateSubjectId(newSubject.Name)}
                 readOnly
               />
             </div>
@@ -166,7 +152,6 @@ const Facultydash = () => {
                 type="file"
                 id="formFile"
                 name="formFile"
-                onChange={handleInputChange}
               />
             </div>
             <button
@@ -177,7 +162,7 @@ const Facultydash = () => {
                 color: "white",
                 border: "none",
               }}
-              onClick={(event) => handleSubmit(event)}
+              onClick={handleSubmit}
             >
               Add Subject
             </button>

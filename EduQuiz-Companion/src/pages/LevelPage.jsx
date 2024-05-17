@@ -24,7 +24,7 @@ function LevelPage() {
         }
         const data = await response.json();
         const sortedQuizNames = data.quizNames.sort((a, b) =>
-          a.localeCompare(b)
+          b.localeCompare(a)
         );
         setQuizNames(sortedQuizNames);
         setCounter(sortedQuizNames.length);

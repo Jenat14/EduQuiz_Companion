@@ -167,8 +167,8 @@ function Leaderboard() {
             ) : (
               <h2
                 style={{
+                  paddingTop:"150px",
                   padding: "30px",
-                  paddingBottom: "2rem",
                   color: "#212529",
                 }}
               >
@@ -177,6 +177,7 @@ function Leaderboard() {
             )}
           </div>
           <div style={{ marginBottom: "1rem", textAlign: "right" }}>
+          {role === "faculty" && (
           <span
               onClick={exportToExcel}
               style={{
@@ -187,6 +188,7 @@ function Leaderboard() {
             >
               Export as Excel
             </span>
+          )}
           </div>
           <table className="" style={{ width: "100%" }}>
             <thead className="tablehead">

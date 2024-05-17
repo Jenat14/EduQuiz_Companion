@@ -1,14 +1,27 @@
 .card-container-f {
   display: flex;
   flex-wrap: wrap; 
-  padding-left: 200px;
-  padding-right: 200px; 
+  /*padding-left: 200px;
+  padding-right: 200px;*/ 
+  justify-content: center; 
 }
-
 .card-f {
-  width: calc(33% ); 
-  margin-bottom: 20px;
+  width: calc(33% - 20px);
+  margin: 10px;
   padding: 3%;
+}
+@media (max-width: 768px) {
+  .card-container-f {
+    padding: 0 10px; 
+  }
+  .card-f {
+    width: calc(100% - 20px); 
+  }
+
+  .container-f {
+    padding-left: 10px; 
+    padding-right: 10px; 
+  }
 }
 .container-f{
   display: flex;
@@ -63,9 +76,6 @@
   font-size: 1rem;
 }
 
-.card-button-f:hover {
-  background-color: grey;
-}
 .card-f:nth-child(5) {
   order: -1;
 }

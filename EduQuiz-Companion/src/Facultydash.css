@@ -1,8 +1,8 @@
 .card-container-f {
   display: flex;
   flex-wrap: wrap; 
-  /*padding-left: 200px;
-  padding-right: 200px;*/ 
+  padding-left: 200px;
+  padding-right: 200px;
   justify-content: center; 
 }
 .card-f {

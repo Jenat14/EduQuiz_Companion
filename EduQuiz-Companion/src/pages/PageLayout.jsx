@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as XLSX from "xlsx";
 
 const PageLayout = () => {
-  const quizName = `quiz ${localStorage.getItem("quiznum")}`;
+  const quizName = `  Quiz ${localStorage.getItem("quiznum")}`;
   console.log(localStorage.getItem("subId"));
   console.log(localStorage.getItem("Id"));
   const [fileDownloadUrl, setFileDownloadUrl] = useState("");
@@ -210,6 +210,7 @@ const PageLayout = () => {
         <>
           <div>
             <h2 style={{ textAlign: "center", fontWeight: "bold" }}>Preview</h2>
+            <h3 style={{ textAlign: "center" , paddingTop:"10px"}}>{quizName}</h3>
             <div style={{ paddingTop: "20px", paddingLeft: "30px" }}>
               Time Limit: {quizData[1]} minutes
             </div>

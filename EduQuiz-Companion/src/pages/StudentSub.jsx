@@ -82,7 +82,10 @@ function StudentSub() {
         return response.json();
       })
       .then((data) => {
-        setQuizResults(data.quizResults);
+        const sortedQuizResults = data.quizResults.sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
+        setQuizResults(sortedQuizResults);
         setLoading(false);
       })
       .catch((error) => {

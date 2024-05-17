@@ -1,16 +1,19 @@
 .card-container-f {
   display: flex;
   flex-wrap: wrap; 
-  justify-content: center; 
+  justify-content: flex-start; 
 }
 .card-f {
   width: calc(33% - 20px);
   margin: 10px;
   padding: 3%;
+  height: auto;
 }
 @media (max-width: 768px) {
   .card-container-f {
     padding: 0 10px; 
+    padding-left: 12%;
+    padding-right: 12%;
   }
   .card-f {
     width: calc(100% - 20px); 
@@ -76,4 +79,10 @@
 
 .card-f:nth-child(5) {
   order: -1;
+}
+@media (min-width: 1250px) {
+  .card-container-f{
+    padding-left: 10%;
+    padding-right: 10%;
+  }
 }

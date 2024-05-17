@@ -18,11 +18,6 @@
   display: flex; 
  
 }
-
-.top-bar h2 {
-  margin: 0; 
-}
-
 /* Quiz Box Styles */
 .quiz-box {
   border: 1px solid #ccc;
@@ -45,9 +40,8 @@
 }
 
 @media (max-width: 767px) {
-  .container {
-    margin-top: 40px;
-}
+  .main-content .container {
+margin:1px;}
 }
 /* Chatbot icon styles */
 .chatbot-icon {
@@ -90,6 +84,7 @@ z-index: 1000;
 display: flex;
 flex-direction: column;
 }
+
 /* message styles */
 .chat-messages {
 flex: 1;
@@ -168,4 +163,41 @@ height: 30px;
 .text {
 margin: 0;
 font-family:monospace;
+}
+@media (max-width: 768px) {
+  .chatbot-interface {
+    position: fixed;
+  bottom: 50px; 
+  width:60%;
+  height: 60%; 
+  right: 0;
+  left:0;
+  margin: auto;
+  }
+
+  .chat-messages {
+    padding: 10px;
+  }
+
+  .message {
+    font-size: smaller;
+    padding: 5px; 
+  }
+
+  .chat-input {
+    padding: 5px;
+  }
+
+  .chat-input input {
+    padding: 6px;
+  }
+  .chatbot-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .chatbot-icon img {
+    width: 30px;
+    height: 30px;
+  }
 }

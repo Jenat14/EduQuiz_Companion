@@ -119,7 +119,7 @@ function Leaderboard() {
                 <div className="columnl">
                   <div className="cardl">
                     <div className="body">
-                      <h2>{statistics.averageScore}</h2>
+                      <h2>{statistics.averageScore.toFixed(2)}</h2>
                       <h5>AVERAGE SCORE</h5>
                     </div>
                   </div>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import * as XLSX from "xlsx";
 import "../leaderboard.css";
+
 function Leaderboard() {
   const id = localStorage.getItem("Id");
   const role = id && id.startsWith("F") ? "faculty" : "student";
@@ -14,9 +16,7 @@ function Leaderboard() {
   useEffect(() => {
     const fetchLeaderboardData = async () => {
       try {
-        const quizId = new URLSearchParams(window.location.search).get(
-          "quizId"
-        );
+        const quizId = new URLSearchParams(window.location.search).get("quizId");
         const response = await fetch(
           `http://localhost:3000/leaderboardRoutes?quizId=${quizId}`
         );
@@ -35,6 +35,20 @@ function Leaderboard() {
   }, []);
 
   const { leaderboard, statistics } = leaderboardData;
+
+  const exportToExcel = () => {
+    const dataToExport = leaderboard.map((participant, index) => ({
+      Rank: index + 1,
+      Name: participant.studentName,
+      Score: participant.score,
+      "Time Taken": `${participant.timeTaken} minutes`,
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(dataToExport);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Leaderboard");
+    XLSX.writeFile(wb, "leaderboard.xlsx");
+  };
 
   return (
     <div className="containerl">
@@ -107,7 +121,7 @@ function Leaderboard() {
         <>
           {role === "faculty" && (
             <div>
-              <div className="rowl" style={{marginTop:"100px"}}>
+              <div className="rowl" style={{ marginTop: "100px" }}>
                 <div className="columnl">
                   <div className="cardl">
                     <div className="body">
@@ -147,13 +161,13 @@ function Leaderboard() {
           )}
           <div className="rowl">
             {role === "student" ? (
-              <h2 style={{paddingBottom: "2rem", color: "#212529" }}>
+              <h2 style={{ paddingBottom: "2rem", color: "#212529" }}>
                 LEADERBOARD
               </h2>
             ) : (
               <h2
                 style={{
-                  padding:"30px",
+                  padding: "30px",
                   paddingBottom: "2rem",
                   color: "#212529",
                 }}
@@ -161,6 +175,11 @@ function Leaderboard() {
                 LEADERBOARD
               </h2>
             )}
+          </div>
+          <div style={{ marginBottom: "1rem", textAlign: "right" }}>
+            <button onClick={exportToExcel} className="btn btn-primary">
+              Export as Excel
+            </button>
           </div>
           <table className="" style={{ width: "100%" }}>
             <thead className="tablehead">

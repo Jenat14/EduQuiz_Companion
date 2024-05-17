@@ -177,9 +177,16 @@ function Leaderboard() {
             )}
           </div>
           <div style={{ marginBottom: "1rem", textAlign: "right" }}>
-            <button onClick={exportToExcel} className="btn btn-primary">
+          <span
+              onClick={exportToExcel}
+              style={{
+                cursor: "pointer",
+                color: "black",
+                textDecoration: "underline",
+              }}
+            >
               Export as Excel
-            </button>
+            </span>
           </div>
           <table className="" style={{ width: "100%" }}>
             <thead className="tablehead">

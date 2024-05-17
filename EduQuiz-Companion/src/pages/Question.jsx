@@ -131,7 +131,7 @@ const Question = () => {
       alert("Do not change tab while attending the quiz");
     }
   };
-  //seting the timer f quiz
+  //seting the timer for quiz
   useEffect(() => {
     const storedTimer = localStorage.getItem("timer");
     if (storedTimer && !isNaN(storedTimer)) {

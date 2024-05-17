@@ -1,37 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-const styles = {
-  container: {
-    margin: "4%",
-    marginTop: "70px",
-  },
-  column: {
-    float: "left",
-    width: "25%",
-    padding: "0 10px",
-  },
-  row: {
-    margin: "0 -5px",
-  },
-  card: {
-    padding: "16px",
-    textAlign: "center",
-    backgroundColor: "#76ABAE",
-    height: "120px",
-    borderRadius: "15px",
-  },
-  body: {
-    color: "#FFFFFF",
-  },
-  tablehead: {
-    backgroundColor: "#EEEEEE",
-    height: "4rem",
-  },
-  tablebody: {
-    backgroundColor: "#F7FCFC",
-  },
-};
-
+import "../leaderboard.css";
 function Leaderboard() {
   const id = localStorage.getItem("Id");
   const role = id && id.startsWith("F") ? "faculty" : "student";
@@ -69,7 +37,7 @@ function Leaderboard() {
   const { leaderboard, statistics } = leaderboardData;
 
   return (
-    <div style={styles.container}>
+    <div className="containerl">
       {loading ? (
         <div
           style={{
@@ -139,26 +107,26 @@ function Leaderboard() {
         <>
           {role === "faculty" && (
             <div>
-              <div style={styles.row}>
-                <div style={styles.column}>
-                  <div style={styles.card}>
-                    <div style={styles.body}>
+              <div className="rowl" style={{marginTop:"100px"}}>
+                <div className="columnl">
+                  <div className="cardl">
+                    <div className="body">
                       <h2>{statistics.numberOfParticipants}</h2>
                       <h5>PARTICIPANTS</h5>
                     </div>
                   </div>
                 </div>
-                <div style={styles.column}>
-                  <div style={styles.card}>
-                    <div style={styles.body}>
+                <div className="columnl">
+                  <div className="cardl">
+                    <div className="body">
                       <h2>{statistics.averageScore}</h2>
                       <h5>AVERAGE SCORE</h5>
                     </div>
                   </div>
                 </div>
-                <div style={styles.column}>
-                  <div style={styles.card}>
-                    <div style={styles.body}>
+                <div className="columnl">
+                  <div className="cardl">
+                    <div className="body">
                       <h2>
                         {statistics.highestScore}/{statistics.totalMarks}
                       </h2>
@@ -166,9 +134,9 @@ function Leaderboard() {
                     </div>
                   </div>
                 </div>
-                <div style={styles.column}>
-                  <div style={styles.card}>
-                    <div style={styles.body}>
+                <div className="columnl">
+                  <div className="cardl">
+                    <div className="body">
                       <h2>{statistics.participantsWithHighestScore}</h2>
                       <h5>PARTICIPANTS WITH HIGHEST SCORE</h5>
                     </div>
@@ -177,17 +145,17 @@ function Leaderboard() {
               </div>
             </div>
           )}
-          <div style={styles.row}>
+          <div className="rowl">
             {role === "student" ? (
-              <h2 style={{ paddingBottom: "2rem", color: "#212529" }}>
+              <h2 style={{paddingBottom: "2rem", color: "#212529" }}>
                 LEADERBOARD
               </h2>
             ) : (
               <h2
                 style={{
-                  paddingTop: "10rem",
+                  padding:"30px",
                   paddingBottom: "2rem",
-                  color: "#222831",
+                  color: "#212529",
                 }}
               >
                 LEADERBOARD
@@ -195,7 +163,7 @@ function Leaderboard() {
             )}
           </div>
           <table className="" style={{ width: "100%" }}>
-            <thead style={styles.tablehead}>
+            <thead className="tablehead">
               <tr>
                 <th scope="col">Rank</th>
                 <th scope="col">Name</th>
@@ -203,7 +171,7 @@ function Leaderboard() {
                 <th scope="col">Time Taken</th>
               </tr>
             </thead>
-            <tbody style={styles.tablebody}>
+            <tbody className="tablebody">
               {leaderboard.map((participant, index) => (
                 <tr key={index} style={{ height: "3rem" }}>
                   <th scope="row">{index + 1}</th>

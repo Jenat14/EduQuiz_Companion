@@ -40,55 +40,56 @@ function LevelPage() {
   localStorage.setItem("quiznum", counter + 1);
   return (
     <div style={{ marginTop: "70px", padding: "5%" }}>
-      <div className="row">
-        <div className="col-md-6 ">
-          <h2 style={{ margin: 0, color: "#212529" }}>LEVEL {level}</h2>
-        </div>
-        <div className="col-md-6 d-grid d-md-flex justify-content-md-end">
-          <Link to="/PageLayout">
-            <button
-              className="btn btn-primary"
-              style={{
-                borderRadius: "25px",
-                backgroundColor: "#76ABAE",
-                border: "1px solid #76ABAE",
-                color: "#FFFFFF",
-                width: "200px",
-              }}
-            >
-              <h6>Add New Quiz</h6>
-            </button>
-          </Link>
-        </div>
-      </div>
-      <div style={{ padding: "5%" }}>
-        {quizNames.map((quiz, index) => (
-          <Link
-            to={{
-              pathname: `/LeadView`,
-              search: `?quiz=${encodeURIComponent(JSON.stringify(quiz))}`,
-            }}
-            style={{ textDecoration: "none" }}
-            key={index}
-          >
-            <div
-              className="card mb-3 shadow-bottom"
-              style={{
-                width: "70rem",
-                backgroundColor: "#EEEEEE",
-                borderColor: "#76ABAE",
-              }}
-            >
-              <div className="card-body d-flex align-items-center justify-content-center">
-                <h5 className="card-title" style={{ color: "#212529" }}>
-                  {quiz}
-                </h5>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+  <div className="row align-items-center">
+    <div className="col-md-6">
+      <h2 style={{ margin: 0, color: "#212529" }}>LEVEL {level}</h2>
     </div>
+    <div className="col-md-6 d-grid d-md-flex justify-content-md-end">
+      <Link to="/PageLayout">
+        <button
+          className="btn btn-primary"
+          style={{
+            borderRadius: "25px",
+            backgroundColor: "#76ABAE",
+            border: "1px solid #76ABAE",
+            color: "#FFFFFF",
+            width: "200px",
+          }}
+        >
+          <h6>Add New Quiz</h6>
+        </button>
+      </Link>
+    </div>
+  </div>
+  <div style={{ padding: "5%" }}>
+    {quizNames.map((quiz, index) => (
+      <Link
+        to={{
+          pathname: `/LeadView`,
+          search: `?quiz=${encodeURIComponent(JSON.stringify(quiz))}`,
+        }}
+        style={{ textDecoration: "none", marginBottom: "20px" }}
+        key={index}
+        className="col-12"
+      >
+        <div
+          className="card mb-3 shadow-bottom"
+          style={{
+            backgroundColor: "#EEEEEE",
+            borderColor: "#76ABAE",
+          }}
+        >
+          <div className="card-body d-flex align-items-center justify-content-center">
+            <h5 className="card-title" style={{ color: "#212529" }}>
+              {quiz}
+            </h5>
+          </div>
+        </div>
+      </Link>
+    ))}
+  </div>
+</div>
+
   );
 }
 

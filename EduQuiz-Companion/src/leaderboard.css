@@ -1,0 +1,56 @@
+/* Desktop view styles */
+.containerl {
+  margin: 4%;
+  margin-top: 70px;
+}
+
+.columnl {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+.rowl {
+  margin: 0 -5px;
+}
+
+.cardl {
+  padding: 16px;
+  text-align: center;
+  background-color: #76ABAE;
+  height: 120px;
+  border-radius: 15px;
+}
+.body {
+  color: #FFFFFF;
+}
+
+.tablehead {
+  background-color: #EEEEEE;
+  height: 4rem;
+}
+
+.tablebody {
+  background-color: #F7FCFC;
+}
+
+/* Mobile view styles */
+@media (max-width: 767px) {
+  .container {
+    margin-top: 100px;
+  }
+
+  .columnl {
+    float: none;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .rowl {
+    margin: 0;
+  }
+
+  .cardl {
+    margin-bottom: 20px;
+  }
+}

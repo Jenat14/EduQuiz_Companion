@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as XLSX from "xlsx";
-
+import "../PageLayout.css"
 const PageLayout = () => {
   const quizName = `  Quiz ${localStorage.getItem("quiznum")}`;
   console.log(localStorage.getItem("subId"));
@@ -131,49 +131,45 @@ const PageLayout = () => {
 
   return (
     <div style={{ marginTop: "70px" }}>
-      <h1 style={{ textAlign: "center" }}>Add New Quiz</h1>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "20px",
-        }}
-      >
-        <a href={fileDownloadUrl} download="template.xlsx">
-          <button
-            className="btn btn-light"
-            style={{
-              width: "250px",
-              background: "#76ABAE",
-              color: "#ffffff",
-              marginRight: "10px",
-            }}
-            onClick={handleDownloadTemplate}
-          >
-            Download template
-          </button>
-        </a>
-        <label
-          htmlFor="file-upload"
-          type="button"
-          className="btn upload-button"
-          style={{
-            width: "250px",
-            background: "#76ABAE",
-            color: "#ffffff",
-            marginRight: "10px",
-          }}
-        >
-          <input
-            type="file"
-            id="file-upload"
-            accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            style={{ display: "none" }}
-            onChange={handleFileChange}
-          />
-          Upload Questions
-        </label>
-      </div>
+        <h1 className="text-center mb-4 mt-3 mt-sm-0 custom-padding">Add New Quiz</h1>
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-5 d-flex justify-content-center mb-2">
+            <a href={fileDownloadUrl} download="template.xlsx">
+              <button
+                className="btn btn-light"
+                style={{
+                  width: "250px",
+                  background: "#76ABAE",
+                  color: "#ffffff",
+                }}
+                onClick={handleDownloadTemplate}
+              >
+                Download template
+              </button>
+            </a>
+          </div>
+          <div className="col-12 col-md-5 d-flex justify-content-center mb-2">
+            <label
+              htmlFor="file-upload"
+              className="btn btn-light"
+              style={{
+                width: "250px",
+                background: "#76ABAE",
+                color: "#ffffff",
+              }}
+            >
+              <input
+                type="file"
+                id="file-upload"
+                accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+              />
+              Upload Questions
+            </label>
+          </div>
+        </div>
+
       <div className="instructions-container">
         <h2 style={{ textAlign: "center" }}>General Instructions</h2>
         <p>

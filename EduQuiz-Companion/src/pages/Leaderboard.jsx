@@ -167,8 +167,6 @@ function Leaderboard() {
             ) : (
               <h2
                 style={{
-                  paddingTop:"150px",
-                  padding: "30px",
                   color: "#212529",
                 }}
               >
@@ -178,16 +176,22 @@ function Leaderboard() {
           </div>
           <div style={{ marginBottom: "1rem", textAlign: "right" }}>
           {role === "faculty" && (
-          <span
+          <button className="btn btn-primary"
+          style={{
+            backgroundColor: "#76ABAE",
+            borderColor: "#76ABAE",
+          }}>
+            <span
               onClick={exportToExcel}
               style={{
                 cursor: "pointer",
-                color: "black",
-                textDecoration: "underline",
+                color: "#FFFFFF",
+
               }}
             >
               Export as Excel
             </span>
+          </button>
           )}
           </div>
           <table className="" style={{ width: "100%" }}>

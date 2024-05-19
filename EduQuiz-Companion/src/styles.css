@@ -170,4 +170,8 @@
   .btn {
     width: 150px; 
   }
-  
+  @media (max-width: 767px) {
+    #level-btn{
+      margin: 2%;
+    }
+  }  

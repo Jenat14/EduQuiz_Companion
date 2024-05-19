@@ -120,44 +120,44 @@ function Leaderboard() {
       ) : (
         <>
           {role === "faculty" && (
-            <div>
-              <div className="rowl" style={{ marginTop: "100px" }}>
-                <div className="columnl">
-                  <div className="cardl">
-                    <div className="body">
-                      <h2>{statistics.numberOfParticipants}</h2>
-                      <h5>PARTICIPANTS</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="columnl">
-                  <div className="cardl">
-                    <div className="body">
-                      <h2>{statistics.averageScore.toFixed(2)}</h2>
-                      <h5>AVERAGE SCORE</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="columnl">
-                  <div className="cardl">
-                    <div className="body">
-                      <h2>
-                        {statistics.highestScore}/{statistics.totalMarks}
-                      </h2>
-                      <h5>HIGHEST SCORE</h5>
-                    </div>
-                  </div>
-                </div>
-                <div className="columnl">
-                  <div className="cardl">
-                    <div className="body">
-                      <h2>{statistics.participantsWithHighestScore}</h2>
-                      <h5>PARTICIPANTS WITH HIGHEST SCORE</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <div className="containerl container mt-5">
+      <div className="rowl row">
+        <div className="columnl col-12 col-md-6 col-lg-3 mb-4">
+          <div className="cardl">
+            <div className="card-body text-center" style={{color:"#FFFFFF"}}>
+              <h2>{statistics.numberOfParticipants}</h2>
+              <h5>PARTICIPANTS</h5>
             </div>
+          </div>
+        </div>
+        <div className="columnl col-12 col-md-6 col-lg-3 mb-4"style={{color:"#FFFFFF"}}>
+          <div className="cardl">
+            <div className="card-body text-center">
+              <h2>{statistics.averageScore.toFixed(2)}</h2>
+              <h5>AVERAGE SCORE</h5>
+            </div>
+          </div>
+        </div>
+        <div className="columnl col-12 col-md-6 col-lg-3 mb-4"style={{color:"#FFFFFF"}}>
+          <div className="cardl">
+            <div className="card-body text-center">
+              <h2>
+                {statistics.highestScore}/{statistics.totalMarks}
+              </h2>
+              <h5>HIGHEST SCORE</h5>
+            </div>
+          </div>
+        </div>
+        <div className=" columnl col-12 col-md-6 col-lg-3 mb-4"style={{color:"#FFFFFF"}}>
+          <div className="cardl">
+            <div className="card-body text-center">
+              <h2>{statistics.participantsWithHighestScore}</h2>
+              <h5 className="truncate-text">PARTICIPANTS WITH HIGHEST SCORE</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
           )}
           <div className="rowl">
             {role === "student" ? (

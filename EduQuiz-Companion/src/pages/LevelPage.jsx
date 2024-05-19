@@ -42,14 +42,11 @@ function LevelPage() {
 
   const headerRowStyle = {
     display: 'flex',
-    flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: '20px',
   };
 
   const levelTitleStyle = {
-    flex: 1,
     color: '#212529',
     margin: 0,
   };
@@ -84,6 +81,7 @@ function LevelPage() {
     borderColor: '#76ABAE',
     marginBottom: '20px',
     transition: 'transform 0.2s',
+    
   };
 
   const cardTitleStyle = {

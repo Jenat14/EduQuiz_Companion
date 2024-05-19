@@ -98,7 +98,7 @@ function StudentSub() {
   return (
     <>
       <div style={{ marginTop: "70px" }}>
-        <h1 style={{ textAlign: "center", color: "#222831" }}>{subname}</h1>
+        <h1 style={{ textAlign: "center", color: "#222831",padding:"20px" }}>{subname}</h1>
         <div className="instructions-container">
           <h2>General Instructions</h2>
           <p>

@@ -131,7 +131,7 @@ const PageLayout = () => {
 
   return (
     <div style={{ marginTop: "70px" }}>
-        <h1 className="text-center mb-4 mt-3 mt-sm-0 custom-padding">Add New Quiz</h1>
+        <h1 className="text-center mb-4 mt-3 mt-sm-0 custom-padding" style={{ marginTop: "70px", paddingTop: "5%" }}>Add New Quiz</h1>
         <div className="row justify-content-center">
           <div className="col-12 col-md-5 d-flex justify-content-center mb-2">
             <a href={fileDownloadUrl} download="template.xlsx">

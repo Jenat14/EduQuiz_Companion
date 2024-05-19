@@ -33,13 +33,19 @@
 .tablebody {
   background-color: #F7FCFC;
 }
-
+/* styles.css */
+.truncate-text {
+  font-size: 1.25rem; /* Base font size for mobile */
+  line-height: 1.2; /* Line height */
+  margin: 0;
+}
+@media (min-width: 992px) {
+  .truncate-text{
+  font-size: 1.1rem; /* Reduced font size for desktop */
+}
+}
 /* Mobile view styles */
 @media (max-width: 767px) {
-  .container {
-    margin-top: 100px;
-  }
-
   .columnl {
     float: none;
     width: 100%;
@@ -52,5 +58,19 @@
 
   .cardl {
     margin-bottom: 20px;
+  }
+}
+/* styles.css */
+@media (max-width: 990px) {
+  .containerl {
+    padding-top: 1%;
+  }
+  .card {
+    width: 48%;
+    margin-bottom: 2%;
+  }
+
+  .card-body {
+    text-align: center;
   }
 }

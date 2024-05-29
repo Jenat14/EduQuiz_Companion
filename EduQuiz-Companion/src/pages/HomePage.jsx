@@ -7,60 +7,67 @@ function HomePage() {
   return (
     <>
       <header>
-        <nav className="navbar navbar-expand-lg  bg-light  fixed-top">
-          <div className="container-fluid">
-            <a
-              className="navbar-brand"
-              style={{ fontWeight: "700", color: "#555555" }}
-            >
-              <img
-                src={logo}
-                style={{ height: "30px", width: "30px", marginTop: "0px" }}
-              ></img>{" "}
-              EduQuiz.
-            </a>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#home">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#mission">
-                  Mission
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#contact">
-                  Contact
-                </a>
-              </li>
-              <li id="dropdown" className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Login
-                </a>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <Link to="/LoginStudent" className="dropdown-item">
-                      Student Login
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/Facultylogin">
-                      Faculty Login
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <nav className="navbar navbar-expand-lg bg-light fixed-top">
+      <div className="container-fluid">
+        <a className="navbar-brand" style={{ fontWeight: "700", color: "#555555" }} href="#home">
+          <img src={logo} style={{ height: "30px", width: "30px", marginTop: "0px" }} alt="Logo" />
+          EduQuiz.
+        </a>
+        <button
+          className="navbar-toggler ms-auto"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <a className="nav-link" aria-current="page" href="#home">
+                Home
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#mission">
+                Mission
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#contact">
+                Contact
+              </a>
+            </li>
+            <li id="dropdown" className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Login
+              </a>
+              <ul className="dropdown-menu dropdown-menu-end">
+                <li>
+                  <Link to="/LoginStudent" className="dropdown-item">
+                    Student Login
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/Facultylogin">
+                    Faculty Login
+                  </Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
       </header>
       <body>
         {/*Home section*/}
@@ -95,6 +102,7 @@ function HomePage() {
             <img src={Home1} className="img-fluid" alt="" />
           </div>
         </div>
+        
         {/*Mission section*/}
         <div id="mission" className="section half-screen">
           <div className="img">

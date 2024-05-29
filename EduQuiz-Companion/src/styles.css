@@ -27,6 +27,7 @@
       padding: 0.5rem 1rem; 
       background-color: #76abae4c
     }
+    
   /*HomePage styles*/  
   .section {
       padding: 50px;
@@ -173,5 +174,8 @@
   @media (max-width: 767px) {
     #level-btn{
       margin: 2%;
+    }
+    h1{
+      padding-top: 50px;
     }
   }  

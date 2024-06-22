@@ -32,10 +32,6 @@ app.use('/leaderboardRoutes', leaderboardRoutes);
 app.use('/chatbot', chatbotRoutes);
 app.use('/changePassword',changePasswordRoutes)
 
-app.get('/', (req, res) => {
-  res.send('<h1>Hello hi, Express.js Server!</h1>');
-});
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

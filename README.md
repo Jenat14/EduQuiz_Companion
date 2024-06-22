@@ -67,6 +67,8 @@ EDUQUIZ COMPANION is a web-based educational quiz platform specifically designed
    ```
 
 ## Usage
-- **Frontend**: Accessible at `http://localhost:3000`.
-- **Backend**: API endpoints available at `http://localhost:5000`.
+- **Frontend**: Accessible at `http://localhost:5173`.
+- **Backend**: API endpoints available at `http://localhost:3000`.
+
+
 

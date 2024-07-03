@@ -161,7 +161,7 @@ function Leaderboard() {
           )}
           <div className="rowl">
             {role === "student" ? (
-              <h2 style={{ paddingBottom: "2rem", color: "#212529" }}>
+              <h2 style={{ paddingBottom: "2rem", color: "#212529", marginTop:"50px" }}>
                 LEADERBOARD
               </h2>
             ) : (

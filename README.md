@@ -70,5 +70,32 @@ EDUQUIZ COMPANION is a web-based educational quiz platform specifically designed
 - **Frontend**: Accessible at `http://localhost:5173`.
 - **Backend**: API endpoints available at `http://localhost:3000`.
 
+## Some Screenshots
+### Home Page
+![Screenshot 2024-08-04 161841](https://github.com/user-attachments/assets/8d1bc9fa-3535-4282-a475-ff3cd59ca4e5)
+
+![Screenshot 2024-08-04 161902](https://github.com/user-attachments/assets/682e0691-37d9-43dd-8d54-fb09ebb65bf6)
+
+## login
+![Screenshot 2024-08-04 161928](https://github.com/user-attachments/assets/a054635c-b5fa-4ba4-9109-7d5d664138ab)
+
+![Screenshot 2024-08-04 162209](https://github.com/user-attachments/assets/1bdb5a31-4343-4045-b2b5-448975222af1)
+
+![Screenshot 2024-08-04 162244](https://github.com/user-attachments/assets/0f537a14-c052-4534-b1e8-6d6f894d01f3)
+
+![Screenshot 2024-08-04 162322](https://github.com/user-attachments/assets/691540e3-7cd4-4fe5-9833-8d8fb416c224)
+
+![Screenshot 2024-08-04 162449](https://github.com/user-attachments/assets/315e0edd-71a2-4af8-a4d5-d6474fde255f)
+
+![Screenshot 2024-08-04 162420](https://github.com/user-attachments/assets/b760a08a-78b0-4242-a7fc-c17a4ac86d09)
+
+![Screenshot 2024-08-04 162521](https://github.com/user-attachments/assets/05c32099-7d30-4938-bb3e-351a4fa3ec07)
+
+
+
+
+
+
+
 
 
